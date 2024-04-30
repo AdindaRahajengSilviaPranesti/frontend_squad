@@ -1,0 +1,24 @@
+.calibration-section {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .calibration-section .calibration-card {
+    flex: 1; /* Setiap kartu akan mengambil ruang yang sama */
+    margin-right: 1rem; /* Margin kanan antara kartu */
+  }
+  
+  @media (max-width: 768px) {
+    .calibration-section .calibration-card {
+      margin-right: 0; /* Menghapus margin kanan pada layar kecil */
+      margin-bottom: 1rem; /* Menambah margin bawah antara kartu pada layar kecil */
+    }
+  }
+  
+
+
+
+  
+
+  
+  

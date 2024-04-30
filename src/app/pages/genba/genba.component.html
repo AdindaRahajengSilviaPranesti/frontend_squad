@@ -1,0 +1,133 @@
+<div class="flex-grow-1">
+  <h4 class="niceday">Helo! Welcome to Genba<i class="ri-heart-fill"></i>
+  </h4>
+  <p class="worktoday">Have a Nice Day <i class="ri-heart-fill"></i></p>
+</div>
+
+
+
+<div class="row justify-content-center">
+  <div class="col">
+    <div class="card">
+      <div class="w-full px-6 py-6 mx-auto">
+        <div class="new">
+          <div class="text-center lg:text-left ">
+            <span class="genba">
+              <img src="assets/img/love1.png" alt="Love Icon" class="love-icon1"> GENBA <img src="assets/img/love2.png"
+                alt="Love Icon" class="love-icon2">
+            </span>
+            <div class="flex justify-center lg:justify-start">
+              <img src="assets/img/genbalg.png" alt="iot" width="400px" height="400px">
+            </div>
+            <h2 class="visigenba">Smart Quality Dashboard for Visualization Data IoT QA</h2>
+            <div class="wrapper">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!--CHART GENBA DASHBOARD-->
+
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <!--SELF GENBA COLUMNS CHART-->
+      <div class="col-xl-6 order-1 order-xl-1">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title mb-0">SELF GENBA</h4>
+          </div><!-- end card header -->
+
+          <div class="card-body">
+            <apx-chart [series]="StackedColumnChart.series" [chart]="StackedColumnChart.chart"
+              [dataLabels]="StackedColumnChart.dataLabels" [plotOptions]="StackedColumnChart.plotOptions"
+              [responsive]="StackedColumnChart.responsive" [xaxis]="StackedColumnChart.xaxis"
+              [legend]="StackedColumnChart.legend" [fill]="StackedColumnChart.fill" [colors]="StackedColumnChart.colors"
+              dir="ltr"></apx-chart>
+          </div><!-- end card-body -->
+        </div><!-- end card -->
+      </div>
+      <!--CROSS AUDIT GENBA COLUMNS CHARTT-->
+      <div class="col-xl-6 order-2 order-xl-2">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title mb-0">Cross Audit Genba</h4>
+          </div><!-- end card header -->
+          <div class="card-body">
+            <apx-chart [series]="distributedColumnChart.series" [chart]="distributedColumnChart.chart"
+              [dataLabels]="distributedColumnChart.dataLabels" [plotOptions]="distributedColumnChart.plotOptions"
+              [yaxis]="distributedColumnChart.yaxis" [xaxis]="distributedColumnChart.xaxis"
+              [legend]="distributedColumnChart.legend" [colors]="distributedColumnChart.colors"
+              [grid]="distributedColumnChart.grid" dir="ltr"></apx-chart>
+          </div><!-- end card-body -->
+        </div><!-- end card -->
+      </div>
+      <!-- COLOUMN WITH DATA LABELS -->
+      <div class="col-xl-6 order-4 order-xl-4">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title mb-0">Column with Data Labels</h4>
+          </div><!-- end card header -->
+
+          <div class="card-body">
+            <apx-chart [series]="columnWithDataChart.series" [chart]="columnWithDataChart.chart"
+              [dataLabels]="columnWithDataChart.dataLabels" [plotOptions]="columnWithDataChart.plotOptions"
+              [yaxis]="columnWithDataChart.yaxis" [xaxis]="columnWithDataChart.xaxis" [fill]="columnWithDataChart.fill"
+              [title]="columnWithDataChart.title" [colors]="columnWithDataChart.colors" dir="ltr"></apx-chart>
+          </div><!-- end card-body -->
+        </div><!-- end card -->
+      </div>
+      <!--STACKED COLUMNS 100-->
+      <div class="col-xl-6 order-3 order-xl-3">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title mb-0">Stacked Column 100</h4>
+          </div><!-- end card header -->
+
+          <div class="card-body">
+            <apx-chart [series]="StackedColumn100Chart.series" [chart]="StackedColumn100Chart.chart"
+              [dataLabels]="StackedColumn100Chart.dataLabels" [plotOptions]="StackedColumn100Chart.plotOptions"
+              [responsive]="StackedColumn100Chart.responsive" [xaxis]="StackedColumn100Chart.xaxis"
+              [legend]="StackedColumn100Chart.legend" [fill]="StackedColumn100Chart.fill"
+              [colors]="StackedColumn100Chart.colors" dir="ltr"></apx-chart>
+          </div><!-- end card-body -->
+        </div><!-- end card -->
+      </div>
+      <!--SIMPLE DONUT CHART-->
+      <div class="col-xl-6 order-5 order-xl-5 text-center">
+        <div class="card d-flex flex-row">
+          <div>
+            <div class="card-header">
+              <h4 class="card-title mb-0">Simple Donut Chart</h4>
+            </div><!-- end card header -->
+            <div class="card-body">
+              <apx-chart [series]="simpleDonutChart.series" [chart]="simpleDonutChart.chart"
+                [labels]="simpleDonutChart.labels" [responsive]="simpleDonutChart.responsive"
+                [legend]="simpleDonutChart.legend" [dataLabels]="simpleDonutChart.dataLabels"
+                [colors]="simpleDonutChart.colors" dir="ltr"></apx-chart>
+            </div><!-- end card-body -->
+          </div>
+          
+
+          <div>
+            <div class="card-header">
+              <h4 class="card-title mb-0">Result Simple Donut Chart</h4>
+            </div><!-- end card header -->
+            <div class="card-body">
+              <apx-chart [series]="simpleDonutChart2.series" [chart]="simpleDonutChart2.chart"
+                [labels]="simpleDonutChart2.labels" [responsive]="simpleDonutChart2.responsive"
+                [legend]="simpleDonutChart2.legend" [dataLabels]="simpleDonutChart2.dataLabels"
+                [colors]="simpleDonutChart2.colors" dir="ltr"></apx-chart>
+            </div><!-- end card-body -->
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>

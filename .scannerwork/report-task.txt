@@ -1,0 +1,6 @@
+projectKey=qa_dashboard
+serverUrl=http://192.168.110.127:31232
+serverVersion=8.9.10.61524
+dashboardUrl=http://192.168.110.127:31232/dashboard?id=qa_dashboard
+ceTaskId=AYvw-5nq66RG92X9iSXz
+ceTaskUrl=http://192.168.110.127:31232/api/ce/task?id=AYvw-5nq66RG92X9iSXz

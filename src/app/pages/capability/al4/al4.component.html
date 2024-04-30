@@ -1,0 +1,258 @@
+<div class="card mt-4">
+    <div class="card-body">
+        <form (submit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="choices-single-default" class="form-label text-muted">Type Analisa</label>
+                    <div class="mb-3">
+                        <ng-select [items]="jenisPengujianData" bindLabel="jenis_uji" bindValue="jenis_uji"
+                            placeholder="Select Testing Type" name="jenis_uji" (change)="onChangeJenisUji($event)">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="choices-single-default" class="form-label text-muted">Range Date</label>
+                    <div class="mb-3">
+                        <input class="form-control flatpickr-input" type="text" mwlFlatpickr [altInput]="true"
+                            aria-describedby="inputGroupPrepend" [convertModelValue]="true" mode="range"
+                            placeholder="Select Date" (change)="onChangeDate($event)">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary btn-icon waves-effect waves-light my-auto">
+                            <i class="ri-search-line"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col-6">
+                <div style="max-height: 600px; overflow-y: auto;">
+                    <table *ngIf="dataTable; else elseDataTable" class="table caption-top table-nowrap">
+                        <thead class="table-light" style="position: sticky; top: 0;">
+                            <tr>
+                                <th class="text-center" scope="col">No</th>
+                                <th class="text-center" scope="col">Lot No</th>
+                                <th class="text-center" scope="col">Sample Sequence</th>
+                                <th class="text-center" scope="col">Value</th>
+                                <th class="text-center" scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of dataTable.data; let i = index">
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{ item.lotno }}</td>
+                                <td>{{ item.urutan_sample }}</td>
+                                <td class="text-center">{{ item.value }}</td>
+                                <td *ngIf="item.status == 1" class="text-success fw-bold text-center">Passed</td>
+                                <td *ngIf="item.status == 0" class="text-danger fw-bold text-center">Not Passed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <ng-template #elseDataTable>
+                    <table class="table caption-top table-nowrap">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="text-center" scope="col">No</th>
+                                <th class="text-center" scope="col">Lot No</th>
+                                <th class="text-center" scope="col">Sample Sequence</th>
+                                <th class="text-center" scope="col">Value</th>
+                                <th class="text-center" scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center" colspan="5">No Data</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ng-template>
+            </div>
+            <div class="col-6">
+                <apx-chart [series]="splineAreaChart.series" [chart]="splineAreaChart.chart"
+                    [xaxis]="splineAreaChart.xaxis" [stroke]="splineAreaChart.stroke"
+                    [tooltip]="splineAreaChart.tooltip" [dataLabels]="splineAreaChart.dataLabels"
+                    [colors]="splineAreaChart.colors" [annotations]="splineAreaChart.annotations" dir="ltr"></apx-chart>
+
+                <div class="row">
+                    <div class="col-3">
+                        <div class="card card-animate">
+                            <div class="card-body px-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <div class="flex-grow-1 overflow-hidden">
+                                            <p class="text-muted text-truncate mb-0">Mean</p>
+                                        </div>
+                                        <h4 class="mt-2 ff-secondary fw-semibold">
+                                            <span *ngIf="meanValue; else elseMeanValue">{{meanValue}} kPa</span>
+                                            <ng-template #elseMeanValue>
+                                                <span>-</span>
+                                            </ng-template>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card card-animate">
+                            <div class="card-body px-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <div class="flex-grow-1 overflow-hidden">
+                                            <p class="text-muted text-truncate mb-0">Min</p>
+                                        </div>
+                                        <h4 class="mt-2 ff-secondary fw-semibold">
+                                            <span *ngIf="minValue; else elseMinValue">{{minValue}} kPa</span>
+                                            <ng-template #elseMinValue>
+                                                <span>-</span>
+                                            </ng-template>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card card-animate">
+                            <div class="card-body px-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <div class="flex-grow-1 overflow-hidden">
+                                            <p class="text-muted text-truncate mb-0">Max</p>
+                                        </div>
+                                        <h4 class="mt-2 ff-secondary fw-semibold">
+                                            <span *ngIf="maxValue; else elseMaxValue">{{maxValue}} kPa</span>
+                                            <ng-template #elseMaxValue>
+                                                <span>-</span>
+                                            </ng-template>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card card-animate">
+                            <div class="card-body px-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <div class="flex-grow-1 overflow-hidden">
+                                            <p class="text-muted text-truncate mb-0">Range</p>
+                                        </div>
+                                        <h4 class="mt-2 ff-secondary fw-semibold">
+                                            <span *ngIf="rangeValue; else elseRangeValue">{{rangeValue}} kPa</span>
+                                            <ng-template #elseRangeValue>
+                                                <span>-</span>
+                                            </ng-template>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card card-animate">
+                            <div class="card-body px-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <div class="flex-grow-1 overflow-hidden">
+                                            <p class="text-muted text-truncate mb-0">Lower Spesification Limit</p>
+                                        </div>
+                                        <h4 class="mt-2 ff-secondary fw-semibold">
+                                            <span *ngIf="lslValue; else elseLslValue">{{lslValue}}</span>
+                                            <ng-template #elseLslValue>
+                                                <span>-</span>
+                                            </ng-template>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card card-animate">
+                            <div class="card-body px-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <div class="flex-grow-1 overflow-hidden">
+                                            <p class="text-muted text-truncate mb-0">Upper Spesification Limit</p>
+                                        </div>
+                                        <h4 class="mt-2 ff-secondary fw-semibold">
+                                            <span *ngIf="uslValue; else elseUslValue">{{uslValue}}</span>
+                                            <ng-template #elseUslValue>
+                                                <span>-</span>
+                                            </ng-template>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card card-animate">
+                            <div class="card-body px-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <div class="flex-grow-1 overflow-hidden">
+                                            <p class="text-muted text-truncate mb-0">Standard Deviation</p>
+                                        </div>
+                                        <h4 class="mt-2 ff-secondary fw-semibold">
+                                            <span *ngIf="stdDevValue; else elseStdDevValue">{{stdDevValue}}</span>
+                                            <ng-template #elseStdDevValue>
+                                                <span>-</span>
+                                            </ng-template>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card card-animate">
+                            <div class="card-body px-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <div class="flex-grow-1 overflow-hidden">
+                                            <p class="text-muted text-truncate mb-0">Process Capability</p>
+                                        </div>
+                                        <h4 class="mt-2 ff-secondary fw-semibold">
+                                            <span *ngIf="cpValue; else elseCpValue">{{cpValue}}</span>
+                                            <ng-template #elseCpValue>
+                                                <span>-</span>
+                                            </ng-template>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card card-animate">
+                            <div class="card-body px-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <div class="flex-grow-1 overflow-hidden">
+                                            <p class="text-muted text-truncate mb-0">Process Capability Index</p>
+                                        </div>
+                                        <h4 class="mt-2 ff-secondary fw-semibold">
+                                            <span *ngIf="cpkValue; else elseCpkValue">{{cpkValue}}</span>
+                                            <ng-template #elseCpkValue>
+                                                <span>-</span>
+                                            </ng-template>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

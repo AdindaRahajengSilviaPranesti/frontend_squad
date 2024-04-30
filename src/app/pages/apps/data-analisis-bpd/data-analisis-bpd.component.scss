@@ -1,0 +1,107 @@
+// Variables
+$primary-color: #484C7F;
+$secondary-color: #F1D4D4;
+$accent-color: #AC8DAF;
+$highlight-color: #DDB6C6;
+
+// Styling ngx-spinner
+ngx-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(51, 51, 51, 0.8);
+  color: #fff;
+  font-size: 16px;
+}
+
+// Styling container
+.container {
+  &.w-full {
+    width: 100%;
+  }
+
+  &.px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  &.py-6 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  &.mb-6 {
+    margin-bottom: 1.5rem;
+  }
+
+  &.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// Styling card
+.card {
+  &.w-full {
+    width: 100%;
+  }
+
+  &.mb-4 {
+    margin-bottom: 1rem;
+  }
+
+  &.p-6 {
+    padding: 1.5rem;
+  }
+
+  &.bg-white {
+    background-color: #fff;
+  }
+
+  &.border {
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  &.rounded-lg {
+    border-radius: 0.5rem;
+  }
+
+  &.shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &:hover {
+    background-color: #f3f4f6;
+  }
+
+  &.dark {
+    &.bg-gray-800 {
+      background-color: #484c7f;
+    }
+
+    &.border-gray-700 {
+      border-color: #484c7f;
+    }
+
+    &:hover {
+      background-color: #434866;
+    }
+  }
+}
+
+// Styling chart
+.chart {
+  &.w-full {
+    width: 100%;
+  }
+
+  &.mb-4 {
+    margin-bottom: 1rem;
+  }
+
+  canvas {
+    height: 100px;
+    // Additional chart styling can be added here
+  }
+}

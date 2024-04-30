@@ -1,0 +1,75 @@
+<div class="w-full px-6 py-6 mx-auto">
+    <div class="w-full mb-4 bg-white border overflow-x-scroll border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <table class="w-full text-sm text-left rtl:text-right rounded-xl border-collapse">
+            <thead class="text-xs uppercase bg-gray-50 dark:bg-gray-700">
+                <tr>
+                    <th scope="col" class="px-4 py-3 border-b-2 border-gray-300 text-center">No</th>
+                    <th scope="col" class="px-4 py-3 border-b-2 border-gray-300 text-center">Transaction</th>
+                    <th scope="col" class="px-4 py-3 border-b-2 border-gray-300 text-center">Internal or External</th>
+                    <th scope="col" class="px-4 py-3 border-b-2 border-gray-300 text-center">No. Dokumen</th>
+                    <th scope="col" class="px-4 py-3 border-b-2 border-gray-300 text-center">Equipment Name</th>
+                    <th scope="col" class="px-4 py-3 border-b-2 border-gray-300 text-center">Category</th>
+                    <th scope="col" class="px-4 py-3 border-b-2 border-gray-300 text-center">Brand</th>
+                    <th scope="col" class="px-4 py-3 border-b-2 border-gray-300 text-center">Serial Number</th>
+                    <th scope="col" class="px-4 py-3 border-b-2 border-gray-300 text-center">Departement</th>
+                    <th scope="col" class="px-4 py-3 border-b-2 border-gray-300 text-center">Area</th>
+                    <th scope="col" class="px-4 py-3 border-b-2 border-gray-300 text-center">Area Detail</th>
+                    <th scope="col" class="px-4 py-3 border-b-2 border-gray-300 text-center">Date Calibration</th>
+                    <th scope="col" class="px-4 py-3 border-b-2 border-gray-300 text-center">Expired Calibration</th>
+                    <th scope="col" class="px-4 py-3 border-b-2 border-gray-300 text-center">Date Release Certificate</th>
+                    <th scope="col" class="px-4 py-3 border-b-2 border-gray-300 text-center">Requestor</th>
+                    <th scope="col" class="px-4 py-3 border-b-2 border-gray-300 text-center">PIC</th>
+                    <th scope="col" class="px-4 py-3 border-b-2 border-gray-300 text-center">Model</th>
+                    <th scope="col" class="px-4 py-3 border-b-2 border-gray-300 text-center">Equipment Condition</th>
+                    <th scope="col" class="px-4 py-3 border-b-2 border-gray-300 text-center">Status</th>
+                </tr>
+                
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of data; index as i" class="bg-white dark:bg-gray-800">
+                    <td class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">{{ i + 1 }}</td>
+                    <td class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">
+                        <div *ngIf="item.reg_or_recal == 1">Registrasi</div>
+                        <div *ngIf="item.reg_or_recal == 2">Recalibrasi</div>
+                    </td>
+                    <td class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">
+                        <div>
+                            <div *ngIf="item.in_or_ex == 1">Internal</div>
+                            <div *ngIf="item.in_or_ex == 2">External</div>
+                            <div *ngIf="item.in_or_ex == 3">Verification</div>
+                        </div>
+                    </td>
+                    <td class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">{{ item.no_dok }}</td>
+                    <td class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">{{ item.equipment_name }}</td>
+                    <td class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">{{ item.category }}</td>
+                    <td class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">{{ item.brand }}</td>
+                    <td class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">{{ item.serial_number }}</td>
+                    <td class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">
+                        <div *ngIf="item.departement == null; else departement">NULL</div>
+                        <ng-template #departement>{{ item.departement }}</ng-template>
+                    </td>
+                    <td class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">{{ item.area }}</td>
+                    <td class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">{{ item.location_detail }}</td>
+                    <td class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">{{ item.tanggal_calibration }}</td>
+                    <td class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">{{ item.exp_calibration }}</td>
+                    <td class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">{{ item.tanggal_release_certificate }}</td>
+                    <td class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">{{ item.requestor }}</td>
+                    <td class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">{{ item.pic_input }}</td>
+                    <td class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">{{ item.model }}</td>
+                    <td class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">{{ item.kondisi_alat }}</td>
+                    <td class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">
+                        <div *ngIf="item.isactive == 1">
+                            <span class="status-badge">Active</span>
+                        </div>
+                        <div *ngIf="item.isactive == 0">
+                            <span class="status-badge">Inactive</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr *ngIf="data.length == 0">
+                    <td colspan="19" class="px-4 py-2 font-medium text-gray-900 dark:text-white text-center border-b border-gray-200">No Data</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

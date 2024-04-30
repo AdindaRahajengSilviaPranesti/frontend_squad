@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    align-items: flex-start; /* Menempatkan konten di pojok kiri atas */
+    margin-right: 35cm;
+  }
+  
+  .date-section {
+    margin-right: 10px; /* Jarak antara input tanggal dan tombol */
+    font-size: 18px;
+  }
+  
+  input[type="date"] {
+    padding: 8px;
+    border: 2px solid #ca0b12;
+    border-radius: 4px;
+    font-size: 18px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #cc708f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #ca0b12;
+  }
+  
+  .message {
+    color: #000000;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-right: 37.1cm;
+  }
+  

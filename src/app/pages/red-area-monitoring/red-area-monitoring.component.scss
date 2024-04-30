@@ -1,0 +1,12 @@
+.titleram {
+    font-weight: bold;
+    /* Membuat teks menjadi tebal */
+    font-size: 60px;
+    /* Mengatur ukuran teks */
+    background: linear-gradient(to right, #ca0b12, #cc708f);
+    /* Gradasi warna latar belakang */
+    -webkit-background-clip: text;
+    /* Menggunakan latar belakang sebagai warna teks (untuk browser WebKit) */
+    -webkit-text-fill-color: transparent;
+    /* Mengatur warna teks menjadi transparan (untuk browser WebKit) */
+}

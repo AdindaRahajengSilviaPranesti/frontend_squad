@@ -1,0 +1,219 @@
+<body>
+  <details>
+    <summary>INCOMING UPDATE</summary>
+  <header>
+      <h1>INCOMING UPDATE</h1>
+    </header>
+
+  <!--DATE PICKER-->
+  <div class="container">
+    <form (ngSubmit)="getMaterialByDate()" [formGroup]="dateForm">
+      <div class="form" class="d-flex">
+        <div class="date-section">
+          <label for="startDate">Start Date:</label>
+          <input type="date" id="startDate" formControlName="startDate">
+        </div> &nbsp;
+        <div class="date-section">
+          <label for="endDate">End Date:</label>
+          <input type="date" id="endDate" formControlName="endDate">
+        </div> &nbsp;
+        <div>
+          <button type="submit" class="filter">Get</button> &nbsp;
+        </div>
+      </div>
+    </form>
+  </div> &nbsp;
+
+
+  <!--MASUK CONTENT MATERIAL-->
+  <!--MASUK RAW MATERIAL-->
+  <span class="rawmaterial">RECAPITULATION</span> &nbsp;
+  <div class="box">
+    <div class="card">
+      <h5 class="card-title">Material Arrival</h5><br>
+      <span class="materialcard">
+        <img src="assets/img/newar.png" alt="Love Icon" class="love-icon1"> {{totalMaterial}} LOTS
+      </span>
+    </div>
+
+    <!--COMPLETE ANALYSIS-->
+    <div class="card">
+      <h5 class="card-title">Complete Analysis</h5><br>
+      <span class="materialcard">
+        <img src="assets/img/canalysis.png" alt="Love Icon" class="love-icon1"> {{completeAnalysis}} LOTS
+      </span>
+    </div>
+
+    <!--RELEASE-->
+    <div class="card">
+      <h5 class="card-title">Release</h5><br>
+      <span class="materialcard">
+        <img src="assets/img/release.png" alt="Love Icon" class="love-icon1"> {{releaseMaterial}} LOTS
+      </span>
+    </div>
+
+
+    <!--CompletionL-->
+    <div class="card">
+      <h5 class="card-title">% Completion</h5><br>
+      <span class="materialcard">
+        <img src="assets/img/persen.png" alt="Love Icon" class="love-icon1"> {{completion}} %
+      </span>
+    </div>
+  </div>
+
+  <!--TABLE RADAR-->
+  <div class="row d-flex justify-content-center">
+    <div class="col-7">
+      <div class="material scrollable-card">
+        <div class="card-body overflow-auto" style="max-height: 300px;">
+          <div class="material">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Material</th>
+                  <th>Lot</th>
+                  <th>Qty</th>
+                  <th>Unit</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Baris-baris tabel akan disesuaikan dengan data yang diperoleh dari DBeaver -->
+                <tr *ngFor="let material of materials">
+                  <td>{{ material.insp_object }}</td>
+                  <td>{{ material.batch_number }}</td>
+                  <td>{{ material.insp_qty }}</td>
+                  <td>{{ material.unit }}</td>
+                  <td>{{ material.status}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div> <br>
+  </div>
+  <!--END TABEL RADAR-->
+</details>
+
+
+
+
+
+  <!--DATA ANALYSIS-->
+  <details>
+    <summary>DATA ANALYSIS</summary>
+  <h1>DATA ANALYSIS</h1> &nbsp;
+
+
+  <!-- Single Button Dropdown -->
+  <div class="row justify-content-center">
+    <div class="col-3">
+      <select name="jenis" class="form-control" [(ngModel)]="jenis" (change)="getManufacture()">
+        <option> ---Type---
+        </option>
+        <option *ngFor="let type of types" [ngValue]="type">{{ type.jenis }}</option>
+      </select>
+    </div> &nbsp;
+    <div class="col-3">
+      <select class="form-control" [(ngModel)]="manufacture" (change)="getParameter()">
+        <option> ---Supplier---
+        </option>
+        <option *ngFor="let supplier of suppliers" [ngValue]="supplier">{{ supplier.manufacture }}</option>
+      </select>
+    </div> &nbsp;
+    <div class="col-3">
+      <select name="parameter" class="form-control" [(ngModel)]="parameter">
+        <option> ---Parameter---
+        </option>
+        <option *ngFor="let parameter of parameters" [ngValue]="parameter">{{ parameter.parameter }}</option>
+      </select>
+    </div>
+  </div> &nbsp;
+
+  <!--DATE PICKER'S DATA ANALYSIS-->
+  <div class="container">
+    <form (ngSubmit)="getData()" [formGroup]="dateAnalysisForm">
+      <div class="form" class="d-flex">
+        <div class="date-section">
+          <label for="startDate">Start:</label>
+          <input type="month" id="startDate" formControlName="startDate">
+        </div> &nbsp;
+        <div class="date-section">
+          <label for="endDate">End Date:</label>
+          <input type="month" id="endDate" formControlName="endDate">
+        </div> &nbsp;
+        <div>
+          <button type="submit" class="filter2">Get</button> &nbsp;
+        </div>
+      </div>
+    </form>
+  </div> &nbsp;
+
+
+
+  <!--TABLE RADAR-->
+  <div class="row d-flex justify-content-center">
+    <div class="col-7">
+      <div class="material scrollable-card">
+        <div class="card-body overflow-auto" style="max-height: 300px;">
+          <div class="material">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ITEM</th>
+                  <th>RESULT</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Baris-baris tabel akan disesuaikan dengan data yang diperoleh dari DBeaver -->
+                <tr *ngFor="let data of dataAnalysis">
+                  <td>{{data.item}}</td>
+                  <td>{{data.result}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div> <br>
+  </div> &nbsp;
+  <!--END TABEL RADAR-->
+
+
+  <!--CHART NYA DATA ANALYSIS-->
+  <div class="row justify-content-center">
+    <div class="col-xl-6">
+      <div class="custom-card"> <!-- Ubah kelas di sini -->
+        <div class="custom-card-header">
+          <h4 class="card-title mb-0">Data Analysis 1</h4>
+        </div><!-- end custom-card header -->
+        <div class="custom-card-body">
+          <apx-chart [series]="lineColumnAreaChart.series" [chart]="lineColumnAreaChart.chart"
+            [yaxis]="lineColumnAreaChart.yaxis" [xaxis]="lineColumnAreaChart.xaxis"
+            [labels]="lineColumnAreaChart.labels" [stroke]="lineColumnAreaChart.stroke"
+            [plotOptions]="lineColumnAreaChart.plotOptions" [markers]="lineColumnAreaChart.markers"
+            [fill]="lineColumnAreaChart.fill" [tooltip]="lineColumnAreaChart.tooltip"
+            [colors]="lineColumnAreaChart.colors" dir="ltr"></apx-chart>
+        </div><!-- end custom-card-body -->
+      </div><!-- end custom-card -->
+    </div> &nbsp;
+
+    <div class="col-xl-6">
+      <div class="custom-card">
+        <div class="custom-card-header">
+          <h4 class="card-title mb-0">Data Analaysis 2</h4>
+        </div><!-- end card header -->
+
+        <div class="custom-card-body" id="line_chart_basic" data-colors='["--vz-primary"]'>
+          <apx-chart [series]="basicLineChart.series" [chart]="basicLineChart.chart" [markers]="basicLineChart.markers"
+            [dataLabels]="basicLineChart.dataLabels" [stroke]="basicLineChart.stroke" [colors]="basicLineChart.colors"
+            [title]="basicLineChart.title" [xaxis]="basicLineChart.xaxis" dir="ltr"></apx-chart>
+        </div><!-- end card-body -->
+      </div><!-- end card -->
+    </div>
+  </div>
+  </details>
+
+</body>
