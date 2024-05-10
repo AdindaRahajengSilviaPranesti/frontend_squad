@@ -1,0 +1,71 @@
+.card {
+    border: 1px solid #ccc; /* Warna border */
+    border-radius: 8px; /* Mengatur sudut border */
+    padding: 20px; /* Jarak antara konten dan border */
+    background-color: #f8f9fa; /* Warna latar belakang */
+    text-align: center; /* Posisi teks ke tengah */
+    transition: background-color 0.3s ease; /* Transisi warna latar belakang */
+  
+    &:hover {
+      background-color: #8294C4; /* Warna latar belakang saat dihover */
+    }
+  }
+  
+
+
+  // CSS Variables
+$bg-color-header: #424874;
+$bg-color-alt: #FFBE98;
+$text-color-light: #ffffff;
+$text-color-dark: #000000;
+
+// Main SCSS for the Scrollable Table
+.scrollable-card {
+  .card-body {
+    overflow-y: auto; // Allow vertical scrolling
+    max-height: 300px; // Set maximum height for scrolling
+  }
+
+  table {
+    width: 100%; // Ensure table takes full width of the container
+    
+    thead {
+      tr {
+        background-color: $bg-color-header; // Set background color for header
+        th {
+          color: $text-color-light; // Set text color for header
+          padding: 10px; // Add padding to table headers
+          text-align: center; // Center the text
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        &:nth-child(odd) {
+          background-color: $bg-color-alt; // Alternate row background
+          td {
+            color: $text-color-dark; // Set text color for odd rows
+            text-align: center; // Center the text
+          }
+        }
+        &:nth-child(even) {
+          background-color: $bg-color-header; // Alternate row background
+          td {
+            color: $text-color-light; // Set text color for even rows
+            text-align: center; // Center the text
+          }
+        }
+        td {
+          padding: 10px; // Add padding to table cells
+        }
+      }
+    }
+  }
+}
+
+
+/* Aturan untuk tombol dengan hover */
+.getbutton:hover {
+  background-color: #FF9966; /* Warna saat di-hover */
+}

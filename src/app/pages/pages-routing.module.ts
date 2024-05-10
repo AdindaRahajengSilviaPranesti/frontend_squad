@@ -17,6 +17,8 @@ import { CleaningSanitationComponent } from './cleaning-sanitation/cleaning-sani
 import { RedAreaMonitoringComponent } from './red-area-monitoring/red-area-monitoring.component';
 import { MikroFinishgoodComponent } from './mikro-finishgood/mikro-finishgood.component';
 import { InprocessControlComponent } from './inprocess-control/inprocess-control.component';
+import { ComplaintReportComponent } from './capa-tracker-visual/complaint-report/complaint-report.component';
+import { SupplierEvaluationComponent } from './capa-tracker-visual/supplier-evaluation/supplier-evaluation.component';
 
 
 const routes: Routes = [
@@ -84,6 +86,14 @@ const routes: Routes = [
     {
       path: "inprocess-control",
       component: InprocessControlComponent
+    },
+    {
+      path: "complaint-report",
+      component: ComplaintReportComponent
+    },
+    {
+      path: "supplier-evaluation",
+      component: SupplierEvaluationComponent
     },
 ];
 

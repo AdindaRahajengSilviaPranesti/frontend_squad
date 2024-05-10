@@ -10,6 +10,7 @@ export class AuthService {
 
   // private baseUrl = "http://localhost:3100";
   private baseUrl = "http://192.168.9.47:3116";
+  // private baseUrl = "http://192.168.9.47:3306";
 
   login(data: any) {
     return this.http.post<any>(`${this.baseUrl}/auth/login`, data);

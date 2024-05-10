@@ -6,7 +6,6 @@ import { PendingTaskCalibrationComponent } from './pending-task-calibration/pend
 import { ReportCalibrationComponent } from './report-calibration/report-calibration.component';
 import { ResultCalibrationComponent } from './result-calibration/result-calibration.component';
 import { PrintCalibrationComponent } from './print-calibration/print-calibration.component';
-import { DashboardCalibrationComponent } from "./dashboard-calibration/dashboard-calibration.component";
 
 const routes: Routes = [
   {
@@ -24,10 +23,6 @@ const routes: Routes = [
   {
     path: "result-calibration",
     component: ResultCalibrationComponent
-  },
-  {
-    path: "dashboard-calibration",
-    component: DashboardCalibrationComponent
   }
 ];
 

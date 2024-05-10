@@ -1,6 +1,6 @@
 export const GlobalComponent = {
     // Api Calling
-    API_URL : 'http://localhost:3116/auth/login',
+    API_URL : 'http://192.168.9.47:3316/auth/login',
     headerToken : {'Authorization': `Bearer ${localStorage.getItem('token')}`},
 
     // Auth Api
@@ -16,14 +16,5 @@ export const GlobalComponent = {
 
     // Customers Api
     customer:'apps/customer',
-
-    // VCC
-    getEquipment:'calibration/count-equipment',
-
-    // Capability
-    getTypeAnalisa:'capability/capability-al4-mst-type',
-    jenisPengujian:'capability/capability-al4-mst-jenispengujian',
-    countCapability:'capability/count-capability',
-    dataTable:'capability/data-table'
    
 }

@@ -1,4 +1,15 @@
 export const environment = {
-    production: false,
-    apiUrl: 'http://192.168.9.47:3116/'
-  };
+  production: false,
+  defaultauth: 'fackbackend',
+  firebaseConfig: {
+    apiKey: '',
+    authDomain: '',
+    databaseURL: '',
+    projectId: '',
+    storageBucket: '',
+    messagingSenderId: '',
+    appId: '',
+    measurementId: ''
+  },
+  apiUrl: 'http://localhost:3116/'
+};

@@ -37,6 +37,61 @@ export class restApiService {
     return this.http.get(this.apiUrl+'radarvisual/getParameter/'+typeid+'/'+id)
   }
 
+  getAbnormal(): Observable<any> {
+    return this.http.get(this.apiUrl+`capa-tracker/getAbnormal`)
+  }
+  getAbnormalByPlan(plan: any): Observable<any> {
+    return this.http.get(this.apiUrl+`capa-tracker/getAbnormal/`+plan)
+  }
+
+  getArrival(startDate: any, endDate: any, kode_vendor: any): Observable<any> {
+    return this.http.post(this.apiUrl+`capa-tracker/getArrival`, {startDate:startDate, endDate:endDate, kode_vendor:kode_vendor})
+  }
+
+  getAbnormality(startDate: any, endDate: any, name_vendor: any): Observable<any> {
+    return this.http.post(this.apiUrl+`capa-tracker/getAbnormality`, {startDate:startDate, endDate:endDate, name_vendor:name_vendor})
+  }
+
+  getRateabnormal(startDate: any, endDate: any, kode_vendor: any): Observable<any> {
+    return this.http.post(this.apiUrl+`capa-tracker/getRateabnormal`, {startDate:startDate, endDate:endDate, kode_vendor:kode_vendor})
+  }
+
+  getFeedback(startDate: any, endDate: any, kode_vendor: any): Observable<any> {
+    return this.http.post(this.apiUrl+`capa-tracker/getFeedback`, {startDate:startDate, endDate:endDate, kode_vendor:kode_vendor})
+  }
+
+  getEffectiveness(startDate: any, endDate: any, kode_vendor: any): Observable<any> {
+    return this.http.post(this.apiUrl+`capa-tracker/getEffectiveness`, {startDate:startDate, endDate:endDate, kode_vendor:kode_vendor})
+  }
+
+  getDowntime(startDate: any, endDate: any, kode_vendor: any): Observable<any> {
+    return this.http.post(this.apiUrl+`capa-tracker/getDowntime`, {startDate:startDate, endDate:endDate, kode_vendor:kode_vendor})
+  }
+
+  getCuscomplain(startDate: any, endDate: any, kode_vendor: any): Observable<any> {
+    return this.http.post(this.apiUrl+`capa-tracker/getCuscomplain`, {startDate:startDate, endDate:endDate, kode_vendor:kode_vendor})
+  }
+
+  getIssue(startDate: any, endDate: any, kode_vendor: any): Observable<any> {
+    return this.http.post(this.apiUrl+`capa-tracker/getIssue`, {startDate:startDate, endDate:endDate, kode_vendor:kode_vendor})
+  }
+
+  getHistorical(startDate: any, name_vendor: any): Observable<any> {
+    return this.http.post(this.apiUrl+`capa-tracker/getHistorical`, {startDate:startDate, name_vendor:name_vendor})
+  }
+
+
+  getClosing(startDate: any, endDate: any, kode_vendor: any): Observable<any> {
+    return this.http.post(this.apiUrl+`capa-tracker/getClosing`, {startDate:startDate, endDate:endDate, kode_vendor:kode_vendor})
+  }
+
+  //inprocessmonitoring
+
+  getFsb(startDate: any, endDate: any, parameter:any): Observable<any> {
+    return this.http.post(this.apiUrl+`inprocess-fsb/getFsb`, {startDate:startDate, endDate:endDate, parameter:parameter})
+  }
+
+
   // getDataAnalysis(parameter:any, ): Observable<any> {
   //   return this.http.post(this.apiUrl+'radarvisual/getDataAnalysis/',)
   // }
@@ -46,23 +101,7 @@ export class restApiService {
   }
 
   getDataChart(group_id:any, id:any, parameterData:any,startDate:any, endDate:any): Observable<any> {
-    return this.http.post(this.apiUrl+'radarvisual/getDataChart', {group_id: group_id, id: id, parameterData: parameterData,startDate: startDate, endDate: endDate})
-  }
-
-  getEquipment(): Observable<any> {
-    return this.http.get(this.apiUrl+GlobalComponent.getEquipment)
-  }
-  
-  jenisPengujian(): Observable<any> {
-    return this.http.get(this.apiUrl+GlobalComponent.jenisPengujian)
-  }
-  
-  countCapability(form:any): Observable<any> {
-    return this.http.post(this.apiUrl+GlobalComponent.countCapability, form)
-  }
-  
-  dataTable(form:any): Observable<any> {
-    return this.http.post(this.apiUrl+GlobalComponent.dataTable, form)
+    return this.http.post(this.apiUrl+'radarvisual/getDataChart/', {group_id: group_id, id: id, parameterData: parameterData,startDate: startDate, endDate: endDate})
   }
   
 

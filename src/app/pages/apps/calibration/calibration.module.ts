@@ -29,7 +29,6 @@ import { PendingTaskCalibrationComponent } from './pending-task-calibration/pend
 import { ReportCalibrationComponent } from './report-calibration/report-calibration.component';
 import { ResultCalibrationComponent } from './result-calibration/result-calibration.component';
 import { PrintCalibrationComponent } from './print-calibration/print-calibration.component';
-import { DashboardCalibrationComponent } from './dashboard-calibration/dashboard-calibration.component';
 
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -44,7 +43,6 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   ReportCalibrationComponent,
   ResultCalibrationComponent,
   PrintCalibrationComponent,
-  DashboardCalibrationComponent,
 
   ],
 

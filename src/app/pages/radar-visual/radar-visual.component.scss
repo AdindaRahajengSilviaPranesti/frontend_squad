@@ -1,7 +1,7 @@
 body {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; /* Ganti dengan jenis font yang diinginkan */
     background-color: #f0f0f0; /* Warna latar belakang */
-    background-color: #DCD6F7; 
+ 
 
   }
   
@@ -116,7 +116,7 @@ body {
   margin-bottom: 20px; /* Jarak bawah */
   text-transform: uppercase; /* Mengubah teks menjadi huruf besar */
   font-weight: bold; /* Menjadikan teks tebal */
-  text-shadow: 2px 2px 4px #cc708f; /* Efek bayangan teks */
+  text-shadow: 2px 2px 4px #BB5A5A; /* Efek bayangan teks */
   }
   
   
@@ -242,11 +242,44 @@ body {
     summary {
       font-size: 24px; /* Ukuran teks besar */
       font-weight: bold; /* Tebal */
-      background: linear-gradient(to right, #cc708f, #A6B1E1, #424874); /* Gradien warna latar belakang */
+      background: #FFBE98;
       cursor: pointer; /* Menampilkan kursor tangan saat digulir */
       padding: 10px; /* Padding untuk ruang kosong di sekitar teks */
     }
     
 
   }
+
+  //design untuk tabel mean, sigma,ucl,lcl
+
+  .resultda {
+    .card {
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      background-color: #cc708f;
+      padding: 20px;
+      margin: 0 auto;
+      margin-bottom: 20px;
+
+      width: 100%; // Ubah ukuran sesuai kebutuhan, misalnya 100% untuk lebar penuh atau ukuran tertentu dalam piksel.
+      height: 80px;
+
+      p {
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 8px;
+        color: #ffffff;
+      }
+  
+      .hasil {
+        font-size: 28px;
+        color: #ffffff;
+        font-weight: bold;
+      }
+      &:hover {
+        background-color: #31256b; // Warna biru saat hover
+      }
+    }
+  }
+  
   

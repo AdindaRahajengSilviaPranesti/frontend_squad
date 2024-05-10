@@ -12,7 +12,7 @@ export const MENU: MenuItem[] = [
   {
     id: 100,
     label: 'Flow Release',
-    icon: 'ri-apps-2-line',
+    icon: 'ri-stack-overflow-line',
     subItems: [
       {
         id: 101,
@@ -45,7 +45,7 @@ export const MENU: MenuItem[] = [
   {
     id: 110,
     label: 'Inpeksi',
-    icon: 'ri-apps-2-line',
+    icon: 'ri-chat-check-line',
     subItems: [
       {
         id: 111,
@@ -72,14 +72,8 @@ export const MENU: MenuItem[] = [
   {
     id: 120,
     label: 'Calibration',
-    icon: 'ri-apps-2-line',
+    icon: 'bx bx-pie-chart',
     subItems: [
-      {
-        id: 500,
-        label: 'Dashboard Calibration',
-        link: '/dashboard-calibration',
-        parentId: 120
-      },
       {
         id: 121,
         label: 'Pending Task Calibration',
@@ -105,16 +99,8 @@ export const MENU: MenuItem[] = [
   {
     id: 124,
     label: 'Data Analisis BPD',
-    icon: 'ri-apps-2-line',
+    icon: 'bx bxs-folder-open',
     link: '/data-analisis-bpd',
-    parentId: 8
-  },
-  
-  {
-    id: 501,
-    label: 'Line Aseptic SKB',
-    icon: 'ri-apps-2-line',
-    link: 'capability/al4',
     parentId: 8
   },
 // 
@@ -129,21 +115,21 @@ export const MENU: MenuItem[] = [
 {
   id: 350,
   label: 'Red Area Monitoring',
-  icon: 'ri-apps-2-line',
+  icon: 'ri-alert-line',
   link: '/red-area-monitoring',
   parentId: 13
 },
 {
   id: 351,
   label: 'Mikro Monitoring Finish Good',
-  icon: 'ri-apps-2-line',
+  icon: 'bx bx-bug-alt',
   link: '/mikro-finishgood',
   parentId: 14
 },
 {
   id: 352,
-  label: 'In Process Control Monitoring',
-  icon: 'ri-apps-2-line',
+  label: 'Process Control FSB Monitoring',
+  icon: 'ri-flood-fill',
   link: '/inprocess-control',
   parentId: 15
 },
@@ -157,14 +143,14 @@ export const MENU: MenuItem[] = [
 {
   id: 350,
   label: 'Capa Tracker Visual',
-  icon: 'ri-apps-2-line',
+  icon: ' ri-pie-chart-2-fill',
   link: '/capa-tracker-visual',
   parentId: 13
 },
 {
   id: 351,
   label: 'Radar Visual',
-  icon: 'ri-apps-2-line',
+  icon: 'bx bx-radar',
   link: '/radar-visual',
   parentId: 14
 },

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbToastModule, NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgSelectModule } from '@ng-select/ng-select';
 
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CountToModule } from 'angular-count-to';
@@ -42,8 +41,8 @@ import { RedAreaMonitoringComponent } from './red-area-monitoring/red-area-monit
 import { MikroFinishgoodComponent } from './mikro-finishgood/mikro-finishgood.component';
 import { InprocessControlComponent } from './inprocess-control/inprocess-control.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
-import { Al4Component } from './capability/al4/al4.component';
-import { CapabilityRoutingModule } from "./capability/capability-routing.module"; 
+import { SupplierEvaluationComponent } from './capa-tracker-visual/supplier-evaluation/supplier-evaluation.component';
+import { ComplaintReportComponent } from './capa-tracker-visual/complaint-report/complaint-report.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +62,8 @@ import { CapabilityRoutingModule } from "./capability/capability-routing.module"
     MikroFinishgoodComponent,
     InprocessControlComponent,
     DatePickerComponent,
-    Al4Component
+    SupplierEvaluationComponent,
+    ComplaintReportComponent
   ],
   imports: [
     CommonModule,
@@ -83,8 +83,6 @@ import { CapabilityRoutingModule } from "./capability/capability-routing.module"
     LightboxModule,
     DashboardsModule,
     AppsModule,
-    CapabilityRoutingModule,
-    NgSelectModule
   ],
 })
 export class PagesModule {

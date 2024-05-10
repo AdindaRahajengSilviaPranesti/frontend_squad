@@ -8,7 +8,7 @@ export class FlowReleaseService {
 
   constructor(private http: HttpClient) { }
 
-  private baseUrl = "http://localhost:3116";
+  private baseUrl = "http://192.168.9.47:3116";
   // private baseUrl = "http://192.168.9.47:3116";
 
   getFlowReleaseOCI1: any = () => {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { restApiService } from '../../core/services/rest-api.service';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validator } from '@angular/forms';
+import { da } from 'date-fns/locale';
+import { number } from 'echarts';
 
 @Component({
   selector: 'app-radar-visual',
@@ -9,40 +11,49 @@ import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validator } f
   styleUrls: ['./radar-visual.component.scss']
 })
 export class RadarVisualComponent implements OnInit {
-  DateSelected : any; 
-  materials:any;
+  DateSelected: any;
+  materials: any;
   dateForm!: UntypedFormGroup;
   dateAnalysisForm!: UntypedFormGroup;
   totalMaterial: any;
   completeAnalysis: any;
   progressAnalysis: any;
   releaseMaterial: any;
-  completion:any;
-  types:any;
-  suppliers:any;
-  parameters:any;
-  parameterData:any;
-  type_id:any;
+  completion: any;
+  types: any;
+  suppliers: any;
+  parameters: any;
+  parameterData: any;
+  type_id: any;
   dataAnalysis: any;
-  id:any;
+  id: any;
   selectedDate: any;
 
-  jenis:any;
-  manufacture:any;
-  parameter:any;
-  lineColumnAreaChart: any;
+  jenis: any = "---Type---";
+  manufacture: any = "---Supplier---";
+  parameter: any = "---Parameter---";
+  lineColumnAreaChart: any; 
   basicLineChart: any;
   dataChart: any;
 
-  result:any;
-  totalResult:any;
+  result: any; //  datachart
+  totalResult: any; //chart
+  dataResult: any; //dataAnalysisByDate
+  startDate: any;
+  nameParameter: any;
+  dataMax : any;
+  dataMin : any;
+
+  mean:any;
+  ucl:any;
+  lcl:any;
+
 
   chosenYearHandler(normalizedYear: Date) {
     this.selectedDate = normalizedYear;
   }
 
-  constructor(private restApiService: restApiService, private fb: UntypedFormBuilder){
-    
+  constructor(private restApiService: restApiService, private fb: UntypedFormBuilder) {
   }
 
   ngOnInit(): void {
@@ -51,7 +62,6 @@ export class RadarVisualComponent implements OnInit {
     // Format the date as YYYY-MM-DD (required format for input type date)
     const formattedDate = today.toISOString().split('T')[0];
 
-    // Set selectedDate to the formatted date
     // this.DateSelected = formattedDate;
     this.dateForm = this.fb.group({
       startDate: [formattedDate],
@@ -63,23 +73,23 @@ export class RadarVisualComponent implements OnInit {
     });
     this.getMaterial()
     this.getType()
-    this._lineColumnAreaChart('["--vz-primary", "--vz-info", "--vz-gray-300"]', [], []);
-    this._basicLineChart('["--vz-primary"]');
+    this._lineColumnAreaChart('["--vz-primary", "--vz-info", "--vz-gray-300"]'); //report by counting
+    this._basicLineChart('["--vz-primary"]'); // all report
   }
 
-  get form(){
+  get form() {
     return this.dateForm.controls;
   }
 
-  dateSelected(){
+  dateSelected() {
     firstValueFrom(this.restApiService.getMaterial())
-    .then((res: any) => {
-      console.log(res)
-      this.materials = res;
-    })
-    .catch((error: any)=>{
+      .then((res: any) => {
+        console.log(res)
+        this.materials = res;
+      })
+      .catch((error: any) => {
 
-    })    
+      })
   }
 
   getMaterial() {
@@ -87,77 +97,75 @@ export class RadarVisualComponent implements OnInit {
       .then((res: any) => {
         this.materials = res;
         this.totalMaterial = this.materials.length;
-  
+
         let ca = this.materials.filter((data: any) => data.status_analisis == 1);
         this.completeAnalysis = ca.length;
-  
+
         this.progressAnalysis = this.totalMaterial - this.completeAnalysis;
-  
+
         let releaseMaterial = this.materials.filter((data: any) => data.status == 1);
         this.releaseMaterial = releaseMaterial.length;
-  
+
         this.completion = (this.releaseMaterial / this.totalMaterial) * 100;
       })
       .catch((error: any) => {
-  
+
       })
   }
-  
 
-  getMaterialByDate(){
+  getMaterialByDate() {
     let startDate = this.form['startDate']?.value;
     let endDate = this.form['endDate']?.value;
     firstValueFrom(this.restApiService.getMaterialByDate(startDate, endDate))
 
-    .then((res: any) => {
-      this.materials = res;
-      this.totalMaterial = this.materials.length;
+      .then((res: any) => {
+        this.materials = res;
+        this.totalMaterial = this.materials.length;
 
-      let ca = this.materials.filter((data: any) => data.status_analisis == 1);
+        let ca = this.materials.filter((data: any) => data.status_analisis == 1);
         this.completeAnalysis = ca.length;
-  
+
         this.progressAnalysis = this.totalMaterial - this.completeAnalysis;
-  
+
         let releaseMaterial = this.materials.filter((data: any) => data.status == 1);
         this.releaseMaterial = releaseMaterial.length;
-  
+
         this.completion = (this.releaseMaterial / this.totalMaterial) * 100;
-    })
-    .catch((error: any)=>{
+      })
+      .catch((error: any) => {
 
-    })    
+      })
   }
-
 
   getType() {
     firstValueFrom(this.restApiService.getType())
       .then((res: any) => {
         this.types = res;
-        
+
       })
       .catch((error: any) => {
-  
+
       })
   }
 
-  getManufacture(){
+  getManufacture() {
     // this.type_id = e.target.value
     firstValueFrom(this.restApiService.getSupplier(this.jenis.id))
-    .then((res:any)=>{
-      this.suppliers = res;
-    })
+      .then((res: any) => {
+        this.suppliers = res;
+      })
     // console.log(this.jenis)
   }
 
-  getParameter(){
+  getParameter() {
     // console.log(this.type_id);
     firstValueFrom(this.restApiService.getParameter(this.jenis.group_id, this.manufacture.jenis))
-    .then((res:any)=>{
-      this.parameters = res;
-    })
+      .then((res: any) => {
+        this.parameters = res;
+      })
   }
 
-  fetchDateSelected(){
+  fetchDateSelected() {
     console.log("date selected by user is ---" + this.DateSelected);
   }
 
@@ -166,180 +174,344 @@ export class RadarVisualComponent implements OnInit {
   //   console.log(this.parameterData.parameter);
   // }
 
-  get f(){
+  get f() {
     return this.dateAnalysisForm.controls;
   }
 
-  getDataAnalysisByDate(){
+  getDataAnalysisByDate() {
     let startDate = this.f['startDate']?.value;
     let endDate = this.f['endDate']?.value;
     firstValueFrom(this.restApiService.getDataAnalysisByDate(this.jenis.group_id, this.manufacture.jenis, this.parameter.parameter, startDate, endDate))
-    .then((res: any) => {
-      this.dataAnalysis = res;
-    })
-    .catch((error: any)=>{
+      .then((res: any) => {
+        this.dataAnalysis = res;
+        this.dataResult = this.dataAnalysis.map((row: any) => row.result_d)
+        this.startDate = this.dataAnalysis.map((row: any) => row.startDate)
+        this.nameParameter = this.dataAnalysis.map((column: any) => column.item)
+        this.mean = this.calculateMean(this.dataResult);
+        this.ucl = this.calculateUCL(this.calculateMean(this.dataResult), this.calculateSigma(this.dataResult,
+          this.calculateMean(this.dataResult)));
+        this.lcl = this.calculateLCL(this.calculateMean(this.dataResult), this.calculateSigma(this.dataResult,
+          this.calculateMean(this.dataResult)));
 
-    })    
+        console.log(this.ucl, this.lcl)
+        // this.ucl = 0.5;
+        // this.lcl= -0.1;
+        this._basicLineChart('["--vz-primary"]');
+      })
+      .catch((error: any) => {
+
+
+      })
   }
 
-  getDataChart(){
+  getDataChart() {
     let startDate = this.f['startDate']?.value;
     let endDate = this.f['endDate']?.value;
     firstValueFrom(this.restApiService.getDataChart(this.jenis.group_id, this.manufacture.jenis, this.parameter.parameter, startDate, endDate))
-    .then((res:any)=>{
-      this.dataChart = res;
-      console.log(this.dataChart)
-      this.result = this.dataChart.map((row:any)=> row.result);
-      this.totalResult = this.dataChart.map((row:any)=> row.total);
+      .then((res: any) => {
+        this.dataChart = res;
+        this.result = this.dataChart.map((row: any) => row.result_d);
+        this.totalResult = this.dataChart.map((row: any) => row.total);
+        this.dataChart.map((row:any)=> {
+          if(row.max === null && row.min === null){
+            this.dataMax = 0;
+            this.dataMin = 0;
+          }else if(row.max === null){
+            this.dataMax = 0;
+          }else if(row.min === null){
+            this.dataMin = 0;
+          }else{
+            this.dataMax = row.max
+            this.dataMin = row.min
+          }
+        })
 
-      this._lineColumnAreaChart('["--vz-primary", "--vz-info", "--vz-gray-300"]', this.totalResult, this.result);
-    })
+        console.log(this.dataMax, this.dataMin)
+
+        this._lineColumnAreaChart('["--vz-primary", "--vz-info", "--vz-gray-300"]');
+
+      })
     // console.log(this.jenis)
   }
 
-  getData(){
+  getData() {
     this.getDataAnalysisByDate()
     this.getDataChart()
   }
 
 
-//GET CHART COLORS
-  private getChartColorsArray(colors:any) {
+  //GET CHART COLORS
+  private getChartColorsArray(colors: any) {
     colors = JSON.parse(colors);
-    return colors.map(function (value:any) {
+    return colors.map(function (value: any) {
       var newValue = value.replace(" ", "");
       if (newValue.indexOf(",") === -1) {
         var color = getComputedStyle(document.documentElement).getPropertyValue(newValue);
-            if (color) {
-            color = color.replace(" ", "");
-            return color;
-            }
-            else return newValue;;
-        } else {
-            var val = value.split(',');
-            if (val.length == 2) {
-                var rgbaColor = getComputedStyle(document.documentElement).getPropertyValue(val[0]);
-                rgbaColor = "rgba(" + rgbaColor + "," + val[1] + ")";
-                return rgbaColor;
-            } else {
-                return newValue;
-            }
+        if (color) {
+          color = color.replace(" ", "");
+          return color;
         }
+        else return newValue;;
+      } else {
+        var val = value.split(',');
+        if (val.length == 2) {
+          var rgbaColor = getComputedStyle(document.documentElement).getPropertyValue(val[0]);
+          rgbaColor = "rgba(" + rgbaColor + "," + val[1] + ")";
+          return rgbaColor;
+        } else {
+          return newValue;
+        }
+      }
     });
   }
 
-   /**
- * Line, Column & Area Charts
- */
-   private _lineColumnAreaChart(colors:any, totalResult: [], result: []) {
-    colors = this.getChartColorsArray(colors);
+  /**
+* HISTOGRAM DATA CHART
+*/
+  private _lineColumnAreaChart(colors: any) {
+    colors = ['#31256b'];
     this.lineColumnAreaChart = {
       series: [{
-        name: 'TEAM A',
+        name: this.nameParameter,
         type: 'column',
         data: this.totalResult
-    }, {
-        name: 'TEAM B',
-        type: 'area',
-        data: this.totalResult
-    }],
+      }],
       chart: {
-          height: 350,
-          type: 'line',
-          stacked: false,
-          toolbar: {
-              show: false,
-          }
+        height: 350,
+        type: 'line',
+        stacked: false,
+        toolbar: {
+          show: false,
+        }
       },
       stroke: {
-          width: [0, 2, 5],
-          curve: 'smooth'
+        width: [0, 2, 5],
+        curve: 'smooth'
       },
       plotOptions: {
-          bar: {
-              columnWidth: '50%'
-          }
+        bar: {
+          columnWidth: '50%'
+        }
       },
       fill: {
-          opacity: [0.85, 0.25, 1],
-          gradient: {
-              inverseColors: false,
-              shade: 'light',
-              type: "vertical",
-              opacityFrom: 0.85,
-              opacityTo: 0.55,
-              stops: [0, 100, 100, 100]
-          }
+        opacity: [0.85, 0.25, 1],
+        gradient: {
+          inverseColors: false,
+          shade: 'light',
+          type: "vertical",
+          opacityFrom: 0.85,
+          opacityTo: 0.55,
+          stops: [0, 100, 100, 100]
+        }
       },
       labels: this.result,
       markers: {
-          size: 0
+        size: 0
       },
       xaxis: {
-          type: ''
+        type: ''
       },
       yaxis: {
-          title: {
-              text: 'Points',
-          },
-          min: 0
+        title: {
+          text: 'Units',
+        },
+        min: 0
       },
       tooltip: {
-          shared: true,
-          intersect: false,
-          y: {
-              formatter: function (y:any) {
-                  if (typeof y !== "undefined") {
-                      return y.toFixed(0) + " points";
-                  }
-                  return y;
+        shared: true,
+        intersect: false,
+        y: {
+          formatter: function (y: any) {
+            if (typeof y !== "undefined") {
+              return y.toFixed(0) + " units";
+            }
+            return y;
 
-              }
           }
+        }
       },
       colors: colors
     };
-  } 
+  }
 
 
-    /**
-    * Basic Line Chart
-  */
-    private _basicLineChart(colors:any) {
-      colors = this.getChartColorsArray(colors);
-      this.basicLineChart  = {
-        series: [{
-          name: "STOCK ABC",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148, 10, 41, 35, 51, 49, 62, 69, 91, 148, 20, 60]
-        }],
-        chart: {
-          height: 350,
-          type: 'line',
-          zoom: {
-            enabled: false
-          },
-          toolbar: {
-            show: false
-          }
-        },
-        markers: {
-          size: 4,
-        },
-        dataLabels: {
+  /**
+  *  CONTROL DATA CHART
+*/
+  private _basicLineChart(colors: any) {
+    colors = ['#31256b'];
+    this.basicLineChart = {
+      series: [
+        {
+        name: this.nameParameter,
+        data: this.dataResult, //data sebelah kiri atau keatas
+      },
+    ],
+      chart: {
+        height: 350,
+        type: 'line',
+        zoom: {
           enabled: false
         },
-        stroke: {
-          curve: 'straight'
-        },
-        colors: colors,
-        title: {
-          style: {
-            fontWeight: 500,
-          },
-        },
-        xaxis: {
-          categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9','10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20' ],
+        toolbar: {
+          show: false
         }
-      };
-    }
+      },
+      annotations: {
+        yaxis: [
+          {
+            y: this.mean,
+            borderColor: '#704264',
+            label: {
+              borderColor: '#704264',
+              style: {
+                color: '#fff',
+                background: '#704264'
+              },
+              text: 'MEAN'
+            }
+          },
+          {
+            y: this.ucl,
+            borderColor: '#00E396',
+            label: {
+              borderColor: '#00E396',
+              style: {
+                color: '#fff',
+                background: '#00E396'
+              },
+              text: 'UCL'
+            }
+          },
+          {
+            y: this.lcl,
+            borderColor: '#5755FE',
+            label: {
+              borderColor: '#5755FE',
+              style: {
+                color: '#fff',
+                background: '#5755FE'
+              },
+              text: 'LCL'
+            }
+          }
+        ]
+      },
+      markers: {
+        size: 4,
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'straight'
+      },
+      colors: colors,
+      title: {
+        style: {
+          fontWeight: 500,
+        },
+      },
+      xaxis: {
+        categories: this.startDate, //ini yang nilai bawah atau kesamping
+      },
+      yaxis: {
+        min: 0,
+        max: 0.06
+      }
+      
+      
+    };
+  }
+
+
+
+/// PERHITUNGAN MEAN
+
+calculateMean(data: []): GLfloat {
+  let total = 0;
+  let mean;
+  data.map(row => total += parseFloat(row) ); // Menjumlahkan Semua Elemen
+  mean = total/data.length // membagi total dengan panjang array data 
+  return parseFloat(mean.toFixed(3)); // Nilai rata-rata yang sudah dibulatkan ini kemudian dikembalikan sebagai hasil fungsi.
 }
+
+calculateSigma(data: [], mean:any): GLfloat {
+  const squaredDifferences = data.map(val => Math.pow(parseFloat(val) - mean, 2)); // menghitung perbedaan antara nilai elemen tersebut dan mean, lalu mengkuadratkan hasilnya.
+  // || Hasil dari setiap perbedaan kuadrat ini disimpan
+  let total = 0;
+  squaredDifferences.map(row => total += row ); // menjumlahkan semua elemen dalam squaredDifferences, menyimpan hasilnya dalam variabel total.
+  let sigma:any = Math.sqrt(total / data.length).toFixed(5); //rata-rata dari semua nilai dalam total.
+  return sigma;
+  // akar kuadrat dari rata-rata total, kemudian membulatkannya ke lima angka desimal.
+  // Hasil akhir disimpan dalam variabel sigma.
+}
+
+
+calculateUCL(mean: any, sigma: any): GLfloat {
+  let ucl:any = (mean + (3 * sigma)).toFixed(5) 
+  return ucl;
+}
+
+calculateLCL(mean: any, sigma: any): GLfloat {
+  let lcl:any = (mean - (3 * sigma)).toFixed(5) 
+  return lcl;
+}
+
+calculateCP(upperLimit: any, lowerLimit: any, sigma: any): number {
+  return (upperLimit - lowerLimit) / (6 * sigma);
+}
+
+calculateCPK(upperLimit: any, lowerLimit: any, mean: any, sigma: any): number {
+  const cpkUpper = (upperLimit - mean) / (3 * sigma);
+  const cpkLower = (mean - lowerLimit) / (3 * sigma);
+  return Math.min(cpkUpper, cpkLower);
+}
+
+
+avgRange(data: any[]): GLfloat {
+  let frekKom :any=[];
+  let sum = 0;
+  for (let index = 1; index < data.length; index++) {
+    let x = Math.abs(parseFloat(data[index]) - parseFloat(data[index - 1]));
+    frekKom.push(x);
+}
+
+// let sum = frekKom.reduce((acc: GLfloat, val: GLfloat) => acc + val, 0);
+// let denominator = data.length - 1;
+// let result = sum / denominator;
+//   console.log(result)
+frekKom.map((row:any) => sum += parseFloat(row) );
+let avg = sum/frekKom.length;
+
+return parseFloat(avg.toFixed(5))
+}
+
+
+stdevWithin (data: any): GLfloat {
+let within = data/1.128;
+return parseFloat (within.toFixed(5));
+}
+
+
+
+countCP(within: any): number {
+  return parseFloat (((this.dataMax - this.dataMin) / (6 * within)).toFixed(2));
+}
+
+countCpkUsl(within: any, mean: any ): number {
+    return parseFloat (((this.dataMax - mean) / (3 * within)).toFixed(2));
+  }
+
+  countCpkLsl(within: any, mean: any ): number {
+    return parseFloat (((mean - this.dataMin) / (3 * within)).toFixed(2));
+  }
+
+  countAllCpk(cpkUsl:any, cpkLsl:any) {
+    return Math.min(cpkUsl, cpkLsl);
+  }
+
+}
+
+
+

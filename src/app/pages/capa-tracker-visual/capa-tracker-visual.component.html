@@ -1,1 +1,328 @@
-<p>capa-tracker-visual works!</p>
+<div class="flex-grow-1">
+  <h4 class="niceday">Helo ! Have a nice day <i class="ri-heart-fill"></i>
+  </h4>
+  <p class="worktoday">Here's what's happening with your work today.</p>
+</div>
+
+<!-- SUB MENU CAPA -->
+
+<body>
+  <header>
+    <h1>CAPA TRACKER</h1>
+    <h5>SUBMENU</h5>
+  </header>
+
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="card">
+        <a routerLink="/supplier-evaluation">
+          <span>Supplier Evaluation Management</span>
+        </a>
+        <div class="row justify-content-center">
+          <img class="card-img-top" src="assets/img/welcapa1.png" alt="Card image cap"
+            style="width: 150px; height: auto;">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 justify-content-center">
+      <div class="card">
+        <a routerLink="/complaint-report">
+          <span>Complaint Report RMPM</span>
+        </a>
+        <div class="row justify-content-center">
+          <img class="card-img-top" src="assets/img/welcapa2.png" alt="Card image cap"
+            style="width: 150px; height: auto;">
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<body>
+  <header>
+    <h2>Supplier Perfomance</h2>
+  </header>
+
+  <!-- FILTER SUPPLIER PERFOMANCE -->
+  <div class="row justify-content-center">
+    <div class="col-3">
+      <p>Arrival :
+        <select name="abnormal" class="form-control" [(ngModel)]="rateab">
+          <option disabled selected> ---Supplier--- </option>
+          <option *ngFor="let abnormal of abnormals" [ngValue]="abnormal">{{abnormal.name_vendor}}</option>
+        </select>
+      </p>
+    </div> &nbsp;
+
+    <div class="col-3">
+      <p>Plan :
+        <select name="abnormal" class="form-control" (change)="getAbnormalByPlan($event)">
+          <option disabled selected> ---Plan--- </option>
+          <option value="KJY">KJY</option>
+          <option value="SKB">SKB</option>
+        </select>
+      </p>
+    </div> &nbsp;
+
+    <div class="col-3">
+      <p>Abnormal :
+        <select name="abnormal" class="form-control" [(ngModel)]="vendor">
+          <option disabled selected> ---Supplier--- </option>
+          <option *ngFor="let abnormal of abnormalsByPlan" [ngValue]="abnormal">{{abnormal.name_vendor}}</option>
+        </select>
+      </p>
+    </div> &nbsp;
+
+  </div>
+
+  <!-- Stard End Date -->
+  <div class="row justify-content-center">
+    <div class="col-5">
+      <form (ngSubmit)="getData()" [formGroup]="dateForm">
+        <div class="form" class="d-flex">
+          <div class="date-section">
+            <label for="startDate">Start: </label>
+            <input type="month" id="startDate" formControlName="startDate">
+          </div> &nbsp;
+          <div class="date-section">
+            <label for="endDate">End Date: </label>
+            <input type="month" id="endDate" formControlName="endDate">
+          </div> &nbsp;
+          <div>
+            <button type="submit" class="getbutton">Get</button> &nbsp;
+          </div>
+        </div>
+      </form>
+    </div>
+  </div> &nbsp;
+
+  <!-- 4 Kotak Arrival, Abnormal, etc -->
+  <div class="row justify-content-center">
+    <div class="col-6 col-sm-3 col-md-2">
+      <div class="card">
+        <h5 class="card-title">Arrival</h5>
+        <div class="d-flex align-items-center justify-content-center">
+          <img class="card-img-top" src="assets/img/arrival.png" alt="Card image cap"
+            style="width: 50px; height: auto;"> &nbsp;
+          <span *ngIf="arrivals" class="ml-2 span-large-text"> {{totalArrival}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-sm-3 col-md-2">
+      <div class="card">
+        <h5 class="card-title">Abnormality</h5>
+        <div class="d-flex align-items-center justify-content-center">
+          <img class="card-img-top" src="assets/img/abnormal.png" alt="Card image cap"
+            style="width: 50px; height: auto;">
+          <span *ngIf="abnormalities" class="ml-2 span-large-text">{{ abnormalities && abnormalities.length > 0 ?
+            abnormalities[0].total : 0 }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-sm-3 col-md-2">
+      <div class="card">
+        <h5 class="card-title">Rate Abnormal</h5>
+        <div class="d-flex align-items-center justify-content-center">
+          <img class="card-img-top" src="assets/img/rate.png" alt="Card image cap" style="width: 50px; height: auto;">
+          <span *ngIf="abnormalities && arrivals" class="ml-2 span-large-text"> {{ (abnormalities[0].total /
+            totalArrival).toFixed(2) }}</span> <!--pembagian antara nilai total dari elemen pertama abnormalities dengan totalArrival.-->
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-sm-3 col-md-2">
+      <div class="card">
+        <h5 class="card-title">% Closing</h5>
+        <div class="d-flex align-items-center justify-content-start">
+          <img class="card-img-top" src="assets/img/closing.png" alt="Card image cap"
+            style="width: 50px; height: auto;">
+          <span class="ml-2">
+            <div class="ml-2">Open Case = {{ open || 0}}</div>
+            <div class="ml-2">% Closing = {{ close || 0}}</div>
+          </span>
+        </div>
+        <div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <!--MASUK PIE CHART 6 kotak + GRADE-->
+  <div class="row justify-content-center">
+    <div class="d-flex align-items-center">
+      <div class="col-9 mx-1">
+        <div class="row justify-content-center">
+
+
+          <div class="col-3">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title mb-0">% Abnormality</h4>
+                <span *ngIf="rateabnormals" class="ml-2"> {{ rateabnormals[0].avg ? rateabnormals[0].avg.toFixed(2) :
+                  'N/A' }}</span>
+              </div><!-- end card header -->
+
+              <div class="card-body">
+                <apx-chart [series]="gradientDonutChart.series" [chart]="gradientDonutChart.chart"
+                  [plotOptions]="gradientDonutChart.plotOptions" [dataLabels]="gradientDonutChart.dataLabels"
+                  [fill]="gradientDonutChart.fill" [title]="gradientDonutChart.title"
+                  [legend]="gradientDonutChart.legend" [colors]="gradientDonutChart.colors" dir="ltr"></apx-chart>
+              </div><!-- end card-body -->
+            </div><!-- end card -->
+          </div>
+
+          <div class="col-3">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title mb-0">Feedback Speed</h4>
+                <span *ngIf="feedbacks" class="ml-2"> {{ feedbacks[0].avg ? feedbacks[0].avg.toFixed(2) : 'N/A' }}
+                </span>
+              </div><!-- end card header -->
+
+              <div class="card-body">
+                <apx-chart [series]="gradientDonutChart2.series" [chart]="gradientDonutChart2.chart"
+                  [plotOptions]="gradientDonutChart2.plotOptions" [dataLabels]="gradientDonutChart2.dataLabels"
+                  [fill]="gradientDonutChart2.fill" [title]="gradientDonutChart2.title"
+                  [legend]="gradientDonutChart2.legend" [colors]="gradientDonutChart2.colors" dir="ltr"></apx-chart>
+              </div>
+            </div><!-- end card -->
+          </div>
+
+          <div class="col-3">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title mb-0">CAPA Effectiveness</h4>
+                <span *ngIf="effectiveness" class="ml-2">{{ effectiveness[0].avg ? effectiveness[0].avg.toFixed(2) :
+                  'N/A' }} </span>
+              </div><!-- end card header -->
+
+              <div class="card-body">
+                <apx-chart [series]="gradientDonutChart3.series" [chart]="gradientDonutChart3.chart"
+                  [plotOptions]="gradientDonutChart3.plotOptions" [dataLabels]="gradientDonutChart3.dataLabels"
+                  [fill]="gradientDonutChart3.fill" [title]="gradientDonutChart3.title"
+                  [legend]="gradientDonutChart3.legend" [colors]="gradientDonutChart3.colors" dir="ltr"></apx-chart>
+              </div><!-- end card-body -->
+            </div><!-- end card -->
+          </div>
+
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-3">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title mb-0">Downtime</h4>
+                <span *ngIf="downtimes" class="ml-2">{{ downtimes[0].avg ? downtimes[0].avg.toFixed(2) : 'N/A' }}
+                </span>
+              </div><!-- end card header -->
+
+              <div class="card-body">
+                <apx-chart [series]="gradientDonutChart4.series" [chart]="gradientDonutChart4.chart"
+                  [plotOptions]="gradientDonutChart4.plotOptions" [dataLabels]="gradientDonutChart4.dataLabels"
+                  [fill]="gradientDonutChart4.fill" [title]="gradientDonutChart4.title"
+                  [legend]="gradientDonutChart4.legend" [colors]="gradientDonutChart4.colors" dir="ltr"></apx-chart>
+              </div><!-- end card-body -->
+            </div><!-- end card -->
+          </div>
+
+          <div class="col-3">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title mb-0">Customer Complaint</h4>
+                <span *ngIf="cuscomplains" class="ml-2">{{ cuscomplains[0].avg ? cuscomplains[0].avg.toFixed(2) : 'N/A'
+                  }} </span>
+              </div><!-- end card header -->
+
+              <div class="card-body">
+                <apx-chart [series]="gradientDonutChart5.series" [chart]="gradientDonutChart5.chart"
+                  [plotOptions]="gradientDonutChart5.plotOptions" [dataLabels]="gradientDonutChart5.dataLabels"
+                  [fill]="gradientDonutChart5.fill" [title]="gradientDonutChart5.title"
+                  [legend]="gradientDonutChart5.legend" [colors]="gradientDonutChart5.colors" dir="ltr"></apx-chart>
+              </div><!-- end card-body -->
+            </div><!-- end card -->
+          </div>
+
+          <div class="col-3">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title mb-0">Additional Issue</h4>
+                <span *ngIf="issues" class="ml-2">{{ issues[0].avg ? issues[0].avg.toFixed(2) : 'N/A' }} </span>
+              </div><!-- end card header -->
+
+              <div class="card-body">
+                <apx-chart [series]="gradientDonutChart6.series" [chart]="gradientDonutChart6.chart"
+                  [plotOptions]="gradientDonutChart6.plotOptions" [dataLabels]="gradientDonutChart6.dataLabels"
+                  [fill]="gradientDonutChart6.fill" [title]="gradientDonutChart6.title"
+                  [legend]="gradientDonutChart6.legend" [colors]="gradientDonutChart6.colors" dir="ltr"></apx-chart>
+              </div><!-- end card-body -->
+            </div><!-- end card -->
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-2 mx-1">
+        <div class="card">
+          <h4>GRADE</h4>
+          <h1 *ngIf="issues && cuscomplains && downtimes && effectiveness && feedbacks && rateabnormals">{{getGrade(issues[0].avg, cuscomplains[0].avg, downtimes[0].avg, effectiveness[0].avg, feedbacks[0].avg, rateabnormals[0].avg)}}</h1>
+          <span *ngIf="issues && cuscomplains && downtimes && effectiveness && feedbacks && rateabnormals"
+            class="ml-2 span-large-text">{{((issues[0].avg + cuscomplains[0].avg + downtimes[0].avg +
+            effectiveness[0].avg + feedbacks[0].avg + rateabnormals[0].avg)/6).toFixed(2)}}</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+  <!--HISTORICAL FINDING ABNORMAL CHART-->
+  <div class="row justify-content-center">
+    <!-- Stard End Date -->
+    <div class="col-xl-3">
+      <form (ngSubmit)="getHistorical()" [formGroup]="dateHistorical">
+        <div class="form" class="d-flex">
+          <div class="date-section">
+            <label for="startDate">Start: </label>
+            <input type="month" id="startDate" formControlName="startDate">
+          </div> &nbsp;
+          <div class="date-section">
+            <label for="endDate">End Date: </label>
+            <input type="month" id="endDate" formControlName="endDate">
+          </div> &nbsp;
+          <div class="d-flex align-items-end">
+            <button type="submit" class="getbutton">Get</button> &nbsp;
+          </div>
+        </div>
+      </form> &nbsp;
+      <div class="card">
+        <img src="assets/img/capapic.png" class="card-img-top" alt="...">
+      </div>
+
+    </div>
+
+    <!-- CARD HISTORICAL-->
+    <div class="col-xl-8">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title mb-0">Historical Finding Abnormalitas {{startHistorical}} & {{endHistorical}}</h4>
+          <h5 *ngIf="vendor" class="card-title mb-0">{{vendor.name_vendor}} </h5>
+        </div><!-- end card header -->
+
+        <div class="card-body">
+          <apx-chart [series]="basicChart.series" [chart]="basicChart.chart" [dataLabels]="basicChart.dataLabels"
+            [plotOptions]="basicChart.plotOptions" [yaxis]="basicChart.yaxis" [legend]="basicChart.legend"
+            [fill]="basicChart.fill" [stroke]="basicChart.stroke" [tooltip]="basicChart.tooltip"
+            [xaxis]="basicChart.xaxis" [colors]="basicChart.colors" dir="ltr"></apx-chart>
+        </div><!-- end card-body -->
+      </div><!-- end card -->
+    </div>
+
+  </div>
+
+
+
+</body>

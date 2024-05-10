@@ -10,7 +10,6 @@ import { GrafikReleaseComponent } from './flow-release/grafik-release/grafik-rel
 import { RejectionFSBComponent } from './inpeksi/rejection-fsb/rejection-fsb.component';
 import { RejectionOci1Component } from './inpeksi/rejection-oci1/rejection-oci1.component';
 import { RejectionOci2Component } from './inpeksi/rejection-oci2/rejection-oci2.component';
-import { DashboardCalibrationComponent } from "./calibration/dashboard-calibration/dashboard-calibration.component";
 import { PendingTaskCalibrationComponent } from './calibration/pending-task-calibration/pending-task-calibration.component';
 import { ReportCalibrationComponent } from './calibration/report-calibration/report-calibration.component';
 import { ResultCalibrationComponent } from './calibration/result-calibration/result-calibration.component';
@@ -49,10 +48,6 @@ const routes: Routes = [
   {
     path: "rejection-oci2",
     component: RejectionOci2Component
-  },
-  {
-    path: "dashboard-calibration",
-    component: DashboardCalibrationComponent
   },
   {
     path: "pending-task-calibration",
