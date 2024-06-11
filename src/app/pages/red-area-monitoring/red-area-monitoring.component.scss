@@ -1,12 +1,165 @@
-.titleram {
-    font-weight: bold;
-    /* Membuat teks menjadi tebal */
-    font-size: 60px;
-    /* Mengatur ukuran teks */
-    background: linear-gradient(to right, #ca0b12, #cc708f);
-    /* Gradasi warna latar belakang */
-    -webkit-background-clip: text;
-    /* Menggunakan latar belakang sebagai warna teks (untuk browser WebKit) */
-    -webkit-text-fill-color: transparent;
-    /* Mengatur warna teks menjadi transparan (untuk browser WebKit) */
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
 }
+
+.box-card {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    min-width: 150px; /* Minimum width to ensure consistent look */
+    max-width: 200px; /* Maximum width to prevent overflow */
+    width: 100%; /* Adjust width to fit the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.box-card-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold; /* Making the text bold */
+}
+
+
+.materialcard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 16px;
+}
+
+.love-icon1 {
+    width: 30px;
+    height: 30px;
+}
+
+
+.red-area {
+    background-color: #C40C0C;
+    color: white;
+
+    .card-title, .materialcard {
+        color: white;
+    }
+}
+
+.yellow-area {
+    background-color: #FFC100;
+    color: black;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Define the default styles for the button */
+button.filter {
+    cursor: pointer;
+    background-color: #FFF0F0; /* Default background color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Add some border radius */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+/* Define the hover effect */
+button.filter:hover {
+    background-color: #8B322C; /* Change background color on hover */
+}
+
+
+
+.chart-title {
+    font-weight: bold;
+    font-size: 24px; /* Ukuran font diperbesar */
+    background-color: white;
+    padding: 10px; /* Menambahkan ruang di sekitar teks */
+    border-radius: 5px; /* Membuat sudut elemen sedikit melengkung */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan untuk kedalaman */
+    margin-bottom: 20px; /* Menambahkan jarak antara judul dan chart */
+}
+.chart-title:hover{
+    background-color: #FFF0F0; 
+}
+
+
+.card {
+    border: 1px solid #ccc; /* Warna border */
+    border-radius: 8px; /* Mengatur sudut border */
+    padding: 20px; /* Jarak antara konten dan border */
+    background-color: #f8f9fa; /* Warna latar belakang */
+    text-align: center; /* Posisi teks ke tengah */
+    transition: background-color 0.3s ease; /* Transisi warna latar belakang */
+  
+    &:hover {
+      background-color: #FFF0F0; /* Warna latar belakang saat dihover */
+    }
+  }
+
+  //UNTUK TABLE BISA DI SCROLL
+  .scrollable-card {
+    max-height: 300px; // Tinggi maksimum card
+    overflow-y: auto; // Aktifkan scrollbar vertikal jika kontennya melebihi tinggi maksimum
+  }
+
+
+  .material th,
+  .material td {
+    padding: 10px; 
+    text-align: center; 
+    border: 1px solid #ddd;
+  }
+  
+  .material th {
+    background-color: #31256b; /* Atur warna latar belakang untuk sel header */
+    color: white; /* Atur warna teks untuk sel header */
+  }
+  
+  .material tbody tr{
+    background-color: #f2f2f2; /* Atur warna latar belakang untuk baris genap */
+  }
+
+  .box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 10px;
+    width: 100%;
+    gap: 20px;
+    padding: 20px;
+  }
+
+
+  select.form-control {
+    width: 100%; // Panjang penuh
+    max-width: 300px; // Atur lebar maksimum jika perlu
+    padding: 10px; // Atur padding untuk menyesuaikan ukuran
+    font-size: 16px; // Atur ukuran font
+    border: 2px solid #31256b; // Atur warna dan ketebalan border
+    border-radius: 5px; // Atur radius sudut border untuk tampilan yang lebih halus
+    background-color: #f9f9f9; // Atur warna latar belakang
+    color: #333; // Atur warna teks'
+    display: flex;
+    margin-left: 30px;
+  }
+  
+  select.form-control:focus {
+    outline: none; // Hilangkan outline saat dipilih
+    border-color: #31256b; // Atur warna border saat fokus
+  }
+  

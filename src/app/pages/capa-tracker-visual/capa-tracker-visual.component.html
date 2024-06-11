@@ -57,7 +57,7 @@
     <div class="col-3">
       <p>Plan :
         <select name="abnormal" class="form-control" (change)="getAbnormalByPlan($event)">
-          <option disabled selected> ---Plan--- </option>
+          <option disabled selected> ---Choose Me First--- </option>
           <option value="KJY">KJY</option>
           <option value="SKB">SKB</option>
         </select>
@@ -122,11 +122,11 @@
 
     <div class="col-6 col-sm-3 col-md-2">
       <div class="card">
-        <h5 class="card-title">Rate Abnormal</h5>
+        <h5 class="card-title">Rate Abnor</h5>
         <div class="d-flex align-items-center justify-content-center">
           <img class="card-img-top" src="assets/img/rate.png" alt="Card image cap" style="width: 50px; height: auto;">
-          <span *ngIf="abnormalities && arrivals" class="ml-2 span-large-text"> {{ (abnormalities[0].total /
-            totalArrival).toFixed(2) }}</span> <!--pembagian antara nilai total dari elemen pertama abnormalities dengan totalArrival.-->
+          <span *ngIf="abnormalities && arrivals" class="ml-2 span-large-text"> {{ ((abnormalities[0].total / totalArrival) * 100).toFixed(2) }} %
+          </span> <!--pembagian antara nilai total dari elemen pertama abnormalities dengan totalArrival.-->
         </div>
       </div>
     </div>
@@ -162,8 +162,7 @@
             <div class="card">
               <div class="card-header">
                 <h4 class="card-title mb-0">% Abnormality</h4>
-                <span *ngIf="rateabnormals" class="ml-2"> {{ rateabnormals[0].avg ? rateabnormals[0].avg.toFixed(2) :
-                  'N/A' }}</span>
+                <span *ngIf="rateabnormals" class="ml-2"> {{ rateabnormals[0].avgabnormal ? rateabnormals[0].avgabnormal.toFixed(2) : 'N/A' }}</span>
               </div><!-- end card header -->
 
               <div class="card-body">
@@ -179,7 +178,7 @@
             <div class="card">
               <div class="card-header">
                 <h4 class="card-title mb-0">Feedback Speed</h4>
-                <span *ngIf="feedbacks" class="ml-2"> {{ feedbacks[0].avg ? feedbacks[0].avg.toFixed(2) : 'N/A' }}
+                <span *ngIf="rateabnormals" class="ml-2"> {{ rateabnormals[0].avgfeedback ? rateabnormals[0].avgfeedback.toFixed(2) : 'N/A' }}
                 </span>
               </div><!-- end card header -->
 
@@ -195,9 +194,8 @@
           <div class="col-3">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title mb-0">CAPA Effectiveness</h4>
-                <span *ngIf="effectiveness" class="ml-2">{{ effectiveness[0].avg ? effectiveness[0].avg.toFixed(2) :
-                  'N/A' }} </span>
+                <h4 class="card-title mb-0">Effectiveness</h4>
+                <span *ngIf="rateabnormals" class="ml-2">{{ rateabnormals[0].avgeffectiveness ? rateabnormals[0].avgeffectiveness.toFixed(2) : 'N/A' }} </span>
               </div><!-- end card header -->
 
               <div class="card-body">
@@ -215,7 +213,7 @@
             <div class="card">
               <div class="card-header">
                 <h4 class="card-title mb-0">Downtime</h4>
-                <span *ngIf="downtimes" class="ml-2">{{ downtimes[0].avg ? downtimes[0].avg.toFixed(2) : 'N/A' }}
+                <span *ngIf="rateabnormals" class="ml-2">{{ rateabnormals[0].avgdowntime ? rateabnormals[0].avgdowntime.toFixed(2) : 'N/A' }}
                 </span>
               </div><!-- end card header -->
 
@@ -231,9 +229,8 @@
           <div class="col-3">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title mb-0">Customer Complaint</h4>
-                <span *ngIf="cuscomplains" class="ml-2">{{ cuscomplains[0].avg ? cuscomplains[0].avg.toFixed(2) : 'N/A'
-                  }} </span>
+                <h4 class="card-title mb-0">Cust Complaint</h4>
+                <span *ngIf="rateabnormals" class="ml-2">{{ rateabnormals[0].avgcustcomplain ? rateabnormals[0].avgcustcomplain.toFixed(2) : 'N/A' }}</span>
               </div><!-- end card header -->
 
               <div class="card-body">
@@ -249,7 +246,7 @@
             <div class="card">
               <div class="card-header">
                 <h4 class="card-title mb-0">Additional Issue</h4>
-                <span *ngIf="issues" class="ml-2">{{ issues[0].avg ? issues[0].avg.toFixed(2) : 'N/A' }} </span>
+                <span *ngIf="rateabnormals" class="ml-2">{{ rateabnormals[0].avgissue == null ? 'N/A' : rateabnormals[0].avgissue.toFixed(2) }}</span>
               </div><!-- end card header -->
 
               <div class="card-body">
@@ -267,10 +264,9 @@
       <div class="col-2 mx-1">
         <div class="card">
           <h4>GRADE</h4>
-          <h1 *ngIf="issues && cuscomplains && downtimes && effectiveness && feedbacks && rateabnormals">{{getGrade(issues[0].avg, cuscomplains[0].avg, downtimes[0].avg, effectiveness[0].avg, feedbacks[0].avg, rateabnormals[0].avg)}}</h1>
-          <span *ngIf="issues && cuscomplains && downtimes && effectiveness && feedbacks && rateabnormals"
-            class="ml-2 span-large-text">{{((issues[0].avg + cuscomplains[0].avg + downtimes[0].avg +
-            effectiveness[0].avg + feedbacks[0].avg + rateabnormals[0].avg)/6).toFixed(2)}}</span>
+          <h1 *ngIf="rateabnormals">{{ grade }}</h1>
+          <span *ngIf="rateabnormals"
+            class="ml-2 span-large-text">{{ gradeAvg }}</span>
         </div>
 
       </div>

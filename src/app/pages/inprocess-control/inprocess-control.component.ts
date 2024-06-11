@@ -187,7 +187,6 @@ private _customDataLabelsChart(colors: any, maxCpCpk: any= [], averages: any = [
       dropShadow: {
         enabled: false,
       },
-    
     },
     stroke: {
       width: 1,
@@ -278,6 +277,10 @@ private _customDataLabelsChart(colors: any, maxCpCpk: any= [], averages: any = [
           cpkresult.push(row.cpk)
         });
 
+        console.log("merge", merge)
+        console.log("cpk", cpkresult)
+        console.log("cp", cpresult)
+
         this._basicChart('["--vz-gray-300", "--vz-primary", "--vz-info"]', keterangan, cpresult, cpkresult);
         
         this.spinner.hide()
@@ -285,8 +288,8 @@ private _customDataLabelsChart(colors: any, maxCpCpk: any= [], averages: any = [
         // max min
         const maxCpk = cpkresult.reduce((top:any, current:any) => (current > top ? current : top), 0);
         const maxCp = cpresult.reduce((top:any, current:any) => (current > top ? current : top), 0);
-        const minCpk = cpkresult.reduce((top:any, current:any) => (current < top ? current : top), 0);
-        const minCp = cpresult.reduce((top:any, current:any) => (current < top ? current : top), 0);
+        const minCpk = Math.min(...cpkresult)
+        const minCp = Math.min(...cpresult)
 
         //avg
         let totalCpk  = 0;
@@ -523,7 +526,6 @@ countAllCpk(cpkUsl: [], cpkLsl: []) {
 
 
 getKesimpulan() {
-
 }
 
 }

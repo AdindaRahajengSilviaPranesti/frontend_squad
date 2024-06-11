@@ -1,0 +1,57 @@
+.chart-title {
+    font-weight: bold;
+    font-size: 24px; /* Ukuran font diperbesar */
+    background-color: white;
+    padding: 10px; /* Menambahkan ruang di sekitar teks */
+    border-radius: 30px; /* Membuat sudut elemen sedikit melengkung */
+    margin-bottom: 20px; /* Menambahkan jarak antara judul dan chart */
+    text-align: center;
+}
+
+.chart-title:hover{
+    background-color: #ACB1D6; 
+}
+
+//UNTUK TABLE BISA DI SCROLL
+.scrollable-card {
+    max-height: 140px; // Tinggi maksimum card
+    overflow-y: auto; // Aktifkan scrollbar vertikal jika kontennya melebihi tinggi maksimum
+  }
+//untuk box-card-title
+  .box-card-title {
+    text-align: center;
+    font-size: 1.5em; /* Adjust the size as needed */
+    font-weight: bold;
+}
+//untuk card-img nya
+.card img {
+    display: flex;
+    max-width: 25%;
+    height: auto;
+    margin: 15px 0; /* Add some margin if needed */
+}
+
+.material2 {
+    max-height: 200px; // Tinggi maksimum card
+    overflow-y: auto; // Aktifkan scrollbar vertikal jika kontennya melebihi tinggi maksimum
+}
+
+.materialcard {
+    display: flex;
+    justify-content: center; // Menempatkan konten secara horizontal di tengah
+    align-items: center;     // Menempatkan konten secara vertikal di tengah
+    text-align: center;      // Menempatkan teks di tengah
+
+    .status-approve-count {
+        font-weight: bold; // Membuat teks tebal
+        font-size: 60px;   // Mengatur ukuran teks besar, sesuaikan dengan kebutuhan Anda
+        margin-left: 10px; // Margin kiri agar ada jarak dengan gambar
+    }
+}
+
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+  

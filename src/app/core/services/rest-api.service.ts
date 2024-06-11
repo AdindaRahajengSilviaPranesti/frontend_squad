@@ -105,13 +105,50 @@ export class restApiService {
   }
   
 
+  //masuk ke microbiologi
+  getParameterfg(): Observable<any> {
+    return this.http.get(this.apiUrl+'finishGood/getParameter')
+  }
+
+  getProduct(kode_product:any, lotno:any): Observable<any> {
+    return this.http.get(this.apiUrl+'finishGood/getProduct/'+kode_product+'/'+lotno)
+  }
+
+  getParameteroc(): Observable<any> {
+    return this.http.get(this.apiUrl+'finishGood/getParameteroc')
+  }
+
+  getProductoc(product:any, lotno:any): Observable<any> {
+    return this.http.get(this.apiUrl+'finishGood/getProductoc/'+product+'/'+lotno)
+  }
+
+  getTypeParameter(kode_product:any, lotno:any): Observable<any> {
+    return this.http.post(this.apiUrl+'finishGood/getTypeParameter/', {kode_product:kode_product, lotno:lotno})
+  }
+  getPanalysisfsb(): Observable<any> {
+    return this.http.get(this.apiUrl+'finishGood/getPanalysisfsb')
+  }
+
+  getTypeParameterOc(body:any): Observable<any> {
+    return this.http.post(this.apiUrl+'finishGood/getTypeParameterOc', body)
+  }
+
+  getTypeParameterOcWater(body:any): Observable<any> {
+    return this.http.post(this.apiUrl+'finishGood/getTypeParameterOcWater', body)
+  }
+
+  getProwaitingoc(): Observable<any> {
+    return this.http.get(this.apiUrl+'finishGood/getProwaitingoc')
+  }
+
+
   /**
   * Product Rest Api
   */
   // Get
   getData(): Observable<any> {
     var headerToken = {'Authorization': `Bearer `+ localStorage.getItem('token')};    
-    return this.http.get(GlobalComponent.API_URL + GlobalComponent.product, {  headers: headerToken, responseType: 'text' });
+    return this.http.get(GlobalComponent.API_URL + GlobalComponent.product, {headers: headerToken, responseType: 'text' });
   }
 
   // Delete 

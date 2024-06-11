@@ -30,32 +30,35 @@
     <span class="rawmaterial">RECAPITULATION</span> &nbsp;
     <div class="box">
       <div class="card">
-        <h5 class="card-title">Material Arrival</h5><br>
+        <h5 class="card-title">Material Arrival</h5>
+        <br>
         <span class="materialcard">
           <img src="assets/img/newar.png" alt="Love Icon" class="love-icon1"> {{totalMaterial}} LOTS
         </span>
       </div>
 
-      <!--COMPLETE ANALYSIS-->
+      <!-- COMPLETE ANALYSIS -->
       <div class="card">
-        <h5 class="card-title">Complete Analysis</h5><br>
+        <h5 class="card-title">Complete Analysis</h5>
+        <br>
         <span class="materialcard">
           <img src="assets/img/canalysis.png" alt="Love Icon" class="love-icon1"> {{completeAnalysis}} LOTS
         </span>
       </div>
 
-      <!--RELEASE-->
+      <!-- RELEASE -->
       <div class="card">
-        <h5 class="card-title">Release</h5><br>
+        <h5 class="card-title">Release</h5>
+        <br>
         <span class="materialcard">
           <img src="assets/img/release.png" alt="Love Icon" class="love-icon1"> {{releaseMaterial}} LOTS
         </span>
       </div>
 
-
-      <!--CompletionL-->
+      <!-- COMPLETION -->
       <div class="card">
-        <h5 class="card-title">% Completion</h5><br>
+        <h5 class="card-title">% Completion</h5>
+        <br>
         <span class="materialcard">
           <img src="assets/img/persen.png" alt="Love Icon" class="love-icon1"> {{completion}} %
         </span>
@@ -111,29 +114,29 @@
     <div class="row justify-content-center">
       <div class="col-3">
         <p>Type :
-        <select name="jenis" class="form-control" [(ngModel)]="jenis" (change)="getManufacture()">
-          <option disabled selected> ---Type---
-          </option>
-          <option *ngFor="let type of types" [ngValue]="type">{{ type.jenis }}</option>
-        </select>
+          <select name="jenis" class="form-control" [(ngModel)]="jenis" (change)="getManufacture()">
+            <option disabled selected> ---Type---
+            </option>
+            <option *ngFor="let type of types" [ngValue]="type">{{ type.jenis }}</option>
+          </select>
         </p>
       </div> &nbsp;
       <div class="col-3">
         <p>Supplier :
-        <select class="form-control" [(ngModel)]="manufacture" (change)="getParameter()">
-          <option disabled selected> ---Supplier---
-          </option>
-          <option *ngFor="let supplier of suppliers" [ngValue]="supplier">{{ supplier.manufacture }}</option>
-        </select>
+          <select class="form-control" [(ngModel)]="manufacture" (change)="getParameter()">
+            <option disabled selected value=""> ---Supplier---
+            </option>
+            <option *ngFor="let supplier of suppliers" [ngValue]="supplier">{{ supplier.manufacture }}</option>
+          </select>
         </p>
       </div> &nbsp;
       <div class="col-3">
         <p>Parameter :
-        <select name="parameter" class="form-control" [(ngModel)]="parameter">
-          <option disabled selected > ---Parameter---
-          </option>
-          <option *ngFor="let parameter of parameters" [ngValue]="parameter">{{ parameter.parameter }}</option>
-        </select>
+          <select name="parameter" class="form-control" [(ngModel)]="parameter">
+            <option disabled selected value=""> ---Parameter---
+            </option>
+            <option *ngFor="let parameter of parameters" [ngValue]="parameter">{{ parameter.parameter }}</option>
+          </select>
         </p>
       </div>
     </div> &nbsp;
@@ -159,33 +162,6 @@
 
 
 
-    <!-- TABLE RADAR-->
-    <!-- <div class="row d-flex justify-content-center">
-      <div class="col-7">
-        <div class="material scrollable-card">
-          <div class="card-body overflow-auto" style="max-height: 300px;">
-            <div class="material">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>ITEM</th>
-                    <th>RESULT</th>
-                  </tr>
-                </thead>
-                <tbody> -->
-    <!-- Baris-baris tabel akan disesuaikan dengan data yang diperoleh dari DBeaver -->
-    <!-- <tr *ngFor="let data of dataAnalysis">
-                    <td>{{data.item}}</td>
-                    <td>{{data.result_d}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div> <br>
-    </div> &nbsp; -->
-    <!--END TABEL RADAR -->
 
 
     <!--HISTOGRAM DATA-->
@@ -309,9 +285,39 @@
         </div>
 
 
-
       </div>
     </div>
+
+    
+            <!-- TABLE RADAR-->
+            <div class="row d-flex justify-content-center">
+              <div class="col-7">
+                <div class="material scrollable-card">
+                  <div class="card-body overflow-auto" style="max-height: 300px;">
+                    <div class="material">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>ITEM</th>
+                            <th>RESULT</th>
+                            <th>DATE</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+            <!-- Baris-baris tabel akan disesuaikan dengan data yang diperoleh dari DBeaver -->
+            <tr *ngFor="let data of dataAnalysis">
+                            <td>{{data.item}}</td>
+                            <td>{{data.result_d}}</td>
+                            <td>{{data.tanggal}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div> <br>
+            </div> &nbsp;
+            <!--END TABEL RADAR -->
   </details>
 
 </body>

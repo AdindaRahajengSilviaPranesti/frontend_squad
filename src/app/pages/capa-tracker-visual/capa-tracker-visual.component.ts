@@ -59,10 +59,8 @@ export class CapaTrackerVisualComponent implements OnInit {
   close: number = 0;
 
   //grade
-  a: number = 0;
-  b: number = 0;
-  c: number = 0;
-  d: number = 0;
+  gradeAvg:any;
+  grade:any;
 
   startHistorical: any;
   endHistorical: any;
@@ -95,7 +93,7 @@ export class CapaTrackerVisualComponent implements OnInit {
       endDate: ['']
     })
 
-    this.getAbnormal()
+    // this.getAbnormal()
     this._gradientDonutChart('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', 4, 0);
     this._gradientDonutChart2('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', 4, 0);
     this._gradientDonutChart3('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', 4, 0);
@@ -103,6 +101,8 @@ export class CapaTrackerVisualComponent implements OnInit {
     this._gradientDonutChart5('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', 4, 0);
     this._gradientDonutChart6('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', 4, 0);
     this._basicChart('["--vz-gray-300", "--vz-primary", "--vz-info"]', [], [], currentYear, currentYear);
+
+    
   }
 
   get f() {
@@ -128,6 +128,7 @@ getAbnormalByPlan(plan: any) {
   firstValueFrom(this.restApiService.getAbnormalByPlan(plan.target.value))
     .then((res: any) => {
       this.abnormalsByPlan = res;
+      this.abnormals = res;
 
     })
 }
@@ -146,7 +147,8 @@ getArrival() {
 }
 
 getRateabnormall() {
-  return parseFloat(((this.abnormalities) / (this.totalArrival)).toFixed(2));
+  return parseFloat(((this.abnormalities / this.totalArrival) * 100).toFixed(2));
+
 }
 
 getClosing() {
@@ -179,10 +181,18 @@ getRateabnormal() {
   firstValueFrom(this.restApiService.getRateabnormal(startDate, endDate, this.vendor.kode_vendor))
     .then((res: any) => {
       this.rateabnormals = res;
-      let test = 4 - this.rateabnormals[0].avg;
-      console.log("abnormal",this.rateabnormals[0].avg, test)
-      this._gradientDonutChart('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', this.rateabnormals[0].avg, test);
-      // console.log(this.rateabnormal)
+      if(this.rateabnormals[0].avgabnormal == null && this.rateabnormals[0].avgfeedback){
+        this.rateabnormals[0].avgabnormal == null;
+        this.rateabnormals[0].avgissue == null
+      }
+      // let test = 4 - this.rateabnormals[0].avgabnormal;
+      this._gradientDonutChart('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', this.rateabnormals[0].avgabnormal, (4 - this.rateabnormals[0].avgabnormal));
+      this._gradientDonutChart2('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', this.rateabnormals[0].avgfeedback, (4 - this.rateabnormals[0].avgfeedback));
+      this._gradientDonutChart3('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', this.rateabnormals[0].avgeffectiveness, (4 - this.rateabnormals[0].avgeffectiveness));
+      this._gradientDonutChart4('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', this.rateabnormals[0].avgdowntime, (4 - this.rateabnormals[0].avgdowntime));
+      this._gradientDonutChart5('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', this.rateabnormals[0].avgcustcomplain, (4 - this.rateabnormals[0].avgcustcomplain));
+      this._gradientDonutChart6('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', this.rateabnormals[0].avgissue, (4 - this.rateabnormals[0].avgissue));
+      this.getGrade(this.rateabnormals)
     })
 }
 
@@ -195,7 +205,7 @@ getFeedback() {
       let feeds = 4 - this.feedbacks[0].avg;
       console.log(this.feedbacks[0].avg, feeds)
       this._gradientDonutChart2('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', this.feedbacks[0].avg, feeds);
-      // console.log(this.rateabnormal)
+      console.log('feedbacks',this.feedbacks)
     })
 }
 
@@ -208,7 +218,7 @@ getEffectiveness() {
       let efc = 4 - this.effectiveness[0].avg;
       console.log(this.effectiveness[0].avg, efc)
       this._gradientDonutChart3('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', this.effectiveness[0].avg, efc);
-      // console.log(this.rateabnormal)
+      console.log('effectiveness',this.effectiveness)
     })
 }
 
@@ -221,7 +231,7 @@ getDowntime() {
       let efc = 4 - this.downtimes[0].avg;
       console.log(this.downtimes[0].avg, efc)
       this._gradientDonutChart4('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', this.downtimes[0].avg, efc);
-      // console.log(this.rateabnormal)
+      console.log('downtime',this.downtimes)
     })
 }
 
@@ -234,7 +244,7 @@ getCuscomplain() {
       let efc = 4 - this.cuscomplains[0].avg;
       console.log(this.cuscomplains[0].avg, efc)
       this._gradientDonutChart5('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', this.cuscomplains[0].avg, efc);
-      // console.log(this.rateabnormal)
+      console.log('Cuscomplain',this.cuscomplains)
     })
 }
 
@@ -247,25 +257,31 @@ getIssue() {
       let efc = 4 - this.issues[0].avg;
       console.log(this.issues[0].avg, efc)
       this._gradientDonutChart6('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', this.issues[0].avg, efc);
-      // console.log(this.rateabnormal)
+      console.log('Issues',this.issues)
     })
 }
 
-getGrade(a:any, b:any, c:any, d:any, e:any, f:any) {
-  let grade;
-  let avg = (a + b + c + d + e + f)/6;
 
-  if (avg >= 4) {
-    grade = "A";
-  }else if(avg >= 3.50){
-    grade = "B";
-  }else if(avg >= 2.00){
-    grade = "C"
+
+
+
+
+
+
+
+getGrade(abnormals:any) {
+  this.gradeAvg = ((abnormals[0].avgabnormal + abnormals[0].avgdowntime + abnormals[0].avgfeedback + abnormals[0].avgcustcomplain + abnormals[0].avgissue + abnormals[0].avgeffectiveness)/6).toFixed(2);
+
+  if (this.gradeAvg >= 4) {
+    this.grade = "A";
+  }else if(this.gradeAvg >= 3.50){
+    this.grade = "B";
+  }else if(this.gradeAvg >= 2.00){
+    this.grade = "C"
   }else{
-    grade = "E"
+    this.grade = "E"
   }
 
-  return grade;
 }
 
 
@@ -638,11 +654,11 @@ private _basicChart(colors: any, start:any, end:any, startDate:any, endDate:any)
     this.getRateabnormal();
     this.getArrival();
     this.getClosing();
-    this.getFeedback();
-    this.getEffectiveness();
-    this.getDowntime();
-    this.getCuscomplain();
-    this.getIssue();
+    // this.getFeedback();
+    // this.getEffectiveness();
+    // this.getDowntime();
+    // this.getCuscomplain();
+    // this.getIssue();
   }
 
   //4 kotak awal ( abnormality, rate abnormal)
