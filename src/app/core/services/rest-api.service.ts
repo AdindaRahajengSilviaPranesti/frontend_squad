@@ -17,6 +17,26 @@ export class restApiService {
   apiUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
+  getRedAllLine(): Observable<any> {
+    return this.http.get(this.apiUrl + GlobalComponent.getRedAllLine)
+  }
+  
+  getYellowAllLine(): Observable<any> {
+    return this.http.get(this.apiUrl + GlobalComponent.getYellowAllLine)
+  }
+  
+  postTarget(year:any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.postTarget, year)
+  }
+  
+  postArea(line:any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.postArea, line)
+  }
+  
+  postResultSwab(form:any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.postResultSwab, form)
+  }
+
   getMaterial(): Observable<any> {
     return this.http.get(this.apiUrl+'radarvisual/')
   }

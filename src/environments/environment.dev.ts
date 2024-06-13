@@ -11,5 +11,5 @@ export const environment = {
     appId: '',
     measurementId: ''
   },
-  apiUrl: 'http://localhost:3116/'
+  apiUrl: 'http://localhost:3100/'
 };
