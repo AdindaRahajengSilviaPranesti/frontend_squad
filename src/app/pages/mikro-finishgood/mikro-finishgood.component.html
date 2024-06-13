@@ -15,7 +15,7 @@
             </div>
 
             <div class="card-body">
-                <apx-chart [series]="StackedColumn100Chart.series" [chart]="StackedColumn100Chart.chart"
+                <apx-chart *ngIf="StackedColumn100Chart" [series]="StackedColumn100Chart.series" [chart]="StackedColumn100Chart.chart"
                     [dataLabels]="StackedColumn100Chart.dataLabels" [plotOptions]="StackedColumn100Chart.plotOptions"
                     [responsive]="StackedColumn100Chart.responsive" [xaxis]="StackedColumn100Chart.xaxis"
                     [legend]="StackedColumn100Chart.legend" [fill]="StackedColumn100Chart.fill"
@@ -196,16 +196,7 @@
     <div class="col-xl-6">
         <h3 class="chart-title">OC LINE</h3>
         <div class="row">
-        <div class="col-md-4 mb-2">
-                <p>Tahun:
-                    <select name="yearFilter" class="form-control" [(ngModel)]="selectedYear" (change)="filterByYear()">
-                        <option disabled selected> ---Pilih Tahun---
-                        </option>
-                        <option *ngFor="let year of years" [ngValue]="year">{{ year }}</option>
-                    </select>
-                </p>
-        </div>
-        <div class="col-md-4 mb-2">
+        <div class="col-md-6 mb-2">
             <p>Parameter :
                 <select name="parameteroc" class="form-control" [(ngModel)]="parameteroc" (change)="getProductoc()">
                     <option disabled selected> ---Lot OC---
@@ -214,7 +205,7 @@
                   </select>
             </p>
         </div>
-        <div class="col-md-4 mb-2">
+        <div class="col-md-6 mb-2">
             <p>Product :
                 <select class="form-control" [(ngModel)]="productOcLine" (change)="getTypeParameterOc()">
                     <option disabled selected> ---Product---

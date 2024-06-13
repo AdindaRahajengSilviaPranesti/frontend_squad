@@ -155,6 +155,12 @@ export class restApiService {
   }
 
 
+  // CHART ATAS SENDIRI FINISH GOOD
+  getChart(tgl_prod:any): Observable<any> {
+    return this.http.post(this.apiUrl+'finishGood/getChart', {tgl_prod:tgl_prod})
+  }
+
+
   /**
   * Product Rest Api
   */
