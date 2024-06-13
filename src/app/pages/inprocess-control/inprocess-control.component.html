@@ -1,0 +1,79 @@
+<div class="row justify-content-center">
+    <div class="col-10 d-flex justify-content-center">
+        <img src="assets/img/monitor3.png" alt="monitoring" style="border-radius: 15px; max-width: 100%; height: auto;">
+    </div>
+</div> &nbsp;
+
+<div class="row justify-content-start">
+    <div class="col-3">
+        <p>Parameter :
+            <select class="form-control" [(ngModel)]="parameter" (change)="setParameter($event)">
+                <option disabled selected> ---Parameter--- </option>
+                <option value="Berat - Baking">Weight Baking</option>
+                <option value="Moisture content">Moisture Baking</option>
+                <option value="Berat">Weight Finish Good</option>
+            </select>
+        </p>
+    </div>
+</div>
+
+
+<!--DATE-->
+<div class="col-3">
+    <form (ngSubmit)="getFsb()" [formGroup]="dateForm" >
+        <div class="form" class="d-flex">
+            <div class="date-section">
+                <p>Start Date :
+                    <input type="date" id="startDate" formControlName="startDate">
+                </p>
+            </div> &nbsp;
+            <div class="date-section">
+                <p>End Date Date :
+                    <input type="date" id="endDate" formControlName="endDate">
+                </p>
+            </div> &nbsp;
+            <div class="d-flex align-items-center">
+                <button type="submit" class="getbutton">Get</button> &nbsp;
+            </div>
+        </div>
+    </form>
+</div> &nbsp;
+
+<!--CHARTTT WEIGHT,MOISTURE, FINISH-->
+<div class="row justify-content-center">   
+    <!--Weight Baking-->
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Capability Process Bar {{selectedParameter}} Per Variant</h4>
+            </div><!-- end card header -->
+
+            <div class="card-body">
+                <apx-chart [series]="basicChart.series" [chart]="basicChart.chart" [dataLabels]="basicChart.dataLabels"
+                    [plotOptions]="basicChart.plotOptions" [yaxis]="basicChart.yaxis" [legend]="basicChart.legend"
+                    [fill]="basicChart.fill" [stroke]="basicChart.stroke" [tooltip]="basicChart.tooltip"
+                    [xaxis]="basicChart.xaxis" [colors]="basicChart.colors" dir="ltr"></apx-chart>
+            </div><!-- end card-body -->
+        </div><!-- end card -->
+    </div>
+
+    <!--Moisture Content-->
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Monitoring Process Capability Overview</h4>
+            </div><!-- end card header -->
+  
+            <div class="card-body">
+              <apx-chart [series]="customDataLabelsChart.series" [chart]="customDataLabelsChart.chart"
+              [dataLabels]="customDataLabelsChart.dataLabels" [stroke]="customDataLabelsChart.stroke"
+              [colors]="customDataLabelsChart.colors" [title]="customDataLabelsChart.title"
+              [subtitle]="customDataLabelsChart.subtitle" [plotOptions]="customDataLabelsChart.plotOptions"
+              [yaxis]="customDataLabelsChart.yaxis" [xaxis]="customDataLabelsChart.xaxis"
+              [tooltip]="customDataLabelsChart.tooltip" dir="ltr"></apx-chart>
+            </div><!-- end card-body -->
+        </div><!-- end card -->
+    </div>
+
+</div>
+

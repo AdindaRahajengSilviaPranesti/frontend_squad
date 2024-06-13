@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="date-section">
+      Date: <input type="date" [(ngModel)]="DateSelected">
+    </div>
+    <button (click)="fetchDateSelected()">Fetch Date</button>
+  </div>
+  
+  <div class="message">
+    User selected date is: {{DateSelected}}
+  </div>
+  

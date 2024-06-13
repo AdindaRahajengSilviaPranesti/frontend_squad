@@ -1,0 +1,351 @@
+<div class="row justify-content-center">
+    <div class="col-10 d-flex justify-content-center">
+        <img src="assets/img/mikrobiologi2.png" alt="monitoring"
+            style="border-radius: 20px; max-width: 75%; height: auto;">
+    </div>
+</div> &nbsp;
+
+
+<div class="row justify-content-center">
+    <div class="col-xl-10">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="text-center card-title mb-10">MICROBIOLOGY MONITORING FINISH GOOD</h4>
+                <h4 class="text-center card-title mb-10">YTD 2024</h4>
+            </div>
+
+            <div class="card-body">
+                <apx-chart [series]="StackedColumn100Chart.series" [chart]="StackedColumn100Chart.chart"
+                    [dataLabels]="StackedColumn100Chart.dataLabels" [plotOptions]="StackedColumn100Chart.plotOptions"
+                    [responsive]="StackedColumn100Chart.responsive" [xaxis]="StackedColumn100Chart.xaxis"
+                    [legend]="StackedColumn100Chart.legend" [fill]="StackedColumn100Chart.fill"
+                    [colors]="StackedColumn100Chart.colors" dir="ltr"></apx-chart>
+            </div><!-- end card-body -->
+
+        </div>
+    </div>
+</div>
+
+<!--OCLINE & FSB LINE-->
+<div class="row justify-content-center">
+
+    <div class="col-xl-6">
+        <h3 class="chart-title">OC LINE</h3>
+        <div class="row">
+
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <h5 class="box-card-title">Progress Analysis</h5>
+                    <div class="materialcard d-flex justify-content-center align-items-center">
+                        <img src="assets/img/progress.png" alt="Love Icon" class="love-icon1">
+                        <span class="status-approve-count ms-2">{{ progresAnalysisOc }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="material scrollable-card">
+                        <div class="card-body" style="max-height: 300px;">
+                            <div class="material">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Lot</th>
+                                            <th>H+</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Rows of data will go here -->
+                                        <tr *ngFor="let item of paOc">
+                                            <td>{{ item.lotno }}</td>
+                                            <td>H+ {{ item.Hplus }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <h5 class="box-card-title">Waiting Approval</h5>
+                    <div class="materialcard d-flex justify-content-center align-items-center">
+                        <img src="assets/img/complete.png" alt="Love Icon" class="love-icon1">
+                        <span class="status-approve-count ms-2">{{ waitingApprovalOc }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="material scrollable-card">
+                        <div class="card-body" style="max-height: 300px;">
+                            <div class="material">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Lot</th>
+                                            <th>H+</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Rows of data will go here -->
+                                        <tr *ngFor="let item of waOc">
+                                            <td>{{ item.lotno }}</td>
+                                            <td>H+ {{ item.Hplus }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-xl-6">
+        <h3 class="chart-title">FSB LINE</h3>
+        <div class="row">
+
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <h5 class="box-card-title">Progress Analysis</h5>
+                    <div class="materialcard d-flex justify-content-center align-items-center">
+                        <img src="assets/img/progress.png" alt="Love Icon" class="love-icon1">
+                        <span class="status-approve-count ms-2">{{ progresAnalysisFsb }}</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="material scrollable-card">
+                        <div class="card-body overflow-auto" style="max-height: 300px;">
+                            <div class="material">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Lot</th>
+                                            <th>H+</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Rows of data will go here -->
+                                        <tr *ngFor="let item of paFsb">
+                                            <td>{{ item.lotno }}</td>
+                                            <td>H+ {{ item.Hplus }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <h5 class="box-card-title">Waiting Approval</h5>
+                    <div class="materialcard d-flex justify-content-center align-items-center">
+                        <img src="assets/img/complete.png" alt="Love Icon" class="love-icon1">
+                        <span class="status-approve-count ms-2">{{ waitingApprovalFsb }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="material scrollable-card">
+                        <div class="card-body overflow-auto" style="max-height: 300px;">
+                            <div class="material">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Lot</th>
+                                            <th>H+</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Rows of data will go here -->
+                                        <tr *ngFor="let item of waFsb">
+                                            <td>{{ item.lotno }}</td>
+                                            <td>H+ {{ item.Hplus }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> <!--END ROW OCLINE & FSB LINE-->
+
+
+<!--OCLINE & FSB LINE WITH FILTERS-->
+<div class="row justify-content-center">
+
+    <div class="col-xl-6">
+        <h3 class="chart-title">OC LINE</h3>
+        <div class="row">
+        <div class="col-md-4 mb-2">
+                <p>Tahun:
+                    <select name="yearFilter" class="form-control" [(ngModel)]="selectedYear" (change)="filterByYear()">
+                        <option disabled selected> ---Pilih Tahun---
+                        </option>
+                        <option *ngFor="let year of years" [ngValue]="year">{{ year }}</option>
+                    </select>
+                </p>
+        </div>
+        <div class="col-md-4 mb-2">
+            <p>Parameter :
+                <select name="parameteroc" class="form-control" [(ngModel)]="parameteroc" (change)="getProductoc()">
+                    <option disabled selected> ---Lot OC---
+                    </option>
+                    <option *ngFor="let parameteroc of parameterocs" [ngValue]="parameteroc">{{ parameteroc.lotno }}</option>
+                  </select>
+            </p>
+        </div>
+        <div class="col-md-4 mb-2">
+            <p>Product :
+                <select class="form-control" [(ngModel)]="productOcLine" (change)="getTypeParameterOc()">
+                    <option disabled selected> ---Product---
+                    </option>
+                    <option *ngFor="let productoc of productocs" [ngValue]="productoc">{{ productoc.product_name }}</option>
+                  </select>
+            </p>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="material2 scrollable-card">
+                        <div class="card-body" style="max-height: 300px;">
+                            <div class="material">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Parameter</th>
+                                            <th>Result</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Rows of data will go here -->
+                                        <tr *ngFor="let item of parameterOcLine">
+                                            <td>{{ item.jenis_uji }}</td>
+                                            <td>{{ item.ket_hasil }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="material2 scrollable-card">
+                        <div class="card-body" style="max-height: 300px;">
+                            <div class="material">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Water</th>
+                                            <th>Result</th>
+                                            <th>Standard</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Rows of data will go here -->
+                                        <tr *ngFor="let item of waterOcLine" >
+                                            <td>{{ item.group_pengujian }}</td>
+                                            <td>{{ item.ket_hasil }}</td>
+                                            <td>{{ item.standard }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+<!--MASUK FSB FILTER LINE-->
+    <div class="col-xl-6">
+        <h3 class="chart-title">FSB LINE</h3>
+        <div class="row">
+            <div class="col-md-6 mb-2">
+                <p>Parameter :
+                    <select name="parameter" class="form-control" [(ngModel)]="parameter" (change)="getProduct()">
+                        <option disabled selected> ---Lot FSB---
+                        </option>
+                        <option *ngFor="let parameter of parameters" [ngValue]="parameter">{{ parameter.lotno }}</option>
+                      </select>
+                </p>
+            </div>
+            <div class="col-md-6 mb-2">
+                <p>Product :
+                    <select class="form-control" [(ngModel)]="product" (change)="getTypeParameter()" >
+                        <option disabled selected value=""> ---Product---
+                        </option>
+                        <option *ngFor="let product of products" [ngValue]="product">{{ product.produk }}</option>
+                      </select>
+                </p>
+            </div>
+            </div>
+        <div class="card">
+            <div class="material2">
+                <div class="card-body" style="max-height: 300px;">
+                    <div class="material">
+                        <table class="table" >
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Result</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let typeParameter of typeParameters">
+                                    <td>total_bacteria</td>
+                                    <td>{{typeParameter.avg_total_bacteria}}</td>
+                                </tr>
+                                <tr *ngFor="let typeParameter of typeParameters">
+                                    <td>mold_yeast</td>
+                                    <td>{{typeParameter.avg_mold_yeast}}</td>
+                                </tr>
+                                <tr *ngFor="let typeParameter of typeParameters">
+                                    <td>coliform</td>
+                                    <td>{{typeParameter.avg_coliform}}</td>
+                                </tr>
+                                <tr *ngFor="let typeParameter of typeParameters">
+                                    <td>salmonella</td>
+                                    <td>{{typeParameter.avg_salmonella}}</td>
+                                </tr>
+                                <tr *ngFor="let typeParameter of typeParameters">
+                                    <td>enterobacter</td>
+                                    <td>{{typeParameter.avg_enterobacter}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div> <!--END ROW OCLINE & FSB LINE-->

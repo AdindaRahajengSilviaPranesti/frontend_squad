@@ -1,0 +1,303 @@
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; /* Ganti dengan jenis font yang diinginkan */
+    background-color: #f0f0f0; /* Warna latar belakang */
+ 
+
+  }
+  
+  .incoming-update {
+    font-size: 60px; /* Ukuran font */
+    color: #333; /* Warna teks */
+    text-align: center; /* Posisi teks menjadi di tengah */
+    margin-top: 20px; /* Jarak atas */
+    margin-bottom: 20px; /* Jarak bawah */
+    text-transform: uppercase; /* Mengubah teks menjadi huruf besar */
+    font-weight: bold; /* Menjadikan teks tebal */
+    text-shadow: 2px 2px 4px #cc708f; /* Efek bayangan teks */
+  }
+  
+
+  //date picker
+  .container {
+    display: flex;
+    align-items: flex-start; /* Menempatkan konten di pojok kiri atas */
+    margin-right: 230px;
+    font-size: 18px;
+  }
+  
+  .filter {
+    margin-right: 3000px; /* Jarak antara input tanggal dan tombol */
+    font-size: 18px;
+    margin-top :34px;
+  }
+  
+  input[type="date"] {
+    padding: 8px;
+    border: 2px solid #31256b;
+    border-radius: 4px;
+    font-size: 18px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #cc708f;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #31256b;
+  }
+  
+  
+
+  //RAW MATERIAL
+  .rawmaterial {
+    font-size: 23px;
+    font-weight: bold;
+    color: #333; /* Warna teks */
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+
+  .scrollable-card {
+    max-height: 300px; // Tinggi maksimum card
+    overflow-y: auto; // Aktifkan scrollbar vertikal jika kontennya melebihi tinggi maksimum
+  }
+
+  .card {
+    background-color: #cc708f;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    height: 200px;
+    margin-right: 25px; /* Jarak antar kartu */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Memusatkan konten secara vertikal */
+    align-items: center; /* Memusatkan konten secara horizontal */
+    text-align: center;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .card:hover {
+    background-color: #31256b;
+  }
+  
+  .materialcard {
+    font-weight: bold; /* Membuat teks menjadi tebal */
+    font-size: 20px; /* Mengatur ukuran teks */
+    color: #f2f2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .love-icon1 {
+    width: 130px; /* Sesuaikan ukuran dengan kebutuhan Anda */
+    height: 130px; /* Sesuaikan ukuran dengan kebutuhan Anda */
+    margin-right: 0.5px; /* Atur jarak antara gambar dengan teks */
+  }
+  
+  
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h1 {
+  font-size: 60px; /* Ukuran font */
+  color: #333; /* Warna teks */
+  text-align: center; /* Posisi teks menjadi di tengah */
+  margin-top: 20px; /* Jarak atas */
+  margin-bottom: 20px; /* Jarak bawah */
+  text-transform: uppercase; /* Mengubah teks menjadi huruf besar */
+  font-weight: bold; /* Menjadikan teks tebal */
+  text-shadow: 2px 2px 4px #BB5A5A; /* Efek bayangan teks */
+  }
+  
+  
+
+  .card-img-right {
+    width: 120px; /* Atur lebar gambar sesuai kebutuhan */
+  }
+  
+  h5 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #31256b;
+    margin-top: -20px;
+    margin-bottom: -10px;
+  }
+
+  
+  
+  //table radar
+  .material{
+    justify-content: center;
+  }
+
+  .material table {
+    width: 100%; /* Atur lebar tabel menjadi 100% dari container */
+    height: 100px; /* Atur tinggi tabel menjadi 300 piksel */
+    margin-right: 600px;
+    justify-content: center;
+    border-collapse: collapse;
+  }
+  
+
+  .material th,
+  .material td {
+    padding: 10px; 
+    text-align: center; 
+    border: 1px solid #ddd;
+  }
+  
+  .material th {
+    background-color: #31256b; /* Atur warna latar belakang untuk sel header */
+    color: white; /* Atur warna teks untuk sel header */
+  }
+  
+  .material tbody tr{
+    background-color: #f2f2f2; /* Atur warna latar belakang untuk baris genap */
+  }
+
+  .box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 10px;
+    width: 100%;
+    gap: 20px;
+    padding: 20px;
+  }
+
+
+  select.form-control {
+    width: 100%; // Panjang penuh
+    max-width: 300px; // Atur lebar maksimum jika perlu
+    padding: 10px; // Atur padding untuk menyesuaikan ukuran
+    font-size: 16px; // Atur ukuran font
+    border: 2px solid #31256b; // Atur warna dan ketebalan border
+    border-radius: 5px; // Atur radius sudut border untuk tampilan yang lebih halus
+    background-color: #f9f9f9; // Atur warna latar belakang
+    color: #333; // Atur warna teks'
+    display: flex;
+    margin-left: 30px;
+  }
+  
+  select.form-control:focus {
+    outline: none; // Hilangkan outline saat dipilih
+    border-color: #31256b; // Atur warna border saat fokus
+  }
+  
+
+
+
+
+  //date picker data analyst
+  .filter2 {
+    padding: 4px 16px; /* Atur padding sesuai kebutuhan untuk mengatur ukuran tombol */
+    font-size: 16px; /* Atur ukuran font sesuai kebutuhan */
+  }
+  
+  
+//chart data analysis
+  .custom-card {
+    /* CSS khusus untuk desain kartu kustom */
+    background-color: #f0f0f0;
+    border: 2px solid #31256b;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Margin bawah untuk jarak antar kartu */
+  }
+  
+  .custom-card .card-header {
+    /* CSS untuk bagian header kartu */
+    background-color: #31256b;
+    color: #fff; /* Warna teks putih */
+    font-weight: bold;
+  }
+  
+  .custom-card .card-body {
+    /* CSS untuk bagian isi kartu */
+    padding: 20px;
+  }
+  
+  @media (min-width: 1200px) {
+    .col-xl-6 {
+      /* Atur lebar kartu agar muat dua dalam satu baris */
+      flex: 0 0 calc(50% - 10px); /* 50% lebar kolom dikurangi margin kanan */
+      max-width: calc(50% - 10px); /* 50% lebar maksimum dikurangi margin kanan */
+    }
+
+    .card-title {
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 0; /* Menghapus margin bawah agar lebih pas dengan elemen berikutnya */
+    }
+
+
+    summary {
+      font-size: 24px; /* Ukuran teks besar */
+      font-weight: bold; /* Tebal */
+      background: #FFBE98;
+      cursor: pointer; /* Menampilkan kursor tangan saat digulir */
+      padding: 10px; /* Padding untuk ruang kosong di sekitar teks */
+    }
+    
+
+  }
+
+  //design untuk tabel mean, sigma,ucl,lcl
+
+  .resultda {
+    .card {
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      background-color: #cc708f;
+      padding: 20px;
+      margin: 0 auto;
+      margin-bottom: 20px;
+
+      width: 100%; // Ubah ukuran sesuai kebutuhan, misalnya 100% untuk lebar penuh atau ukuran tertentu dalam piksel.
+      height: 80px;
+
+      p {
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 8px;
+        color: #ffffff;
+      }
+  
+      .hasil {
+        font-size: 28px;
+        color: #ffffff;
+        font-weight: bold;
+      }
+      &:hover {
+        background-color: #31256b; // Warna biru saat hover
+      }
+    }
+  }
+  
+  
+
+
+
+
+
+
+
+

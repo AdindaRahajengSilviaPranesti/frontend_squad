@@ -1,0 +1,85 @@
+.table-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+  
+  .table-wrapper {
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: #484C7F;
+  }
+  
+ td {
+    padding: 1rem;
+    font-weight: 500;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  th{
+    color: white;
+    text-align: center;
+  }
+
+  
+  
+  thead th {
+    background-color: #484C7F; 
+    text-transform: uppercase;
+    font-size: 0.75rem;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05); /* Warna latar belakang baris genap */
+  }
+  
+  tbody tr:last-child {
+    border-bottom: none;
+  }
+  
+  tbody td div {
+    padding: 0.5rem;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+
+  .t-head{
+    color: white;
+  }
+  
+ 
+  
+/* CSS */
+.status-badge {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .status-badge::before {
+    content: "";
+    position: absolute;
+    width: 16px; /* Diameter bulatan */
+    height: 16px; /* Diameter bulatan */
+    border-radius: 50%; /* Membuat bulatan */
+    background-color: green; /* Warna latar belakang */
+    top: 50%;
+    left: -20px; /* Jarak antara bulatan dan teks */
+    transform: translateY(-50%);
+  }
+  
+  .status-badge span {
+    position: relative;
+    z-index: 1; /* Pastikan teks berada di atas latar belakang */
+    padding: 0 8px; /* Sesuaikan jarak teks dengan tepi bulatan */
+    line-height: 16px; /* Sesuaikan teks berada di tengah bulatan */
+  }
+  

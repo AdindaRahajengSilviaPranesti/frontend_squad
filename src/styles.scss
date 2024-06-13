@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+
+body{
+    margin: 0;
+    padding: 0px;
+    box-sizing: border-box;
+  
+  }
+  .bg-animate {
+    margin: auto;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: auto;
+    background: linear-gradient(315deg, #FFBE98 5%, #FEECE2 38%, #F7DED0 68%, #E2BFB3 100%);
+    animation: gradient 30s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    -webkit-animation: gradient 30s ease infinite;
+  }
+  
+  @keyframes gradient {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+  }
+  

@@ -1,0 +1,93 @@
+body {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  /* Ganti dengan jenis font yang diinginkan */
+
+}
+
+header {
+  text-align: center;
+  color: #333;
+  /* Warna teks */
+  margin-top: 20px;
+  /* Jarak atas */
+  margin-bottom: 20px;
+  /* Jarak bawah */
+  text-transform: uppercase;
+  /* Mengubah teks menjadi huruf besar */
+  font-weight: bolder;
+  /* Menjadikan teks tebal */
+  text-shadow: 2px 2px 4px #BB5A5A;
+  /* Efek bayangan teks */
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 52px;
+  /* Ubah ukuran teks sesuai kebutuhan Anda */
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+h5 {
+  font-weight: bold;
+  font-size: 20px;
+  /* Sesuaikan ukuran teks sesuai kebutuhan Anda */
+}
+
+
+
+
+.card {
+  border: 1px solid #ccc;
+  /* Warna border */
+  border-radius: 8px;
+  /* Mengatur sudut border */
+  padding: 20px;
+  /* Jarak antara konten dan border */
+  background-color: #f8f9fa;
+  /* Warna latar belakang */
+  text-align: center;
+  /* Posisi teks ke tengah */
+  transition: background-color 0.3s ease;
+  /* Transisi warna latar belakang */
+
+  // Properti untuk span
+  a {
+    color: #007bff;
+    /* Warna teks */
+    text-decoration: none;
+    /* Hapus garis bawah pada tautan */
+    font-size: 18px;
+    /* Ukuran teks */
+  }
+
+  &:hover {
+    background-color: #D37676;
+    /* Warna latar belakang saat dihover */
+  }
+}
+
+// Untuk mengatur lebar dan jarak antara kotak
+.col-md-5 {
+  margin-bottom: 20px;
+  /* Jarak antara kotak */
+}
+
+
+
+.getbutton {
+  background-color: #FFBE98;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+
+
+.span-large-text {
+  font-size: 20px;
+  /* Ubah ke ukuran yang diinginkan */
+}

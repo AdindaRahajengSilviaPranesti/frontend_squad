@@ -1,0 +1,205 @@
+<div class="row justify-content-center">
+  <div class="col-10 d-flex justify-content-center">
+    <img src="assets/img/redarea.png" alt="monitoring" style="border-radius: 25px; max-width: 60%; height: auto;">
+  </div>
+</div> &nbsp;
+
+
+<div class="container">
+  <form>
+    <div class="form" class="d-flex">
+      <div class="date-section">
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" formControlName="startDate">
+      </div> &nbsp;
+      <div class="date-section">
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" formControlName="endDate">
+      </div> &nbsp;
+      <div>
+        <button type="submit" class="filter">Get</button> &nbsp;
+      </div>
+    </div>
+  </form>
+</div> &nbsp;
+
+
+<!--4 BOX AWAL-->
+<div class="box">
+  <div class="box-card red-area">
+    <h5 class="box-card-title">Total Red Area</h5>
+    <br>
+    <span class="materialcard">
+      <img src="assets/img/bacteri1.png" alt="Love Icon" class="love-icon1">
+    </span>
+  </div>
+
+  <!-- COMPLETE ANALYSIS -->
+  <div class="box-card red-area">
+    <h5 class="box-card-title">Repetitive Red Area</h5>
+    <br>
+    <span class="materialcard">
+      <img src="assets/img/bacteri2.png" alt="Love Icon" class="love-icon1">
+    </span>
+  </div>
+
+  <!-- RELEASE -->
+  <div class="box-card yellow-area">
+    <h5 class="box-card-title">Total Yellow Area</h5>
+    <br>
+    <span class="materialcard">
+      <img src="assets/img/bacteri1.png" alt="Love Icon" class="love-icon1">
+    </span>
+  </div>
+
+  <!-- COMPLETION -->
+  <div class="box-card yellow-area">
+    <h5 class="box-card-title">Repetitive Yellow Area</h5>
+    <br>
+    <span class="materialcard">
+      <img src="assets/img/bacteri2.png" alt="Love Icon" class="love-icon1">
+    </span>
+  </div>
+</div>
+
+<!--CHART DAN 2 TABEL -->
+<div class="row justify-content-center">
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Monitoring Red & Yellow Area</h4>
+      </div><!-- end card header -->
+
+      <div class="card-body">
+        <apx-chart [series]="basicChart.series" [chart]="basicChart.chart" [dataLabels]="basicChart.dataLabels"
+          [plotOptions]="basicChart.plotOptions" [yaxis]="basicChart.yaxis" [legend]="basicChart.legend"
+          [fill]="basicChart.fill" [stroke]="basicChart.stroke" [tooltip]="basicChart.tooltip"
+          [xaxis]="basicChart.xaxis" [colors]="basicChart.colors" dir="ltr"></apx-chart>
+      </div>
+    </div>
+  </div><!-- end col-xl-6 -->
+
+  <div class="col-xl-6">
+    <h3 class="chart-title">Finding Red Area</h3>
+    <div class="material scrollable-card">
+      <div class="card-body overflow-auto" style="max-height: 300px;">
+        <div class="material">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Parameter NG</th>
+                <th>Point</th>
+                <th>Root Cause</th>
+                <th>CAPA</th>
+                <th>Date/Pics</th>
+                <th>Photo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Rows of data will go here -->
+              <tr>
+                <td>2024-05-20</td>
+                <td>Parameter 1</td>
+                <td>Point A</td>
+                <td>Root Cause 1</td>
+                <td>CAPA 1</td>
+                <td>2024-05-20</td>
+                <td><img src="photo1.jpg" alt="Photo 1"></td>
+              </tr>
+              <!-- Add more rows as needed -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+
+    <h3 class="chart-title">Finding Yellow Area</h3>
+    <div class="material scrollable-card">
+      <div class="card-body overflow-auto" style="max-height: 300px;">
+        <div class="material">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Parameter NG</th>
+                <th>Point</th>
+                <th>Root Cause</th>
+                <th>CAPA</th>
+                <th>Date/Pics</th>
+                <th>Photo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Rows of data will go here -->
+              <tr>
+                <td>2024-05-20</td>
+                <td>Parameter 1</td>
+                <td>Point A</td>
+                <td>Root Cause 1</td>
+                <td>CAPA 1</td>
+                <td>2024-05-20</td>
+                <td><img src="photo1.jpg" alt="Photo 1"></td>
+              </tr>
+              <!-- Add more rows as needed -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end col-xl-6 -->
+</div><!-- end row -->
+
+
+
+<!--4 CHART -->
+<div class="row justify-content-center">
+
+  <div class="col-xl-6">
+    <h3 class="chart-title">OC LINE</h3>
+    <div class="card">
+      <h4 class="card-title">Root Cause Red Area OC YTD 2024</h4>
+      <div class="card-body">
+        <apx-chart [series]="gradientDonutChart.series" [chart]="gradientDonutChart.chart"
+          [plotOptions]="gradientDonutChart.plotOptions" [dataLabels]="gradientDonutChart.dataLabels"
+          [fill]="gradientDonutChart.fill" [title]="gradientDonutChart.title" [legend]="gradientDonutChart.legend"
+          [colors]="gradientDonutChart.colors" dir="ltr"></apx-chart>
+      </div><!-- end card-body -->
+    </div>
+    <div class="card">
+      <h4 class="card-title">Breakdown By Area Ytd 2024</h4>
+      <div class="card-body">
+        <apx-chart [series]="gradientDonutChart2.series" [chart]="gradientDonutChart2.chart"
+          [plotOptions]="gradientDonutChart2.plotOptions" [dataLabels]="gradientDonutChart2.dataLabels"
+          [fill]="gradientDonutChart2.fill" [title]="gradientDonutChart2.title" [legend]="gradientDonutChart2.legend"
+          [colors]="gradientDonutChart.colors2" dir="ltr"></apx-chart>
+      </div><!-- end card-body -->
+    </div>
+  </div>
+
+  <div class="col-xl-6">
+    <h3 class="chart-title">FSB LINE</h3>
+    <div class="card">
+      <h4 class="card-title">Root Cause Red Area FSB YTD 2024</h4>
+      <div class="card-body">
+        <apx-chart [series]="gradientDonutChart3.series" [chart]="gradientDonutChart3.chart"
+          [plotOptions]="gradientDonutChart3.plotOptions" [dataLabels]="gradientDonutChart3.dataLabels"
+          [fill]="gradientDonutChart3.fill" [title]="gradientDonutChart3.title" [legend]="gradientDonutChart3.legend"
+          [colors]="gradientDonutChart3.colors" dir="ltr"></apx-chart>
+      </div><!-- end card-body -->
+    </div>
+    <div class="card">
+      <h4 class="card-title">Breakdown By Area Ytd 2024</h4>
+      <div class="card-body">
+        <apx-chart [series]="gradientDonutChart4.series" [chart]="gradientDonutChart4.chart"
+          [plotOptions]="gradientDonutChart4.plotOptions" [dataLabels]="gradientDonutChart4.dataLabels"
+          [fill]="gradientDonutChart4.fill" [title]="gradientDonutChart4.title" [legend]="gradientDonutChart4.legend"
+          [colors]="gradientDonutChart4.colors" dir="ltr"></apx-chart>
+      </div><!-- end card-body -->
+    </div>
+  </div>
+
+</div>
