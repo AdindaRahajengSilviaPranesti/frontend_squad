@@ -17,6 +17,10 @@ export class restApiService {
   apiUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
+  getTablePending():Observable<any>{
+    return this.http.get(this.apiUrl+'calibration/table-pending')
+  }
+
   getMaterial(): Observable<any> {
     return this.http.get(this.apiUrl+'radarvisual/')
   }
@@ -43,6 +47,10 @@ export class restApiService {
   getAbnormalByPlan(plan: any): Observable<any> {
     return this.http.get(this.apiUrl+`capa-tracker/getAbnormal/`+plan)
   }
+
+  // table_pending(): Observable<any> {
+  //   return this.http.get(this.apiUrl+`calibration/table-pending/`)
+  // }
 
   getArrival(startDate: any, endDate: any, kode_vendor: any): Observable<any> {
     return this.http.post(this.apiUrl+`capa-tracker/getArrival`, {startDate:startDate, endDate:endDate, kode_vendor:kode_vendor})
@@ -105,7 +113,12 @@ export class restApiService {
   }
   
 
+  
   //masuk ke microbiologi
+    getYearoc(): Observable<any> {
+      return this.http.get(this.apiUrl+'finishGood/getYearoc')
+    }
+
   getParameterfg(): Observable<any> {
     return this.http.get(this.apiUrl+'finishGood/getParameter')
   }

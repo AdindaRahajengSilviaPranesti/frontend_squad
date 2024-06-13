@@ -17,6 +17,7 @@ export class MikroFinishgoodComponent implements OnInit {
   parameters: any = "---Lot FSB---";
   products: any = "---Product FSB---";
   parameterocs: any = "---Lot OC---";
+  yearocs: any = "---Year OC---";
   productocs: any = "---Product OC---";
   typeParameters: any;
   progressanalysisfsb: any;
@@ -210,6 +211,19 @@ export class MikroFinishgoodComponent implements OnInit {
         console.error(error);
       });
   }
+
+  //year OC LINE FILTER
+  getYearoc() {
+    firstValueFrom(this.restApiService.getYearoc())
+      .then((res: any) => {
+        this.yearocs = res;
+        console.log(res);
+      })
+      .catch((error: any) => {
+        console.error(error);
+      });
+  }
+
 
   getProductoc() {
     this.productocs = '';

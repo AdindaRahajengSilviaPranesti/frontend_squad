@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CalibrationService } from 'src/app/services/calibration/calibration.service';
+import { restApiService } from 'src/app/core/services/rest-api.service';
 
 
 @Component({
@@ -10,11 +11,11 @@ import { CalibrationService } from 'src/app/services/calibration/calibration.ser
 export class PendingTaskCalibrationComponent {
   p: string|number|undefined;
 
-  constructor (private appService: CalibrationService) { }
+  constructor (private appService: CalibrationService, private restApi: restApiService) { }
 
   data: any = [];
   ngOnInit() {
-    this.appService.getAllPendingTask().subscribe((res: any) => {
+    this.restApi.getTablePending().subscribe((res: any) => {
       console.log(res);
       
       this.data = res.data;

@@ -268,7 +268,15 @@
                                         <!-- Rows of data will go here -->
                                         <tr *ngFor="let item of waterOcLine" >
                                             <td>{{ item.group_pengujian }}</td>
-                                            <td>{{ item.ket_hasil }}</td>
+                                            <!-- <td>{{ item.ket_hasil }}</td> -->
+                                             <td>
+                                                <div *ngIf="item.ket_hasil == 'passed'">
+                                                    <span class="status-badge">Passed</span>
+                                                </div>
+                                                <div *ngIf="item.ket_hasil == 'positive'">
+                                                    <span class="status-badge">Inactive</span>
+                                                </div>
+                                             </td>
                                             <td>{{ item.standard }}</td>
                                         </tr>
                                     </tbody>
