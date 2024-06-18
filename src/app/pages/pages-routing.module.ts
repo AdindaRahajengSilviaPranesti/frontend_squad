@@ -36,6 +36,15 @@ const routes: Routes = [
       path: 'charts', loadChildren: () => import('./charts/charts.module').then(m => m.ChartsModule)
     },
     {
+      path: 'calibration', loadChildren: () => import('./apps/calibration/calibration.module').then(m => m.CalibrationModule)
+    },
+    {
+      path: 'capability', loadChildren: () => import('./apps/capability/capability.module').then(m => m.CapabilityModule)
+    },
+    {
+      path: 'microbiology', loadChildren: () => import('./apps/micro/micro.module').then(m => m.MicroModule)
+    },
+    {
       path: "genba",
       component: GenbaComponent
     },

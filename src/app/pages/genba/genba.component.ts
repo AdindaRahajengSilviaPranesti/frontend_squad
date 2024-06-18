@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { arrayData } from "../genba/data";
 import { Observable, timer } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { restApiService } from '../../core/services/rest-api.service';
 
 @Component({
   selector: 'app-genba',
   templateUrl: './genba.component.html',
-  styleUrls: ['./genba.component.scss']
+  styleUrls: ['./genba.component.scss'],
 })
 export class GenbaComponent implements OnInit {
   // bread crumb items
@@ -26,8 +27,38 @@ export class GenbaComponent implements OnInit {
   groupLabelChart: any;
   simpleDonutChart: any;
   simpleDonutChart2: any;
+  
+  allCrossGenba: any;
+  countAllCrossGenba: any;
+  allSelfGenba: any;
+  countAllSelfGenba: any;
+  allAreaFinding: any;
+  crossOpen: any;
+  crossClose: any;
+  selfOpen: any;
+  selfClose: any;
+  areaFindingCross: any;
+  areaFindingSelf: any;
 
-  constructor() { }
+  donutCategoryCross:any ;
+  donutCategorySelf:any ;
+  findingAreaBarChartCross:any ;
+  findingAreaBarChartSelf:any ;
+
+  page: number = 1;
+  pageSelf: number = 1;
+  pageSize: number = 10;
+  startIndex: number = 1;
+  endIndex: number = this.pageSize;
+  totalPages: number = 0;
+  isFiltered:any ;
+  isFilteredSelf:any ;
+  allCrossGenbaPaginated: any;
+  allSelfGenbaPaginated: any;
+  filteredData: any;
+  filteredDataSelf: any;
+
+  constructor(private restApiServices: restApiService) { }
 
   ngOnInit(): void {
     /**
@@ -46,7 +77,393 @@ export class GenbaComponent implements OnInit {
     this._distributedColumnChart('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-dark", "--vz-info"]')
     this._simpleDonutChart('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]');
     this._simpleDonutChart2('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]');
+
+    // GET ALL FINDING
+    this.restApiServices.getAllCrossGenba().subscribe(data=>{
+      this.allCrossGenba = data;
+      this.countAllCrossGenba = this.allCrossGenba.length;
+      console.log('all cross',this.allCrossGenba);
+      this.checkFindingData()
+      
+    })
+    this.restApiServices.getAllSelfGenba().subscribe(data=>{
+      this.allSelfGenba = data;
+      this.countAllSelfGenba = this.allSelfGenba.length;
+      console.log('all Self',this.allSelfGenba);
+      this.checkFindingData()
+      
+    })
+    this.restApiServices.getAllAreaFinding().subscribe(data=>{
+      this.allAreaFinding = data;
+      console.log('all area finding',this.allAreaFinding);
+      this.checkFindingData()
+      
+    })
+    // END GET ALL FINDING
   }
+
+  private checkFindingData() {
+    if (this.allCrossGenba != null && this.allSelfGenba != null && this.allAreaFinding != null) {
+      this.crossOpen = this.allCrossGenba.filter((item:any) => item.jenis_inspection === 1 && item.status == "Open");
+      this.crossClose = this.allCrossGenba.filter((item:any) => item.jenis_inspection === 1 && item.status == "Close");
+      this.selfOpen = this.allSelfGenba.filter((item:any) => item.jenis_inspection === 0 && item.status == "Open");
+      this.selfClose = this.allSelfGenba.filter((item:any) => item.jenis_inspection === 0 && item.status == "Close");
+      this.areaFindingCross = this.allAreaFinding.filter((item:any) => item.jenis_inspection === 1);
+      this.areaFindingSelf = this.allAreaFinding.filter((item:any) => item.jenis_inspection === 0);
+
+      this.paginateData()
+      this.paginateDataSelf()
+      this.mapCategoryData()
+    }
+  }
+
+  mapCategoryData() {
+    // GROUP CROSS GENBA
+    const groupedCross = this.allCrossGenba.reduce((result:any, currentValue:any) => {
+      const category = currentValue.category;
+      if (!result[category]) {
+        result[category] = 0;
+      }
+      result[category]++;
+      return result;
+    }, {});
+
+    const countsCrossGenbaCategory = Object.values(groupedCross);
+    const categoriesCrossGenba = Object.keys(groupedCross);
+
+    let dataChartCrossGenba = [
+      { count: countsCrossGenbaCategory },
+      { category: categoriesCrossGenba }
+    ];
+
+    console.log('dataChartDonatCrossGenba',dataChartCrossGenba);
+    // END GROUP CROSS GENBA
+
+    // GROUP SELF GENBA
+    const groupedSelf = this.allSelfGenba.reduce((result:any, currentValue:any) => {
+      const category = currentValue.category;
+      if (!result[category]) {
+        result[category] = 0;
+      }
+      result[category]++;
+      return result;
+    }, {});
+
+    const countsSelfGenbaCategory = Object.values(groupedSelf);
+    const categoriesSelfGenba = Object.keys(groupedSelf);
+
+    let dataChartSelfGenba = [
+      { count: countsSelfGenbaCategory },
+      { category: categoriesSelfGenba }
+    ];
+
+    console.log('dataChartDonatSelfGenba',dataChartSelfGenba);
+    // END GROUP SELF GENBA
+
+    // GROUP AREA
+    console.log('dataChartCrossArea',this.allCrossGenba);
+    const areasCross = Array.from(new Set(this.areaFindingCross.map((item:any) => item.area)));
+
+    const openCountsAreaCross = new Array(areasCross.length).fill(0);
+    const closeCountsAreaCross = new Array(areasCross.length).fill(0);
+
+    this.areaFindingCross.forEach((item:any) => {
+      const index = areasCross.indexOf(item.area);
+      if (item.status === "Open") {
+        openCountsAreaCross[index] = item.total;
+      } else if (item.status === "Close") {
+        closeCountsAreaCross[index] = item.total;
+      }
+    });
+    
+    let dataChartCrossArea = [
+      { open: openCountsAreaCross },
+      { close: closeCountsAreaCross },
+      { area: areasCross }
+      ];
+    
+    const areasSelf = Array.from(new Set(this.areaFindingSelf.map((item:any) => item.area)));
+
+    const openCountsAreaSelf = new Array(areasSelf.length).fill(0);
+    const closeCountsAreaSelf = new Array(areasSelf.length).fill(0);
+
+    this.areaFindingSelf.forEach((item:any) => {
+      const index = areasSelf.indexOf(item.area);
+      if (item.status === "Open") {
+        openCountsAreaSelf[index] = item.total;
+      } else if (item.status === "Close") {
+        closeCountsAreaSelf[index] = item.total;
+      }
+    });
+
+    let dataChartSelfArea = [
+      { open: openCountsAreaSelf },
+      { close: closeCountsAreaSelf },
+      { area: areasSelf }
+    ];
+
+    console.log('Self Area',dataChartSelfArea);
+    // END GROUP AREA
+
+    // CHART
+    this._donutCategoryCross(dataChartCrossGenba)
+    this._donutCategorySelf(dataChartSelfGenba)
+    this._findingAreaBarChartCross(dataChartCrossArea)
+    this._findingAreaBarChartSelf(dataChartSelfArea)
+    // END CHART
+  }
+
+  private _donutCategoryCross(dataChart:any){
+    const counts = dataChart[0].count;
+    const categories = dataChart[1].category;
+
+    this.donutCategoryCross = {
+      series: counts,
+      // series: [10,21,11],
+
+      labels: categories,
+      // labels: ["A","B","C"],
+
+      chart: {
+        height: 460,
+        type: "donut",
+        toolbar: {
+          show: true,
+        },
+      },
+
+      legend: {
+        position: "bottom",
+      },
+
+      dataLabels: {
+        dropShadow: {
+          enabled: false,
+        },
+      }
+    };
+  }
+  
+  private _donutCategorySelf(dataChart:any){
+    const counts = dataChart[0].count;
+    const categories = dataChart[1].category;
+
+    this.donutCategorySelf = {
+      series: counts,
+      // series: [10,21,11],
+
+      labels: categories,
+      // labels: ["A","B","C"],
+
+      chart: {
+        height: 460,
+        type: "donut",
+        toolbar: {
+          show: true,
+        },
+      },
+
+      legend: {
+        position: "bottom",
+      },
+
+      dataLabels: {
+        dropShadow: {
+          enabled: false,
+        },
+      }
+    };
+  }
+
+  private _findingAreaBarChartCross(dataChart:any){
+    const open = dataChart[0].open;
+    const close = dataChart[1].close;
+    const area = dataChart[2].area;
+
+    this.findingAreaBarChartCross = {
+      chart: {
+        type: 'bar',
+        stacked: true,
+        height: 600 
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true
+        }
+      },
+      series: [
+        {
+          name: "Open",
+          data: open
+          // data: [44, 55, 41, 64, 22, 43, 21]
+        },
+        {
+          name: "Close",
+          data: close
+          // data: [53, 32, 33, 52, 13, 44, 32]
+        },
+      ],
+      xaxis: {
+        categories: area
+        // categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"]
+      },
+      yaxis: {
+        title: {
+          text: "Area"
+        }
+      },
+    }
+  }
+  
+  private _findingAreaBarChartSelf(dataChart:any){
+    const open = dataChart[0].open;
+    const close = dataChart[1].close;
+    const area = dataChart[2].area;
+
+    this.findingAreaBarChartSelf = {
+      chart: {
+        type: 'bar',
+        stacked: true,
+        height: 600
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true
+        }
+      },
+      series: [
+        {
+          name: "Open",
+          data: open
+          // data: [44, 55, 41, 64, 22, 43, 21]
+        },
+        {
+          name: "Close",
+          data: close
+          // data: [53, 32, 33, 52, 13, 44, 32]
+        },
+      ],
+      xaxis: {
+        categories: area
+        // categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"]
+      },
+      yaxis: {
+        title: {
+          text: "Area"
+        }
+      },
+    }
+  }
+
+  // DETAIL TABLE CROSS
+  paginateData() {
+    const start = (this.page - 1) * this.pageSize;
+    const end = start + this.pageSize;
+    if (this.isFiltered) {
+      console.log('filtered',this.filteredData);
+      console.log('filtered start',start);
+      console.log('filtered end',end);
+      this.allCrossGenbaPaginated = this.filteredData.slice(start, end);
+
+    } else{
+      console.log('not filtered');
+      this.allCrossGenbaPaginated = this.allCrossGenba.slice(start, end);
+      this.countAllCrossGenba = this.allCrossGenba.length
+
+    }
+    console.log('dataPaginated', this.allCrossGenbaPaginated);
+  }
+
+  searchData(event:any) {
+    const val = event.target.value.toLowerCase();
+    this.isFiltered = val;
+    
+    const result = this.allCrossGenba.filter(function (d:any) {
+      const category = d.category ? d.category.toLowerCase() : '';
+      const tgl = d.tgl ? d.tgl.toLowerCase() : '';
+      const status = d.status ? d.status.toLowerCase() : '';
+    
+      return (
+        category.toLowerCase().indexOf(val) !== -1 ||
+        tgl.toLowerCase().indexOf(val) !== -1 ||
+        status.toLowerCase().indexOf(val) !== -1 ||
+        !val
+      );
+    });
+    
+    console.log(result.length);
+    this.countAllCrossGenba = result.length
+    this.filteredData = result;
+    this.paginateData()
+
+  }
+
+  getShowingText(): string {
+    const startIndex = (this.page - 1) * this.pageSize + 1;
+    const endIndex = Math.min(this.page * this.pageSize, this.countAllCrossGenba);
+    return `Showing ${startIndex} - ${endIndex}`;
+  }
+  // END DETAIL TABLE CROSS
+
+  // DETAIL TABLE SELF
+  paginateDataSelf() {
+    const start = (this.pageSelf - 1) * this.pageSize;
+    const end = start + this.pageSize;
+    if (this.isFilteredSelf) {
+      console.log('filtered',this.filteredDataSelf);
+      console.log('filtered start',start);
+      console.log('filtered end',end);
+      this.allSelfGenbaPaginated = this.filteredDataSelf.slice(start, end);
+
+    } else{
+      console.log('not filtered');
+      this.allSelfGenbaPaginated = this.allSelfGenba.slice(start, end);
+      this.countAllSelfGenba = this.allSelfGenba.length
+
+    }
+    console.log('dataPaginated', this.allSelfGenbaPaginated);
+  }
+
+  searchDataSelf(event:any) {
+    const val = event.target.value.toLowerCase();
+    this.isFilteredSelf = val;
+
+    const result = this.allSelfGenba.filter(function (d:any) {
+      const category = d.category ? d.category.toLowerCase() : '';
+      const tgl = d.tgl ? d.tgl.toLowerCase() : '';
+      const status = d.status ? d.status.toLowerCase() : '';
+    
+      return (
+        category.toLowerCase().indexOf(val) !== -1 ||
+        tgl.toLowerCase().indexOf(val) !== -1 ||
+        status.toLowerCase().indexOf(val) !== -1 ||
+        !val
+      );
+    });
+    
+    console.log(result.length);
+    this.countAllSelfGenba = result.length
+    this.filteredDataSelf = result;
+    this.paginateData()
+
+  }
+
+  getShowingTextSelf(): string {
+    const startIndex = (this.pageSelf - 1) * this.pageSize + 1;
+    const endIndex = Math.min(this.pageSelf * this.pageSize, this.countAllSelfGenba);
+    return `Showing ${startIndex} - ${endIndex}`;
+  }
+  // END DETAIL TABLE SELF
+
+  onPageChange(page: any, type: any) {
+    if (type == "cross") {
+      this.page = page;
+      this.paginateData();
+    } else if(type == "self"){
+      this.pageSelf = page;
+      this.paginateDataSelf();
+    }
+  }  
 
   // Chart Colors Set
   private getChartColorsArray(colors: any) {

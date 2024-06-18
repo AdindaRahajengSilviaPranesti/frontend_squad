@@ -1,44 +1,43 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
-import { restApiService } from '../../core/services/rest-api.service';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { isNull } from 'lodash';
-import { Grid } from 'gridjs';
+import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
+import * as ApexCharts from 'apexcharts';
 import * as moment from 'moment';
-import { NgTemplateOutlet, NgIf, NgClass } from '@angular/common'; 
+import { restApiService } from 'src/app/core/services/rest-api.service';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Grid } from 'gridjs';
+import { groupBy } from 'lodash';
 
 @Component({
-  selector: 'app-red-area-monitoring',
-  templateUrl: './red-area-monitoring.component.html',
-  styleUrls: ['./red-area-monitoring.component.scss']
+  selector: 'app-swab',
+  templateUrl: './swab.component.html',
+  styleUrls: ['./swab.component.scss']
 })
-export class RedAreaMonitoringComponent implements OnInit  {
-
-  basicChart: any;
-  gradientDonutChart: any;
-  gradientDonutChart2: any;
-  gradientDonutChart3: any;
-  gradientDonutChart4: any;
-  
+export class SwabComponent {
   currentYear = new Date().getFullYear();
-  table = [
-    "tr_swab_al4_d",  // M/C FSB
-      "tr_swab_can_d",  // OC1
-      "tr_swab_enmix_d",// ENV FSB
-      "tr_swab_oc3_d",  // ENV PS
-      "tr_swab_pet_d",  // OC2
-  ];
-  donutCategory: any;
+  years: number[] = [];
   allRed: any;
   allYellow: any;
   countRed: any;
   countYellow: any;
   target: any;
-  ytdArea: any;
+
   chartBarMonitoringYtd: any;
-  
+  donutCategory: any;
+
+  selectedLine:any;
+  imageUrl = 'assets/images/';
+  imageName = "bg-micro-resize.png";
+  // image = 'https://myapps.aio.co.id/lds_micro/attachment/';
+  selectedImageTable:any;
+  selectedImageSampling:any;
+  imageSamplings:any;
+  imageAreas:any=[];
+  areas:any;
+  kondisi:any;
+  corrective:any;
+  preventive:any;
+
   selectedLineSwab: any;
+  micro: any;
   selectedMicroSwab: any;
   dateSelectedSwab = {
     start: '',
@@ -46,7 +45,7 @@ export class RedAreaMonitoringComponent implements OnInit  {
   }
   areaSwab: any;
   selectedAreaSwab: any;
-  
+
   resultSwab: any;
   resultSwabLineChart: any = {
     series: [],
@@ -76,17 +75,141 @@ export class RedAreaMonitoringComponent implements OnInit  {
   };
   resultSwabTable: any;
 
-  years: number[] = [];
 
-  constructor(private restApiServices: restApiService, private fb: UntypedFormBuilder, private spinner: NgxSpinnerService, private el: ElementRef) {
-    const currentYear = new Date().getFullYear();
-    for (let year = currentYear; year >= 1900; year--) {
+  constructor(public restApiServices: restApiService, private formBuilder: UntypedFormBuilder, private el: ElementRef) {
+    for (let year = this.currentYear; year >= 1900; year--) {
       this.years.push(year);
     }
+    
   }
 
+  
+
   ngOnInit(): void {
-    const today = new Date();
+    // GET RED AREA EACH LINE
+    this.restApiServices.getRedAllLineSkb().subscribe(data=>{
+      this.allRed = data;
+      this.countRed = this.allRed.filter((item: any) => item.tahun == this.currentYear).length
+      console.log('red-all-line', this.allRed);
+      console.log('red-all-line', this.countRed);
+      this.checkDataFinding()
+
+      let dataTableAllRed = this.allRed.map((item:any)=>{
+        const bacteria = item.bacteria === -1 ? 'none' : item.bacteria;
+        const yeast = item.yeast === -1 ? 'none' : item.yeast;
+        const mold = item.mold === -1 ? 'none' : item.mold;
+        const jamur = item.jamur === -1 ? 'none' : item.jamur;
+
+        const eColiValue = item.e_coli === -1 ? 'none' : item.e_coli;
+        const salValue = item.salmonella === -1 ? 'none' : item.salmonella;
+        const tmValue = item.tm === -1 ? 'none' : item.tm;
+        const tabValue = item.tab === -1 ? 'none' : item.tab;
+        const coliformValue = item.coliform === -1 ? 'none' : item.tab;
+        return [item.id_temuan, item.week, item.tanggal, item.jenis_swab.toUpperCase(), item.line, item.category, item.swab_detail, bacteria, yeast, mold, jamur, eColiValue, salValue, tmValue, tabValue, coliformValue, item.pic_swab, item.pic_input, item.kondisi, item.rootcase, item.corrective, item.preventive]
+      });
+
+      new Grid({
+        // columns: ['Name', 'Age', 'Country', 'Age', 'Country', 'Age', 'Country', 'Age', 'Country'],
+        columns: [{
+          name: "ID Temuan",
+          width: '12%',
+          sort: true,
+        }, {
+          name: "Week",
+          width: '10%'
+        }, {
+          name: "Tanggal",
+          width: '20%'
+        }, {
+          name: "Jenis Swab",
+          width: '12%'
+        }, {
+          name: "Line",
+          width: '10%'
+        }, {
+          name: "Category",
+          width: '20%'
+        },{
+          name: "Swab Detail",
+          width: '20%'
+        }, {
+          name: "Bacteria",
+          width: '10%'
+        }, {
+          name: "Yeast",
+          width: '10%'
+        }, {
+          name: "Mold",
+          width: '10%'
+        }, {
+          name: "Jamur",
+          width: '10%'
+        }, {
+          name: "Ecoli",
+          width: '10%'
+        }, {
+          name: "Salmonella",
+          width: '10%'
+        }, {
+          name: "TM",
+          width: '10%'
+        }, {
+          name: "TAB",
+          width: '10%'
+        }, {
+          name: "Coliform",
+          width: '10%'
+        }, {
+          name: "PIC Swab",
+          width: '30%'
+        }, {
+          name: "PIC Input",
+          width: '30%'
+        }, {
+          name: "Evidence",
+          width: '40%'
+        }, {
+          name: "Rootcase",
+          width: '40%'
+        }, {
+          name: "Corrective",
+          width: '40%'
+        }, {
+          name: "Preventive",
+          width: '40%'
+        }],
+        data: dataTableAllRed,
+        sort: true,
+        fixedHeader: true,
+        search: true,
+        language: {
+          'search': {
+            'placeholder': '   Search...'
+          }
+        },
+        pagination: {
+          limit: 10
+        },
+      }).render(this.el.nativeElement.querySelector('#rsmRedArea'));
+      
+    })
+
+    this.restApiServices.getYellowAllLineSkb().subscribe(data=>{
+      this.allYellow = data;
+      this.countYellow = this.allYellow.filter((item: any) => item.tahun == this.currentYear).length
+      console.log('yellow-all-line', this.allYellow);
+      this.checkDataFinding()
+      
+    })
+
+    this.restApiServices.postTargetSkb({year:new Date().getFullYear()}).subscribe(data=>{
+      this.target = data;
+      console.log('target', this.target);
+      this.checkDataFinding()
+      
+    })  
+    // END GET RED AREA EACH LINE
+    
     // TABLE GRIDJS
     this.resultSwabTable=new Grid({
       columns: [{
@@ -118,128 +241,54 @@ export class RedAreaMonitoringComponent implements OnInit  {
       }
     }).render(this.el.nativeElement.querySelector('#resultSwab'));
     // END TABLE GRIDJS
-    
-    
-    // Format the date as YYYY-MM-DD (required format for input type date)
-    const formattedDate = today.toISOString().split('T')[0];
-    
-    // this.DateSelected = formattedDate;
-    this._basicChart('["--vz-gray-300", "--vz-primary", "--vz-info"]');
-    this._gradientDonutChart('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', 4, 0);
-    this._gradientDonutChart2('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', 4, 0);
-    this._gradientDonutChart3('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', 4, 0);
-    this._gradientDonutChart4('["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]', 4, 0);
-
-      // Chart Colors Set
-
-    // GET RED AREA EACH LINE
-    this.restApiServices.getRedAllLine().subscribe(data=>{
-      this.allRed = data;
-      this.countRed = this.allRed.filter((item: any) => item.year == this.currentYear).length
-      console.log('red-all-line', this.allRed);
-      console.log('red-all-line', this.countRed);
-      this.checkDataFinding()
-      
-    })
-    this.restApiServices.getYellowAllLine().subscribe(data=>{
-      this.allYellow = data;
-      this.countYellow = this.allYellow.filter((item: any) => item.year == this.currentYear).length
-      console.log('yellow-all-line', this.allYellow);
-      this.checkDataFinding()
-      
-    })
-    this.restApiServices.postTarget({year:new Date().getFullYear()}).subscribe(data=>{
-      this.target = data;
-      console.log('target', this.target);
-      this.checkDataFinding()
-      
-    })  
-    // END GET RED AREA EACH LINE
   }
 
   private checkDataFinding() {
     if (this.allRed != null && this.allYellow != null && this.target != null) {
-        this.chartMonitoringYtd(this.currentYear);
-        this._donutCategory(this.currentYear)
+      this.chartMonitoringYtd(this.currentYear);
+      this._donutCategory(this.currentYear) 
     }
   }
-
-  private groupAndCount(array: any[], key: string) {
-    const groupedObj = array.reduce((result, currentValue) => {
-        const groupKey = currentValue[key];
-        if (!result[groupKey]) {
-            result[groupKey] = 0;
-        }
-        result[groupKey]++;
-        return result;
-    }, {});
-
-    const groupedArray = Object.keys(groupedObj).map(category => ({
-        category: category,
-        value: groupedObj[category]
-    }));
-
-    return groupedArray;
-}
 
   onYearSelected(event: any) {
     const selectedYear = event.target.value;
     console.log("tahun", selectedYear);
 
-    this.restApiServices.postTarget({year:selectedYear}).subscribe(data=>{
+    this.restApiServices.postTargetSkb({year:selectedYear}).subscribe(data=>{
       this.target = data;
       console.log('target', this.target);
       
     })  
-    this.countRed = this.allRed.filter((item: any) => item.year == selectedYear).length
-    this.countYellow = this.allYellow.filter((item: any) => item.year == selectedYear).length
-    
+    this.countRed = this.allRed.filter((item: any) => item.tahun == selectedYear).length
+    this.countYellow = this.allYellow.filter((item: any) => item.tahun == selectedYear).length
+
     this.chartMonitoringYtd(selectedYear)
     this._donutCategory(selectedYear)
     
   }
 
-  private _donutCategory(year:any) {
-    let red = this.allRed
-    for(let eachData of this.allYellow){
-      red.push(eachData);
-    }
-    console.log("donat",red);
-    console.log("donat tahun",year);
-    let categoryNotNull = red.filter((item: any) => item.category !== null && item.year == year)
-    console.log("donat",categoryNotNull);
-    const groupedData = this.groupAndCount(categoryNotNull, 'category');
-    console.log("donat",groupedData);
-    
-    this.donutCategory = {
-      series: groupedData.map((item:any) => {
-        return item.value
-      }),
-      // series: [10,21,11],
-
-      chart: {
-        height: 310,
-        type: "donut",
-        toolbar: {
-          show: true,
-        },
-      },
-
-      legend: {
-        position: "bottom",
-      },
-
-      labels: groupedData.map((item:any) => {
-        return [item.category]
-      }),
-      // labels: ["A","B","C"],
-
-      dataLabels: {
-        dropShadow: {
-          enabled: false,
-        },
+  private getChartColorsArray(colors: any) {
+    colors = JSON.parse(colors);
+    return colors.map(function (value: any) {
+      var newValue = value.replace(" ", "");
+      if (newValue.indexOf(",") === -1) {
+        var color = getComputedStyle(document.documentElement).getPropertyValue(newValue);
+        if (color) {
+          color = color.replace(" ", "");
+          return color;
+        }
+        else return newValue;;
+      } else {
+        var val = value.split(',');
+        if (val.length == 2) {
+          var rgbaColor = getComputedStyle(document.documentElement).getPropertyValue(val[0]);
+          rgbaColor = "rgba(" + rgbaColor + "," + val[1] + ")";
+          return rgbaColor;
+        } else {
+          return newValue;
+        }
       }
-    };
+    });
   }
 
   private chartMonitoringYtd(year: any){
@@ -250,23 +299,24 @@ export class RedAreaMonitoringComponent implements OnInit  {
     // console.log('adir',test.length);
     
 
-    for (let tableName of this.table) {
-      const existingLineOnRed = this.allRed.filter((item:any) => (item.table === tableName && item.year == year));
+    for (let i = 1; i <= 9; i++) {
+      const existingLineOnRed = this.allRed.filter((item:any) => (item.id_area === i && item.tahun == year));
       if (existingLineOnRed) {
         red.push(existingLineOnRed.length);
       } else {
         red.push(0);
       }
 
-      const existingLineOnYellow = this.allYellow.filter((item:any) => (item.table === tableName && item.year == year));
+      const existingLineOnYellow = this.allYellow.filter((item:any) => (item.id_area === i && item.tahun == year));
       if (existingLineOnYellow) {
         yellow.push(existingLineOnYellow.length);
       } else {
         yellow.push(0);
       }
     }
-    console.log('chart',red);
-    console.log('chart',yellow);
+    console.log('chart red',red);
+    console.log('chart yellow',yellow);
+    console.log('chart target',this.target);
     
 
     this.chartBarMonitoringYtd = {
@@ -314,11 +364,15 @@ export class RedAreaMonitoringComponent implements OnInit  {
       colors: this.getChartColorsArray('["--vz-primary", "--vz-danger", "--vz-warning"]'),
       xaxis: {
           categories: [
-              "M/C FSB",
-              "OC1",
-              "ENV FSB",
-              "ENV PS",
-              "OC2",
+              "CAN",
+              "PET",
+              "OC3",
+              "AL4",
+              "ENMIX",
+              "SACHET",
+              "GBL",
+              "SIPA",
+              "SGH",
           ],
       },
       yaxis: {
@@ -342,27 +396,142 @@ export class RedAreaMonitoringComponent implements OnInit  {
     };
   }
 
+  private _donutCategory(year:any) {
+    let red = this.allRed
+    for(let eachData of this.allYellow){
+      red.push(eachData);
+    }
+    console.log("donat",red);
+    console.log("donat tahun",year);
+    let categoryNotNull = red.filter((item: any) => item.category !== null && item.tahun == year)
+    console.log("donat",categoryNotNull);
+    const groupedData = this.groupAndCount(categoryNotNull, 'category');
+    console.log("donat",groupedData);
+    
+    this.donutCategory = {
+      series: groupedData.map((item:any) => {
+        return item.value
+      }),
+      // series: [10,21,11],
+
+      chart: {
+        height: 310,
+        type: "donut",
+        toolbar: {
+          show: true,
+        },
+      },
+
+      legend: {
+        position: "bottom",
+      },
+
+      labels: groupedData.map((item:any) => {
+        return [item.category]
+      }),
+      // labels: ["A","B","C"],
+
+      dataLabels: {
+        dropShadow: {
+          enabled: false,
+        },
+      }
+    };
+  }
+
+  private groupAndCount(array: any[], key: string) {
+    const groupedObj = array.reduce((result, currentValue) => {
+        const groupKey = currentValue[key];
+        if (!result[groupKey]) {
+            result[groupKey] = 0;
+        }
+        result[groupKey]++;
+        return result;
+    }, {});
+
+    const groupedArray = Object.keys(groupedObj).map(category => ({
+        category: category,
+        value: groupedObj[category]
+    }));
+
+    return groupedArray;
+  }
+
+  onImageLine(e:any){
+    this.selectedLine = {line:e.target.value}
+    this.restApiServices.imageSampling(this.selectedLine).subscribe(data=>{
+      let result = data
+      this.selectedImageTable = result.table;
+      this.imageSamplings = result.data;
+      
+      
+    })
+  }
+
+  onImageSampling(e:any){
+    this.selectedImageSampling = e.target.value;
+    let submitSampling = {table:this.selectedImageTable, tanggal:e.target.value}
+    // console.log(submitSampling);
+    
+    this.restApiServices.imageArea(submitSampling).subscribe(data=>{
+      let result = data
+      this.areas = result
+      this.imageAreas = []
+
+      console.log(result);
+      
+      result.map((item:any)=>{
+        this.imageAreas.push({value:item.id, name:item.detail_area})
+      })
+      // console.log('area=',this.imageAreas);
+      
+    })
+  }
+
+  onImageArea(e:any){
+    // console.log('area2=',e.target.value);
+    // console.log('area3=',this.areas);
+
+    for (const area of this.areas) {
+      if (area.id == e.target.value) {
+        // console.log('area4=',area.id);
+        // this.imageUrl = "http://localhost/lds-microbiology/attachment/"
+        this.imageUrl = "https://myapps.aio.co.id/lds_micro/attachment/"
+        this.imageName = area.image
+        this.kondisi = area.request
+        this.corrective = area.corrective
+        this.preventive = area.preventive
+      }
+    }
+    
+  }
+
   async onChangeLine(e:any){
     this.selectedLineSwab = e.target.value
     console.log("area",this.selectedLineSwab);
     
-    const result = ( await this.restApiServices.postArea({line:this.selectedLineSwab}).toPromise());
-    console.log("area",result);
-    this.areaSwab = result
+    this.restApiServices.postMicroSkb({line:this.selectedLineSwab}).subscribe(data=>{
+      this.micro= data
+    })
+    
+    this.restApiServices.postAreaSkb({line:this.selectedLineSwab}).subscribe(data=>{
+      this.areaSwab = data
+    })
     
   }
-  
+
   onChangeMicro(e:any){
     this.selectedMicroSwab = e.target.value
   }
-
+  
   onChangeDate(e: any) {
     // console.log(e.target._flatpickr.selectedDates);
     this.dateSelectedSwab.start = moment(e.target._flatpickr.selectedDates[0]).format('Y-MM-DD')
     this.dateSelectedSwab.end = moment(e.target._flatpickr.selectedDates[1]).format('Y-MM-DD')
+    
   }
 
-  onChangeArea(e:any){
+  onChangeArea(e: any){
     this.selectedAreaSwab = e.target.value
   }
 
@@ -375,7 +544,7 @@ export class RedAreaMonitoringComponent implements OnInit  {
     
     submit.push({ line: this.selectedLineSwab, micro: this.selectedMicroSwab, start: this.dateSelectedSwab.start, end: this.dateSelectedSwab.end, area: this.selectedAreaSwab});
     console.log(submit);
-    this.restApiServices.postResultSwab(submit[0]).subscribe(data=>{
+    this.restApiServices.postResultSwabSkb(submit[0]).subscribe(data=>{
       this.resultSwab = data;
       let getKey : any;
       let microType : any;
@@ -390,7 +559,6 @@ export class RedAreaMonitoringComponent implements OnInit  {
         console.log('area', getKey);
         console.log('area', microType);
       }
-
 
       this.resultSwab.forEach((data:any) => {
         if(data[microType] > 0){
@@ -469,7 +637,6 @@ export class RedAreaMonitoringComponent implements OnInit  {
         }
           
       });
-
 
       // MAPPING TO LINE CHART
       this.resultSwabLineChart = {
@@ -623,216 +790,8 @@ export class RedAreaMonitoringComponent implements OnInit  {
       }).forceRender();
       // END UPDATE TABLE GRIDJS
       
-      console.log('series',this.resultSwabLineChart);
-    })  
-    
-    
+    })
   }
 
-
-
-  private getChartColorsArray(colors: any) {
-    colors = JSON.parse(colors);
-    return colors.map(function (value: any) {
-      var newValue = value.replace(" ", "");
-      if (newValue.indexOf(",") === -1) {
-        var color = getComputedStyle(document.documentElement).getPropertyValue(newValue);
-        if (color) {
-          color = color.replace(" ", "");
-          return color;
-        }
-        else return newValue;;
-      } else {
-        var val = value.split(',');
-        if (val.length == 2) {
-          var rgbaColor = getComputedStyle(document.documentElement).getPropertyValue(val[0]);
-          rgbaColor = "rgba(" + rgbaColor + "," + val[1] + ")";
-          return rgbaColor;
-        } else {
-          return newValue;
-        }
-      }
-    });
-  }
-  //CHART RED&YELLOW AREA
-  private _basicChart(colors: any, keterangan = [], cp = [], cpk = []) {
-    colors = this.getChartColorsArray(colors);
-    this.basicChart = {
-      series: [
-        {
-          name: "CP",
-          data: cp,
-        },
-        {
-          name: "CPK",
-          data: cpk,
-        },
-      ],
-      chart: {
-        height: 350,
-        type: "bar",
-        toolbar: {
-          show: false,
-        },
-      },
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "45%",
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        show: true,
-        width: 2,
-        colors: ["transparent"],
-      },
-      colors: ['#424874', '#F6995C'],
-      xaxis: {
-        categories: keterangan
-      },
-      grid: {
-        borderColor: "#f1f1f1",
-      },
-      fill: {
-        opacity: 1,
-      },
-
-      
-    };
-  }
-
-//OC LINE --> ROOT CAUSE AREA OC
-  private _gradientDonutChart(colors: any, s: number, e: number) {
-    colors = this.getChartColorsArray(colors);
-    this.gradientDonutChart = {
-      series: [s, e],
-      chart: {
-        height: 300,
-        type: "donut",
-      },
-      plotOptions: {
-        pie: {
-          startAngle: -90,
-          endAngle: 270,
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      fill: {
-        type: "gradient",
-      },
-      legend: {
-        position: "bottom",
-      },
-      title: {
-        style: {
-          fontWeight: 500,
-        },
-      },
-      colors: colors,
-    };
-  }
-
-  private _gradientDonutChart2(colors: any, s: number, e: number) {
-    colors = this.getChartColorsArray(colors);
-    this.gradientDonutChart2 = {
-      series: [s, e],
-      chart: {
-        height: 300,
-        type: "donut",
-      },
-      plotOptions: {
-        pie: {
-          startAngle: -90,
-          endAngle: 270,
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      fill: {
-        type: "gradient",
-      },
-      legend: {
-        position: "bottom",
-      },
-      title: {
-        style: {
-          fontWeight: 500,
-        },
-      },
-      colors: colors,
-    };
-  }
-
-  private _gradientDonutChart3(colors: any, s: number, e: number) {
-    colors = this.getChartColorsArray(colors);
-    this.gradientDonutChart3 = {
-      series: [s, e],
-      chart: {
-        height: 300,
-        type: "donut",
-      },
-      plotOptions: {
-        pie: {
-          startAngle: -90,
-          endAngle: 270,
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      fill: {
-        type: "gradient",
-      },
-      legend: {
-        position: "bottom",
-      },
-      title: {
-        style: {
-          fontWeight: 500,
-        },
-      },
-      colors: colors,
-    };
-  }
-
-  private _gradientDonutChart4(colors: any, s: number, e: number) {
-    colors = this.getChartColorsArray(colors);
-    this.gradientDonutChart4 = {
-      series: [s, e],
-      chart: {
-        height: 300,
-        type: "donut",
-      },
-      plotOptions: {
-        pie: {
-          startAngle: -90,
-          endAngle: 270,
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      fill: {
-        type: "gradient",
-      },
-      legend: {
-        position: "bottom",
-      },
-      title: {
-        style: {
-          fontWeight: 500,
-        },
-      },
-      colors: colors,
-    };
-  }
-
-
-
+  
 }

@@ -17,6 +17,7 @@ export class restApiService {
   apiUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
+  // RED AREA
   getRedAllLine(): Observable<any> {
     return this.http.get(this.apiUrl + GlobalComponent.getRedAllLine)
   }
@@ -36,6 +37,170 @@ export class restApiService {
   postResultSwab(form:any): Observable<any> {
     return this.http.post(this.apiUrl + GlobalComponent.postResultSwab, form)
   }
+  // END RED AREA
+  
+  // GENBA 
+  getAllCrossGenba(): Observable<any> {
+    return this.http.get(this.apiUrl + GlobalComponent.getAllCrossGenba)
+  }
+  
+  getAllSelfGenba(): Observable<any> {
+    return this.http.get(this.apiUrl + GlobalComponent.getAllSelfGenba)
+  }
+  
+  getAllAreaFinding(): Observable<any> {
+    return this.http.get(this.apiUrl + GlobalComponent.getAllAreaFinding)
+  }
+  // END GENBA
+
+  // ====================== SKB ==========================
+  // DASHBOARD CALIBRATION VCC
+  getEquipment(): Observable<any> {
+    return this.http.get(this.apiUrl+GlobalComponent.getEquipment)
+  }
+
+  getRegis(): Observable<any> {
+    return this.http.get(this.apiUrl+GlobalComponent.getRegis)
+  }
+
+  getExpired(): Observable<any> {
+    return this.http.get(this.apiUrl+GlobalComponent.getExpired)
+  }
+
+  postNowKalibrasi(date: any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.postNowKalibrasi, date);
+  }
+
+  postPlanKalibrasi(date: any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.postPlanKalibrasi, date);
+  }
+
+  getAllEquipment(): Observable<any> {
+    return this.http.get(this.apiUrl + GlobalComponent.getAllEquipment)
+  }
+
+  getExternal(): Observable<any> {
+    return this.http.get(this.apiUrl + GlobalComponent.getExternal)
+  }
+
+  dateFilter(date: any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.dateFilter, date);
+  }
+
+  editPlanKalibrasi(date: any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.editPlanKalibrasi, date);
+  }
+
+  calibrationSummary(date: any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.calibrationSummary, date);
+  }
+
+  getRegistTable(): Observable<any> {
+    return this.http.get(this.apiUrl + GlobalComponent.getRegistTable)
+  }
+
+  sertifKalibrasi(id_hit: any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.sertifKalibrasi, id_hit);
+  }
+    
+  getAllArea(): Observable<any> {
+    return this.http.get(this.apiUrl + GlobalComponent.getAllArea)
+  }
+
+  filterArea(area: any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.filterArea, area);
+  }
+
+  // END DASHBOARD CALIBRATION VCC
+
+  // CAPABILITY
+  // AL4
+  jenisPengujian(): Observable<any> {
+    return this.http.get(this.apiUrl+GlobalComponent.jenisPengujian)
+  }
+
+  countCapability(form:any): Observable<any> {
+    return this.http.post(this.apiUrl+GlobalComponent.countCapability, form)
+  }
+  
+  dataTable(form:any): Observable<any> {
+    return this.http.post(this.apiUrl+GlobalComponent.dataTable, form)
+  }
+  
+  lineCapability(form:any): Observable<any> {
+    return this.http.post(this.apiUrl+GlobalComponent.lineCapability, form)
+  }
+  // AL4
+  // END CAPABILITY
+
+  // MICRO
+  // SWAB
+  getRedAllLineSkb(): Observable<any> {
+    return this.http.get(this.apiUrl + GlobalComponent.getRedAllLineSkb)
+  }
+  
+  getYellowAllLineSkb(): Observable<any> {
+    return this.http.get(this.apiUrl + GlobalComponent.getYellowAllLineSkb)
+  }
+  
+  postTargetSkb(year:any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.postTargetSkb, year)
+  }
+
+  imageSampling(data:any): Observable<any> {   
+    return this.http.post(this.apiUrl + GlobalComponent.imageSampling, data);
+  }
+  imageArea(data:any): Observable<any> {    
+    return this.http.post(this.apiUrl + GlobalComponent.imageArea, data);
+  }
+
+  postMicroSkb(data:any): Observable<any> { 
+    return this.http.post(this.apiUrl + GlobalComponent.postMicroSkb, data);
+  }
+  postAreaSkb(line:any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.postAreaSkb, line)
+  }
+
+  postResultSwabSkb(form:any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.postResultSwabSkb, form)
+  }
+  // END SWAB
+
+  // WATER SAMPLING
+  waterSamplingAl4(data:any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.waterSamplingAl4, data);
+  }
+  getAreaSamplingNami(): Observable<any> {
+    return this.http.get(this.apiUrl + GlobalComponent.getAreaSamplingNami);
+  }
+  waterSamplingNami(data:any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.waterSamplingNami, data);
+  }
+  waterSamplingCan(data:any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.waterSamplingCan, data);
+  }
+  waterSamplingPet(data:any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.waterSamplingPet, data);
+  }
+  // END WATER SAMPLING
+  
+  // WATER SAMPLING
+  fgSamplingAl4(data:any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.fgSamplingAl4, data);
+  }
+  fgSamplingNami(data:any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.fgSamplingNami, data);
+  }
+  fgSamplingCan(data:any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.fgSamplingCan, data);
+  }
+  fgSamplingPet(data:any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.fgSamplingPet, data);
+  }
+  // END WATER SAMPLING
+
+  // END MICRO
+  // ==================== END SKB ========================
 
   getMaterial(): Observable<any> {
     return this.http.get(this.apiUrl+'radarvisual/')

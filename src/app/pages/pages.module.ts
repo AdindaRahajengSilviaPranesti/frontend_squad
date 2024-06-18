@@ -9,6 +9,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { SimplebarAngularModule } from 'simplebar-angular';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Swiper Slider
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
@@ -83,6 +84,7 @@ import { ComplaintReportComponent } from './capa-tracker-visual/complaint-report
     LightboxModule,
     DashboardsModule,
     AppsModule,
+    NgbPaginationModule,
   ],
 })
 export class PagesModule {

@@ -60,11 +60,11 @@ import { SortByPipe } from '../apps/sort-by.pipe';
 
 // Swiper Slider
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
-import { PendingTaskCalibrationComponent } from './calibration/pending-task-calibration/pending-task-calibration.component';
-import { ReportCalibrationComponent } from './calibration/report-calibration/report-calibration.component';
-import { ResultCalibrationComponent } from './calibration/result-calibration/result-calibration.component';
+// import { PendingTaskCalibrationComponent } from './calibration/pending-task-calibration/pending-task-calibration.component';
+// import { ReportCalibrationComponent } from './calibration/report-calibration/report-calibration.component';
+// import { ResultCalibrationComponent } from './calibration/result-calibration/result-calibration.component';
 import { DataAnalisisBpdComponent } from './data-analisis-bpd/data-analisis-bpd.component';
-import { PrintCalibrationComponent } from './calibration/print-calibration/print-calibration.component';
+// import { PrintCalibrationComponent } from './calibration/print-calibration/print-calibration.component';
 
 
 import { RejectionFSBComponent } from './inpeksi/rejection-fsb/rejection-fsb.component';
@@ -79,10 +79,10 @@ import { GrafikReleaseComponent } from './flow-release/grafik-release/grafik-rel
   declarations: [
     WidgetsComponent,
     SortByPipe,
-    PendingTaskCalibrationComponent,
-    ReportCalibrationComponent,
-    ResultCalibrationComponent,
-    PrintCalibrationComponent,
+    // PendingTaskCalibrationComponent,
+    // ReportCalibrationComponent,
+    // ResultCalibrationComponent,
+    // PrintCalibrationComponent,
     DataAnalisisBpdComponent,
     RejectionFSBComponent,
     RejectionOci1Component,

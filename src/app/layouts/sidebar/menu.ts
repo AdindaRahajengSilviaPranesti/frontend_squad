@@ -1,6 +1,63 @@
 import { MenuItem } from './menu.model';
 
 export const MENU: MenuItem[] = [
+  // SKB
+  {
+    id: 1000,
+    label: 'SUKABUMI',
+    isTitle: true
+  },
+  {
+    id: 1001,
+    label: 'Calibration',
+    icon: 'bx bx-ruler',
+    subItems: [
+      {
+        id: 1002,
+        label: 'Dashboard Calibration',
+        link: 'calibration/dashboard-calibration-skb',
+        parentId: 1001
+      },
+    ]
+  },
+  {
+    id: 1101,
+    label: 'Capability',
+    icon: 'bx bx-stats',
+    subItems: [
+      {
+        id: 1102,
+        label: 'Aseptic Line',
+        link: 'capability/al4',
+        parentId: 1101
+      },
+    ]
+  },
+  {
+    id: 1201,
+    label: 'Microbiology',
+    icon: 'bx bxs-virus',
+    subItems: [
+      {
+        id: 1202,
+        label: 'SWAB',
+        link: 'microbiology/swab',
+        parentId: 1201
+      },
+      {
+        id: 1203,
+        label: 'Water Sampling',
+        link: 'microbiology/water',
+        parentId: 1201
+      },
+      {
+        id: 1204,
+        label: 'Finish Good',
+        link: 'microbiology/fg',
+        parentId: 1201
+      },
+    ]
+  },
   {
     id: 1,
     label: 'MAIN MENU',

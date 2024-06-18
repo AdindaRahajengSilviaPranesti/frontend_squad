@@ -7,6 +7,8 @@ import { ReportCalibrationComponent } from './report-calibration/report-calibrat
 import { ResultCalibrationComponent } from './result-calibration/result-calibration.component';
 import { PrintCalibrationComponent } from './print-calibration/print-calibration.component';
 
+import { DashboardCalibrationComponent } from './dashboard-calibration/dashboard-calibration.component';
+
 const routes: Routes = [
   {
     path: "pending-task-calibration",
@@ -23,7 +25,11 @@ const routes: Routes = [
   {
     path: "result-calibration",
     component: ResultCalibrationComponent
-  }
+  },
+  {
+    path: "dashboard-calibration-skb",
+    component: DashboardCalibrationComponent
+  },
 ];
 
 @NgModule({

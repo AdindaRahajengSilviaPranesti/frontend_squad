@@ -1,0 +1,310 @@
+<link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+
+<!-- FONT -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<!-- END FONT -->
+
+<div class="space mb-4">
+    <br>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body d-flex p-0">
+                <div class="flex-grow-1 d-flex justify-content-center">
+                    <img src="assets/images/bg-micro-resize-removebg.png" alt="" class="img-fluid" />
+                </div>
+            </div>
+            <div class="text-center">
+                <h1 style="font-family: 'Dancing Script', cursive;">Microbio Survilance</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <div class="card text-center pt-2">
+                    <h4>Temuan Area</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-animate">
+                    <div class="card-body px-0">
+                        <div class="row mx-0">
+                            <div class="col-8">
+                                <p class="fw-medium fs-5 text-muted mt-2">Red Area</p>
+                                <h1 class="mt-3 ff-secondary fw-semibold">
+                                    <div *ngIf="countRed > 0 ;else templateName">
+                                        <span [CountTo]="countRed" class="counter-value" [from]="0"
+                                            [duration]="1"></span>
+                                    </div>
+                                    <ng-template #templateName>
+                                        <span>0</span>
+                                    </ng-template>
+                                </h1>
+                            </div>
+                            <div class="col-4 bg-soft-danger rounded-start align-middle text-center pt-1">
+                                <i class="fs-1 las la-exclamation-triangle text-danger my-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card card-animate">
+                    <div class="card-body px-0">
+                        <div class="row mx-0">
+                            <div class="col-8">
+                                <p class="fw-medium fs-5 text-muted mt-2">Yellow Area</p>
+                                <h1 class="mt-3 ff-secondary fw-semibold">
+                                    <div *ngIf="countYellow > 0 ;else templateName">
+                                        <span [CountTo]="countYellow" class="counter-value" [from]="0"
+                                            [duration]="1"></span>
+                                    </div>
+                                    <ng-template #templateName>
+                                        <span>0</span>
+                                    </ng-template>
+                                </h1>
+                            </div>
+                            <div class="col-4 bg-soft-warning rounded-start align-middle text-center pt-1">
+                                <i class="fs-1 las la-exclamation-circle text-warning my-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-4">
+        <div class="card card-animate h-100">
+            <div class="card-body text-center">
+                <div class="text-center h-100 d-flex align-items-center justify-content-center">
+                    <div *ngIf="donutCategory.series[0] != null; else elseBlockDonat" class="row">
+                        <apx-chart [series]="donutCategory.series" [chart]="donutCategory.chart"
+                            [labels]="donutCategory.labels" [responsive]="donutCategory.responsive"
+                            [legend]="donutCategory.legend" [dataLabels]="donutCategory.dataLabels"
+                            [colors]="donutCategory.colors" dir="ltr"></apx-chart>
+                    </div>
+                    <ng-template #elseBlockDonat>
+                        <div class="col d-flex align-items-center justify-content-center fs-3 text-black-50"
+                            style="height: 100px;">
+                            No Data
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card card-animate h-100">
+            <div class="card-body">
+                <h6 class="text-center">Monitoring YTD Red Area</h6>
+                <div>
+                    <div class="row justify-content-end">
+                        <div class="col-md-3">
+                            <select class="form-select" id="year" (change)="onYearSelected($event)">
+                                <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="brushchart_line2" class="apex-charts" dir="ltr">
+                        <apx-chart [series]="chartBarMonitoringYtd.series" [chart]="chartBarMonitoringYtd.chart"
+                            [dataLabels]="chartBarMonitoringYtd.dataLabels"
+                            [plotOptions]="chartBarMonitoringYtd.plotOptions" [yaxis]="chartBarMonitoringYtd.yaxis"
+                            [legend]="chartBarMonitoringYtd.legend" [fill]="chartBarMonitoringYtd.fill"
+                            [stroke]="chartBarMonitoringYtd.stroke" [tooltip]="chartBarMonitoringYtd.tooltip"
+                            [xaxis]="chartBarMonitoringYtd.xaxis" [colors]="chartBarMonitoringYtd.colors"
+                            dir="ltr"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-8" style="height: 600px;">
+        <div class="card card-animate h-100">
+            <div class="card-body">
+                <div class="h-100">
+                    <iframe src="https://snapshots.raintank.io/dashboard/snapshot/bdVGJjOlqTJWrOj8kZ3SKemWXl2xHH0Z"
+                        frameborder="0" class="h-100 w-100 pb-4"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-animate h-100">
+            <div class="card-body">
+                <div class="filter">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select class="form-select mb-3" aria-label="Default select example"
+                                (change)="onImageLine($event)">
+                                <option diabled selected>Pilih Line</option>
+                                <option value="tr_swab_can">CAN</option>
+                                <option value="tr_swab_pet">PET</option>
+                                <option value="tr_swab_oc3">OC3</option>
+                                <option value="tr_swab_al4">AL4</option>
+                                <option value="tr_swab_enmix">ENMIX</option>
+                                <option value="tr_swab_sachet">SACHET</option>
+                                <option value="tr_swab_gbl">GBL</option>
+                                <option value="tr_swab_sipa">SIPA</option>
+                                <option value="tr_swab_sgh">SGH</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-select mb-3" aria-label="Default select example"
+                                (change)="onImageSampling($event)">
+                                <option diabled selected>Tanggal Sampling</option>
+                                <option *ngFor="let imageSampling of imageSamplings" [value]="imageSampling">{{
+                                    imageSampling }}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <select class="form-select mb-3" aria-label="Default select example" (change)="onImageArea($event)">
+                        <option diabled selected>Area</option>
+                        <option *ngFor="let imageArea of imageAreas" [value]="imageArea.value">{{ imageArea.name }}
+                        </option>
+                    </select>
+
+                </div>
+                <div class="evidence" style="width: 100%; height: 280px; position: relative;">
+                    <img src="{{ imageUrl }}{{ imageName }}" alt="" srcset=""
+                        style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+                <div class="desc border-top mt-2 pt-2 overflow-auto" style="height:145px">
+                    <h6>Keterangan:</h6>
+                    <p class="kondisi">Kondisi: <span>{{ kondisi }}</span></p>
+                    <p class="kondisi">Corrective: <span>{{ corrective }}</span></p>
+                    <p class="kondisi">Preventive: <span>{{ preventive }}</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row mb-3">
+    <div class="col-md-4">
+        <!-- DETAIL TABLE -->
+        <div class="card p-0 h-100">
+            <div class="card-body">
+                <table class="table rounded-table">
+                    <thead class="fw-bold border-bottom"
+                        style="border-width: 0px 0px 5px 0px;  border-color: black; background-color: whitesmoke;">
+                        <tr>
+                            <td class="text-center w-50">Jenis Pengujian</td>
+                            <td class="text-center">Standart</td>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr>
+                            <td>Bacteria</td>
+                            <td>5000 cfu</td>
+                        </tr>
+                        <tr>
+                            <td>Jamur</td>
+                            <td>500 cfu</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <h6 class="text-center">Result Swab</h6> -->
+                <div id="resultSwab" class="overflow-auto"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card h-100">
+            <div class="card-body">
+                <h6 class="text-center">Result SWAB</h6>
+                <form>
+                    <div class="row">
+                        <div class="col-2">
+                            <select class="form-select mb-3" aria-label="Default select example"
+                                (change)="onChangeLine($event)">
+                                <option disabled selected>Pilih Line</option>
+                                <option value="1">CAN</option>
+                                <option value="2">PET</option>
+                                <option value="3">OC3</option>
+                                <option value="4">AL4</option>
+                                <option value="5">ENMIX</option>
+                                <option value="6">SACHET</option>
+                                <option value="7">GBL</option>
+                                <option value="8">SIPA</option>
+                                <option value="9">SGH</option>
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <select class="form-select mb-3" (change)="onChangeMicro($event)">
+                                <option disabled selected>Pilih Micro</option>
+                                <option *ngFor="let option of micro" [value]="option.value">{{ option.name }}</option>
+                            </select>
+                        </div>
+                        <div class="col-3">
+                            <input class="form-control flatpickr-input" type="text" mwlFlatpickr [altInput]="true"
+                                aria-describedby="inputGroupPrepend" required formControlName="date"
+                                [convertModelValue]="true" mode="range" placeholder="Select Date"
+                                (change)="onChangeDate($event)">
+                        </div>
+                        <div class="col-3">
+                            <select class="form-select mb-3" (change)="onChangeArea($event)">
+                                <option disabled selected>Pilih Area</option>
+                                <option *ngFor="let option of areaSwab" [value]="option.id">{{ option.sub_area }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-primary border" type="button" ngbTooltip="Filter"
+                                aria-expanded="false"><i class="ri-filter-fill" (click)="onSubmit()"></i></button>
+                        </div>
+                    </div>
+                </form>
+                <div class="chart">
+                    <div *ngIf="resultSwabLineChart.series[0] != null || resultNullSwabLineChart.series[0] != null ; else elseBlock"
+                        class="row">
+                        <apx-chart [series]="resultSwabLineChart.series" [chart]="resultSwabLineChart.chart"
+                            [xaxis]="resultSwabLineChart.xaxis" [stroke]="resultSwabLineChart.stroke"
+                            [colors]="resultSwabLineChart.colors" [dataLabels]="resultSwabLineChart.dataLabels"
+                            [legend]="resultSwabLineChart.legend" [markers]="resultSwabLineChart.markers"
+                            [grid]="resultSwabLineChart.grid" [yaxis]="resultSwabLineChart.yaxis"
+                            [title]="resultSwabLineChart.title" dir="ltr"></apx-chart>
+                        <apx-chart [series]="resultNullSwabLineChart.series" [chart]="resultNullSwabLineChart.chart"
+                            [xaxis]="resultNullSwabLineChart.xaxis" [stroke]="resultNullSwabLineChart.stroke"
+                            [colors]="resultNullSwabLineChart.colors" [dataLabels]="resultNullSwabLineChart.dataLabels"
+                            [legend]="resultNullSwabLineChart.legend" [markers]="resultNullSwabLineChart.markers"
+                            [grid]="resultNullSwabLineChart.grid" [yaxis]="resultNullSwabLineChart.yaxis"
+                            [title]="resultNullSwabLineChart.title" dir="ltr"></apx-chart>
+                    </div>
+                    <ng-template #elseBlock>
+                        <div class="col d-flex align-items-center justify-content-center fs-3 text-black-50"
+                            style="height: 100px;">
+                            No Data Try Filter Data
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="text-center">Temuan Red Area</h6>
+                <div id="rsmRedArea"></div>
+            </div>
+        </div>
+    </div>
+</div>

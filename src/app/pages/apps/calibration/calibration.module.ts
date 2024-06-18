@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbTooltipModule, NgbProgressbarModule, NgbDropdownModule, NgbNavModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { QRCodeModule } from 'angularx-qrcode';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 // Feather Icon
@@ -29,6 +30,7 @@ import { PendingTaskCalibrationComponent } from './pending-task-calibration/pend
 import { ReportCalibrationComponent } from './report-calibration/report-calibration.component';
 import { ResultCalibrationComponent } from './result-calibration/result-calibration.component';
 import { PrintCalibrationComponent } from './print-calibration/print-calibration.component';
+import { DashboardCalibrationComponent } from './dashboard-calibration/dashboard-calibration.component';
 
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -43,6 +45,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   ReportCalibrationComponent,
   ResultCalibrationComponent,
   PrintCalibrationComponent,
+  DashboardCalibrationComponent,
 
   ],
 
@@ -62,7 +65,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     DropzoneModule,
     NgSelectModule,
     CalibrationRoutingModule,
-    QRCodeModule
+    QRCodeModule,
+    NgbModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

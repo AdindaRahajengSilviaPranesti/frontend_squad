@@ -1,0 +1,172 @@
+<div class="row pb-4">
+    <div class="col-6">
+        <div class="card card-animate h-100">
+            <div class="card-body">
+                <h6 class="text-center">FG AL4</h6>
+                <form [formGroup]="formAl4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select class="form-select mb-3" formControlName="micro">
+                                <option disabled selected>Pilih Micro</option>
+                                <option value="tb">TB</option>
+                                <option value="total_yeast">Total Yeast</option>
+                                <option value="e_coli">Ecoli</option>
+                                <option value="salmonella">Salmonella</option>
+                                <option value="tab">TAB</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control flatpickr-input" type="text" mwlFlatpickr [altInput]="true"
+                                aria-describedby="inputGroupPrepend" required formControlName="date" [convertModelValue]="true"
+                                mode="range" placeholder="Select Date">
+                        </div>
+                    </div>
+                </form>
+                <apx-chart [series]="lineFgAl4.series" [chart]="lineFgAl4.chart"
+                    [xaxis]="lineFgAl4.xaxis" [stroke]="lineFgAl4.stroke"
+                    [colors]="lineFgAl4.colors" [dataLabels]="lineFgAl4.dataLabels"
+                    [legend]="lineFgAl4.legend" [markers]="lineFgAl4.markers"
+                    [grid]="lineFgAl4.grid" [yaxis]="lineFgAl4.yaxis"
+                    [title]="lineFgAl4.title" dir="ltr"></apx-chart>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card card-animate h-100">
+            <div class="card-body">
+                <h6 class="text-center">FG NAMI</h6>
+                <form [formGroup]="formNami">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select class="form-select mb-3" formControlName="micro">
+                                <option disabled selected>Pilih Micro</option>
+                                <option value="tb">TB</option>
+                                <option value="total_yeast">Total Yeast</option>
+                                <option value="e_coli">Ecoli</option>
+                                <option value="salmonella">Salmonella</option>
+                                <option value="tab">TAB</option>
+                                <option value="tm">TM</option>
+                                <option value="coliform">Coliform</option>
+                                <option value="shigella">Shigella</option>
+                                <option value="pseudo">Pseudo</option>
+                                <option value="staphy">Staphy</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control flatpickr-input" type="text" mwlFlatpickr [altInput]="true"
+                                aria-describedby="inputGroupPrepend" required formControlName="date" [convertModelValue]="true"
+                                mode="range" placeholder="Select Date">
+                        </div>
+                    </div>
+                </form>
+                <apx-chart [series]="lineFgNami.series" [chart]="lineFgNami.chart"
+                    [xaxis]="lineFgNami.xaxis" [stroke]="lineFgNami.stroke"
+                    [colors]="lineFgNami.colors" [dataLabels]="lineFgNami.dataLabels"
+                    [legend]="lineFgNami.legend" [markers]="lineFgNami.markers"
+                    [grid]="lineFgNami.grid" [yaxis]="lineFgNami.yaxis"
+                    [title]="lineFgNami.title" dir="ltr"></apx-chart>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row pb-4">
+    <div class="col-6">
+        <div class="card card-animate h-100">
+            <div class="card-body">
+                <h6 class="text-center">FG CAN</h6>
+                <form [formGroup]="formCan">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select class="form-select mb-3" formControlName="micro">
+                                <option disabled selected>Pilih Micro</option>
+                                <option value="tb">TB</option>
+                                <option value="total_yeast">Total Yeast</option>
+                                <option value="coliform">Coliform</option>
+                                <option value="e_coli">Ecoli</option>
+                                <option value="salmonella">Salmonella</option>
+                                <option value="tab">TAB</option>
+                                <option value="pseudo">Pseudo</option>
+                                <option value="staphy">Staphy</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control flatpickr-input" type="text" mwlFlatpickr [altInput]="true"
+                                aria-describedby="inputGroupPrepend" required formControlName="date" [convertModelValue]="true"
+                                mode="range" placeholder="Select Date">
+                        </div>
+                    </div>
+                </form>
+                <apx-chart [series]="lineFgCan.series" [chart]="lineFgCan.chart"
+                    [xaxis]="lineFgCan.xaxis" [stroke]="lineFgCan.stroke"
+                    [colors]="lineFgCan.colors" [dataLabels]="lineFgCan.dataLabels"
+                    [legend]="lineFgCan.legend" [markers]="lineFgCan.markers"
+                    [grid]="lineFgCan.grid" [yaxis]="lineFgCan.yaxis"
+                    [title]="lineFgCan.title" dir="ltr"></apx-chart>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card card-animate h-100">
+            <div class="card-body">
+                <h6 class="text-center">FG PET</h6>
+                <form [formGroup]="formPet">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select class="form-select mb-3" formControlName="micro">
+                                <option disabled selected>Pilih Micro</option>
+                                <option value="tb">TB</option>
+                                <option value="total_yeast">Total Yeast</option>
+                                <option value="e_coli">Ecoli</option>
+                                <option value="salmonella">Salmonella</option>
+                                <option value="tab">TAB</option>
+                                <option value="tm">TM</option>
+                                <option value="coliform">Coliform</option>
+                                <option value="shigella">Shigella</option>
+                                <option value="pseudo">Pseudo</option>
+                                <option value="staphy">Staphy</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control flatpickr-input" type="text" mwlFlatpickr [altInput]="true"
+                                aria-describedby="inputGroupPrepend" required formControlName="date" [convertModelValue]="true"
+                                mode="range" placeholder="Select Date">
+                        </div>
+                    </div>
+                </form>
+                <apx-chart [series]="lineFgPet.series" [chart]="lineFgPet.chart"
+                    [xaxis]="lineFgPet.xaxis" [stroke]="lineFgPet.stroke"
+                    [colors]="lineFgPet.colors" [dataLabels]="lineFgPet.dataLabels"
+                    [legend]="lineFgPet.legend" [markers]="lineFgPet.markers"
+                    [grid]="lineFgPet.grid" [yaxis]="lineFgPet.yaxis"
+                    [title]="lineFgPet.title" dir="ltr"></apx-chart>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row pb-4">
+    <div class="col" style="height: 800px;">
+        <div class="card card-animated h-100">
+            <div class="card-body">
+                <!-- <iframe
+                src="https://snapshots.raintank.io/dashboard/snapshot/FbGVWd62dw3in0Tq2DYfbIovWrFnDLCX"
+                width="100%"
+                height="100%"
+                frameborder="0"
+                ></iframe> -->
+                <iframe
+                src="http://10.10.2.9:3000/dashboard/snapshot/3QsqZKqf37t0Fwjk09Mug56AoaT13nDM"
+                width="100%"
+                height="100%"
+                frameborder="0"
+                ></iframe>
+
+            </div>
+        </div>
+    </div>
+</div>

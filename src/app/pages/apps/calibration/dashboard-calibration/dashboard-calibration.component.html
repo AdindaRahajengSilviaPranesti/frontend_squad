@@ -1,0 +1,914 @@
+<!-- FONT -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<!-- END FONT -->
+
+<!-- ====================================== SUMMARY CARDS ====================================== -->
+
+<div class="row mt-4">
+    <div class="col-4">
+        <a href="https://myapps.aio.co.id/calms/TransKalibrasiList" target="_blank" class="text-decoration-none">
+            <div class="card card-animate">
+                <div class="position-absolute top-50 start-0 translate-middle-y" style="z-index: 0;">
+                    <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200"
+                        height="120">
+                        <path id="Shape 8" class="s0"
+                            d="m189.5-25.8c0 0 20.1 46.2-26.7 71.4 0 0-60 15.4-62.3 65.3-2.2 49.8-50.6 59.3-57.8 61.5-7.2 2.3-60.8 0-60.8 0l-11.9-199.4z" />
+                    </svg>
+                </div>
+                <div class="card-body px-0">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1 overflow-hidden">
+                            <div class="row mx-0 py-0">
+                                <div class="col-8">
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Total Equipment</p>
+                                    </div>
+                                    <h4 class="mt-3 ff-secondary fw-semibold">
+                                        <span>{{ equipmentData.jumlah_equipment }} Unit</span>
+                                    </h4>
+                                </div>
+                                <div class="col-4 bg-soft-primary rounded-start align-middle text-center pt-1">
+                                    <i class="fs-1 las la-drafting-compass text-primary my-4"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-4">
+        <a href="https://myapps.aio.co.id/calms/TrRegistrasiList" target="_blank" class="text-decoration-none">
+            <div class="card card-animate">
+                <div class="position-absolute top-50 start-0 translate-middle-y" style="z-index: 0;">
+                    <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200"
+                        height="120">
+                        <path id="Shape 8" class="registration"
+                            d="m189.5-25.8c0 0 20.1 46.2-26.7 71.4 0 0-60 15.4-62.3 65.3-2.2 49.8-50.6 59.3-57.8 61.5-7.2 2.3-60.8 0-60.8 0l-11.9-199.4z" />
+                    </svg>
+                </div>
+                <div class="card-body px-0">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1 overflow-hidden">
+                            <div class="row mx-0 py-0">
+                                <div class="col-8">
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Registration</p>
+                                    </div>
+                                    <h4 class="mt-3 ff-secondary fw-semibold">
+                                        <span> {{ regisData.jumlah_regis }} Unit</span>
+                                    </h4>
+                                </div>
+                                <div class="col-4 bg-soft-success rounded-start align-middle text-center pt-1">
+                                    <i class="fs-1 las la-feather-alt text-success my-4"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!-- <div class="col-3">
+        <div class="card card-animate">
+            <div class="position-absolute top-50 start-0 translate-middle-y" style="z-index: 0;">
+                <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200"
+                    height="120">
+                    <path id="Shape 8" class="soon"
+                        d="m189.5-25.8c0 0 20.1 46.2-26.7 71.4 0 0-60 15.4-62.3 65.3-2.2 49.8-50.6 59.3-57.8 61.5-7.2 2.3-60.8 0-60.8 0l-11.9-199.4z" />
+                </svg>
+            </div>
+            <div class="card-body px-0">
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1 overflow-hidden">
+                        <div class="row mx-0 py-0">
+                            <div class="col-8">
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <p class="text-uppercase fw-medium text-muted text-truncate mb-0">CRP Calibration</p>
+                                </div>
+                                <h4 class="mt-3 ff-secondary fw-semibold">
+                                    <span>Rp107.918.725</span>
+                                </h4>
+                            </div>
+                            <div class="col-4 bg-soft-warning rounded-start align-middle text-center pt-1">
+                                <i class="fs-1 las la-exclamation-triangle text-warning my-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="col-4">
+        <a href="https://myapps.aio.co.id/calms/TrRecalibrasiList" target="_blank" class="text-decoration-none">
+            <div class="card card-animate">
+                <div class="position-absolute top-50 start-0 translate-middle-y" style="z-index: 0;">
+                    <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200"
+                        height="120">
+                        <path id="Shape 8" class="expired"
+                            d="m189.5-25.8c0 0 20.1 46.2-26.7 71.4 0 0-60 15.4-62.3 65.3-2.2 49.8-50.6 59.3-57.8 61.5-7.2 2.3-60.8 0-60.8 0l-11.9-199.4z" />
+                    </svg>
+                </div>
+                <div class="card-body px-0">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1 overflow-hidden">
+                            <div class="row mx-0 py-0">
+                                <div class="col-8">
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Expired</p>
+                                    </div>
+                                    <h4 class="mt-3 ff-secondary fw-semibold">
+                                        <span> {{ expiredData.jumlah_expired }} Unit</span>
+                                    </h4>
+                                </div>
+                                <div class="col-4 bg-soft-danger rounded-start align-middle text-center pt-1">
+                                    <i class="fs-1 las la-exclamation-circle text-danger my-4"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- ====================================== METABASE VISUALIZATION ====================================== -->
+
+<div class="row">
+    <div class="col">
+        <iframe
+            src="https://myapps.aio.co.id/metabase/public/dashboard/26d251bd-e9ea-4774-b30c-6475028d90e1"
+            frameborder="0"
+            width="100%"
+            height="1200"
+            allowtransparency
+        ></iframe>
+    </div>
+</div>
+
+<!-- =================================== CALIBRATION SUMMARY TABLE =================================== -->
+
+<div class="row mt-4">
+    <div class="col-3">
+        <div class="card">
+            <div class="position-absolute top-50 start-0 translate-middle-y" style="z-index: 0;">
+            </div>
+            <div class="card-body px-0">
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1 overflow-hidden px-3">
+                        <div class="row mx-0 py-0">
+                            <input type="month" name="filterDate" class="p-1"
+                            (change)="dateFilter($event)" [(ngModel)]="currentMonth">                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card" id="dashboardCalibration">
+            <div class="card-header border border-start-0 border-end-0">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h3 class="card-title mb-0"> SUMMARY & PLAN {{ monthSum }} </h3>
+                    <div class="d-flex align-items-center">
+                        <!-- <h5 class="me-5"> Target: </h5> -->
+                        <div class="search-box me-3">
+                            <input type="search" name="searchNowCalibration" class="form-control search bg-light border-light"
+                                placeholder="Search" (keyup)="filterUpdate4($event)" (search)="filterUpdate4($event)">
+                            <i class="ri-search-line search-icon"></i>
+                        </div>
+                        <!-- <div class="me-3">
+                            <select class="form-control" data-choices data-choices-search-false placeholder="Select Area">
+                                <i class="bi bi-filter"></i>
+                                <option value="" selected>All Area</option>
+                                <option value="Approved">AL4</option>
+                                <option value="New">ANTEROOM and COLD STORAGE AL4</option>
+                                <option value="Pending">ANTEROOM and COLD STORAGE CAN</option>
+                                <option value="Rejected">ANTEROOM and COLD STORAGE PET</option>
+                                <option value="">ANTEROOM GBL</option>
+                                <option value="Approved">BLOW</option>
+                                <option value="New">CAN</option>
+                                <option value="Pending">ENMIX</option>
+                                <option value="Rejected">FILLING</option>
+                                <option value="">GBL</option>
+                                <option value="Approved">GUDANG LIMBAH SCRAP</option>
+                                <option value="New">GUDANG RETAIN</option>
+                                <option value="Pending">IBF</option>
+                                <option value="Rejected">INJEKSI</option>
+                                <option value="">IPC AL4</option>
+                                <option value="Approved">IPC BLOW PET OHOT</option>
+                                <option value="New">IPC CAN</option>
+                                <option value="Pending">IPC ENMIX</option>
+                                <option value="Rejected">IPC FILLING PET OHOT</option>
+                                <option value="">IPC GBL</option>
+                                <option value="Approved">IPC INJEKSI SIPA OHOT</option>
+                                <option value="New">IPC OC3</option>
+                                <option value="Pending">IPC OFFICE</option>
+                                <option value="Rejected">IPC SACHET</option>
+                            </select>
+                        </div> -->
+                        <!-- <div id="myModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <h2>Select Items</h2>
+                                <ul id="itemList">
+                                    <li><input type="checkbox" value="Item 1"> Item 1</li>
+                                    <li><input type="checkbox" value="Item 2"> Item 2</li>
+                                    <li><input type="checkbox" value="Item 3"> Item 3</li>
+                                    <li><input type="checkbox" value="Item 4"> Item 4</li>
+                                </ul>
+                                <button id="saveBtn">Save</button>
+                            </div>
+                        </div> -->
+                        <!-- <div class="me-3" style="width: 200px;">
+                            <div>
+                                <ng-select [items]="allAreaData" bindLabel="sub_area" bindValue="sub_area"
+                                    placeholder="Select Area" id="filterArea2" (change)="filterArea2($event)">
+                                </ng-select>
+                            </div>
+                        </div> -->
+                        <button class="btn btn-primary ml-1 float-right" rippleEffect (click)="download4()">
+                            <i class="ri-download-2-line align-bottom me-1 text-light cursor-pointer font-medium-3"></i>
+                            <span class="d-none d-sm-inline-block" style="margin-left: 5px;"> Download </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div>
+                    <div class="table-responsive table-card">
+                        <table class="table table-striped table-hover align-middle table-nowrap text-center" id="now-kalibrasi-table">
+                            <thead class="text-muted">
+                                <tr>
+                                    <th class="text-uppercase">Equipment Number</th>
+                                    <th class="text-uppercase">Equipment Name</th>
+                                    <th class="text-uppercase">Department</th>
+                                    <th class="text-uppercase">Area</th>
+                                    <th class="text-uppercase">Calibration Date</th>
+                                    <th class="text-uppercase">Expired Date</th>
+                                    <th class="text-uppercase">Calibration Plan</th>
+                                    <th class="text-uppercase">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="list form-check-all" id="dashboard-calibration-data">
+                                <tr *ngFor="let data of paginatedItems4">
+                                    <td>
+                                        <ngb-highlight [result]="data.equipment_number"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="data.equipment_name"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="data.departement"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="data.area"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="formatDate(data.tanggal_calibration)"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="formatDate(data.exp_calibration)"></ngb-highlight>
+                                    </td>
+                                    <td (click)="enableEditing(data, 'plan_kalibrasi')">
+                                        <div *ngIf="editingCell !== data.equipment_number + 'plan_kalibrasi'; else editTemplate">
+                                          <ngb-highlight [result]="data.plan_kalibrasi ? formatDate(data.plan_kalibrasi) : '-'"></ngb-highlight>
+                                        </div>
+                                        <ng-template #editTemplate>
+                                          <input
+                                            type="date" [value]="data.plan_kalibrasi"
+                                            (blur)="saveEditing(data, data.equipment_number, 'plan_kalibrasi', $event)"
+                                            (keydown.enter)="saveEditing(data, data.equipment_number, 'plan_kalibrasi', $event)"
+                                            autofocus
+                                          />
+                                        </ng-template>
+                                    </td>
+                                    <td>
+                                        <div style="display:flex; justify-content:center; align-items:center;">
+                                          <a *ngIf="getStatusSummary(data.status) === 'btn-open'" href="https://myapps.aio.co.id/calms/TrRecalibrasiAdd?no_eq={{data.equipment_number}}" target="_blank">
+                                            <button [ngClass]="getStatusSummary(data.status)" class="btn">
+                                              {{ data.status }}
+                                            </button>
+                                          </a>
+                                          <button [ngClass]="getStatusSummary(data.status)" class="btn" *ngIf="getStatusSummary(data.status) === 'btn-closed'" disabled>
+                                            {{ data.status }}
+                                          </button>
+                                        </div>
+                                    </td>
+                                    <!-- <td>
+                                        <div style="display:flex; justify-content:center; align-items:center;">
+                                            <a href="https://myapps.aio.co.id/calms/TransKalibrasiList?psearch={{data.equipment_number}}" target="_blank">
+                                                <button class="btn btn-primary">
+                                                    PREVIEW
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </td> -->
+                                </tr>
+                                <tr *ngIf="paginatedItems4?.length == 0">
+                                    <td colspan="13" class="text-center">No calibration summary data.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row justify-content-md-between align-items-md-center mt-3">
+                        <div class="col col-sm-6">
+                            <div class="dataTables_info mb-2" id="tickets-table_info" role="status" aria-live="polite">
+                                {{ getShowingText4() }} of {{ totalRecords4 }} entries
+                            </div>
+                        </div>
+                        <!-- Pagination -->
+                        <div class="col col-sm-6">
+                            <div class="text-sm-right float-end listjs-pagination">
+                                <ngb-pagination 
+                                    [collectionSize]="totalRecords4" 
+                                    [(page)]="page4" 
+                                    [pageSize]="pageSize4"
+                                    [maxSize]="3"
+                                    (pageChange)="onPageChange4($event)">
+                                </ngb-pagination>
+                            </div>
+                        </div>
+                        <!-- End Pagination -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end col-->
+</div>
+<!--end row-->
+
+<!-- ====================================== CALIBRATION TABLE ====================================== -->
+
+<!-- <div class="row">
+    <div class="col-lg-12">
+        <div class="card" id="dashboardCalibration">
+            <div class="card-header border border-start-0 border-end-0">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h3 class="card-title mb-0"> CALIBRATION {{ monthName }} </h3>
+                    <div class="d-flex align-items-center">
+                        <div class="search-box me-3">
+                            <input type="search" name="searchNowCalibration" class="form-control search bg-light border-light"
+                                placeholder="Search" (keyup)="filterUpdate1($event)" (search)="filterUpdate1($event)">
+                            <i class="ri-search-line search-icon"></i>
+                        </div>
+                        <a href="javascript:void(0);" class="btn btn-primary"><i
+                            class="ri-download-2-line align-bottom me-1" rippleEffect (click)="download()">
+                        </i> Download</a>
+                        <button class="btn btn-primary ml-1 float-right" rippleEffect (click)="download1()">
+                            <i class="ri-download-2-line align-bottom me-1 text-light cursor-pointer font-medium-3"></i>
+                            <span class="d-none d-sm-inline-block" style="margin-left: 5px;"> Download </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div>
+                    <div class="table-responsive table-card">
+                        <table class="table table-striped table-hover align-middle table-nowrap text-center" id="now-kalibrasi-table">
+                            <thead class="text-muted">
+                                <tr>
+                                    <th class="text-uppercase">Equipment Number</th>
+                                    <th class="text-uppercase">Equipment Name</th>
+                                    <th class="text-uppercase">Department</th>
+                                    <th class="text-uppercase">Area</th>
+                                    <th class="text-uppercase">Calibration Date</th>
+                                    <th class="text-uppercase">Expired Date</th>
+                                    <th class="text-uppercase">Calibration Plan</th>
+                                    <th class="text-uppercase">Status</th>
+                                    <th class="text-uppercase">Follow Up</th>
+                                </tr>
+                            </thead>
+                            <tbody class="list form-check-all" id="dashboard-calibration-data">
+                                <tr *ngFor="let data of paginatedItems1">
+                                    <td>
+                                        <ngb-highlight [result]="data.equipment_number"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="data.equipment_name"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="data.departement"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="data.area"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="formatDate(data.tanggal_calibration)"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="formatDate(data.exp_calibration)"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="data.plan_kalibrasi ? formatDate(data.plan_kalibrasi) : '-'"></ngb-highlight>
+                                    </td>
+                                    <td (click)="enableEditing(data, 'plan_kalibrasi')">
+                                        <div *ngIf="editingCell !== data.equipment_number + 'plan_kalibrasi'; else editTemplate">
+                                          <ngb-highlight [result]="data.plan_kalibrasi ? formatDate(data.plan_kalibrasi) : '-'"></ngb-highlight>
+                                        </div>
+                                        <ng-template #editTemplate>
+                                          <input
+                                            type="date"
+                                            [value]="data.plan_kalibrasi"
+                                            (blur)="saveEditing(data, data.equipment_number, 'plan_kalibrasi', $event)"
+                                            (keydown.enter)="saveEditing(data, data.equipment_number, 'plan_kalibrasi', $event)"
+                                            autofocus
+                                          />
+                                        </ng-template>
+                                    </td>
+                                    <td [ngClass]="getIsactiveClass(data.isactive)">
+                                        <ngb-highlight [result]="data.isactive === 1 ? 'ACTIVE' : data.isactive === 0 ? 'INACTIVE' : '-'"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <div style="display:flex; justify-content:center; align-items:center;">
+                                            <a href="https://myapps.aio.co.id/calms/TrRecalibrasiAdd?no_eq={{data.equipment_number}}" target="_blank">
+                                                <button class="btn btn-primary">
+                                                    RECAL
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="paginatedItems1?.length == 0">
+                                    <td colspan="13" class="text-center">No calibration data.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row justify-content-md-between align-items-md-center mt-3">
+                        <div class="col col-sm-6">
+                            <div class="dataTables_info mb-2" id="tickets-table_info" role="status" aria-live="polite">
+                                {{ getShowingText1() }} of {{ totalRecords1 }} entries
+                            </div>
+                        </div>
+                        Pagination
+                        <div class="col col-sm-6">
+                            <div class="text-sm-right float-end listjs-pagination">
+                                <ngb-pagination 
+                                    [collectionSize]="totalRecords1" 
+                                    [(page)]="page1" 
+                                    [pageSize]="pageSize1"
+                                    [maxSize]="3"
+                                    (pageChange)="onPageChange1($event)">
+                                </ngb-pagination>
+                            </div>
+                        </div>
+                        End Pagination
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    end col
+</div>
+end row -->
+
+<!-- ====================================== CALIBRATION PLAN TABLE ====================================== -->
+
+<!-- <div class="row">
+    <div class="col-lg-12">
+        <div class="card" id="dashboardCalibration">
+            <div class="card-header border border-start-0 border-end-0">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h3 class="card-title mb-0"> CALIBRATION PLAN {{ nextMonthName }} </h3>
+                    <div class="d-flex align-items-center">
+                        <div class="search-box me-3">
+                            <input type="search" name="searchPlanCalibration" class="form-control search bg-light border-light"
+                                placeholder="Search" (keyup)="filterUpdate2($event)" (search)="filterUpdate2($event)">
+                            <i class="ri-search-line search-icon"></i>
+                        </div>
+                        <button class="btn btn-primary ml-1 float-right" rippleEffect (click)="download2()">
+                            <i class="ri-download-2-line align-bottom me-1 text-light cursor-pointer font-medium-3"></i>
+                            <span class="d-none d-sm-inline-block" style="margin-left: 5px;"> Download </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div>
+                    <div class="table-responsive table-card">
+                        <table class="table table-striped table-hover align-middle table-nowrap text-center" id="plan-kalibrasi-table">
+                            <thead class="text-muted">
+                                <tr>
+                                    <th class="text-uppercase">Equipment Number</th>
+                                    <th class="text-uppercase">Equipment Name</th>
+                                    <th class="text-uppercase">Department</th>
+                                    <th class="text-uppercase">Area</th>
+                                    <th class="text-uppercase">Calibration Date</th>
+                                    <th class="text-uppercase">Expired Date</th>
+                                    <th class="text-uppercase">Calibration Plan</th>
+                                    <th class="text-uppercase">Status</th>
+                                    <th class="text-uppercase">Follow Up</th>
+                                </tr>
+                            </thead>
+                            <tbody class="list form-check-all" id="dashboard-calibration-data">
+                                <tr *ngFor="let data of paginatedItems2">
+                                    <td>
+                                        <ngb-highlight [result]="data.equipment_number"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="data.equipment_name"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="data.departement"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="data.area"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="formatDate(data.tanggal_calibration)"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="formatDate(data.exp_calibration)"></ngb-highlight>
+                                    </td>
+                                    <td (click)="enableEditing(data, 'plan_kalibrasi')">
+                                        <div *ngIf="editingCell !== data.equipment_number + 'plan_kalibrasi'; else editTemplate">
+                                          <ngb-highlight [result]="data.plan_kalibrasi ? formatDate(data.plan_kalibrasi) : '-'"></ngb-highlight>
+                                        </div>
+                                        <ng-template #editTemplate>
+                                          <input
+                                            type="date"
+                                            [value]="data.plan_kalibrasi"
+                                            (blur)="saveEditing(data, data.equipment_number, 'plan_kalibrasi', $event)"
+                                            (keydown.enter)="saveEditing(data, data.equipment_number, 'plan_kalibrasi', $event)"
+                                            autofocus
+                                          />
+                                        </ng-template>
+                                    </td>
+                                    <td [ngClass]="getIsactiveClass(data.isactive)">
+                                        <ngb-highlight [result]="data.isactive === 1 ? 'ACTIVE' : data.isactive === 0 ? 'INACTIVE' : '-'"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <div style="display:flex; justify-content:center; align-items:center;">
+                                            <a href="https://myapps.aio.co.id/calms/TrRecalibrasiAdd?no_eq={{data.equipment_number}}" target="_blank">
+                                                <button class="btn btn-primary">
+                                                    RECAL
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="paginatedItems2?.length == 0">
+                                    <td colspan="13" class="text-center">No plan calibration data.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row justify-content-md-between align-items-md-center mt-3">
+                        <div class="col col-sm-6">
+                            <div class="dataTables_info mb-2" id="tickets-table_info" role="status" aria-live="polite">
+                                {{ getShowingText2() }} of {{ totalRecords2 }} entries
+                            </div>
+                        </div>
+                        Pagination
+                        <div class="col col-sm-6">
+                            <div class="text-sm-right float-end listjs-pagination">
+                                <ngb-pagination 
+                                    [collectionSize]="totalRecords2" 
+                                    [(page)]="page2" 
+                                    [pageSize]="pageSize2"
+                                    [maxSize]="3"
+                                    (pageChange)="onPageChange2($event)">
+                                </ngb-pagination>
+                            </div>
+                        </div>
+                        End Pagination
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    end col
+</div>
+end row -->
+
+<!-- =================================== REGISTRATION TABLE =================================== -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card" id="dashboardCalibration">
+            <div class="card-header border border-start-0 border-end-0">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h3 class="card-title mb-0"> REGISTRATION CALIBRATION </h3>
+                    <div class="d-flex align-items-center">
+                        <!-- <h5 class="me-5"> Target: </h5> -->
+                        <div class="search-box me-3">
+                            <input type="search" name="searchRegistTable" class="form-control search bg-light border-light"
+                                placeholder="Search" (keyup)="filterUpdate5($event)" (search)="filterUpdate5($event)">
+                            <i class="ri-search-line search-icon"></i>
+                        </div>
+                        <button class="btn btn-primary ml-1 float-right" rippleEffect (click)="download5()">
+                            <i class="ri-download-2-line align-bottom me-1 text-light cursor-pointer font-medium-3"></i>
+                            <span class="d-none d-sm-inline-block" style="margin-left: 5px;"> Download </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div>
+                    <div class="table-responsive table-card">
+                        <table class="table table-striped table-hover align-middle table-nowrap text-center" id="now-kalibrasi-table">
+                            <thead class="text-muted">
+                                <tr>
+                                    <th class="text-uppercase">NEW Registration Number</th>
+                                    <!-- <th class="text-uppercase">Registration Number</th> -->
+                                    <th class="text-uppercase">NIK User</th>
+                                    <th class="text-uppercase">Department</th>
+                                    <th class="text-uppercase">Equipment Name</th>
+                                    <th class="text-uppercase">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="list form-check-all" id="dashboard-calibration-data">
+                                <tr *ngFor="let data of paginatedItems5; let i = index">
+                                    <td>
+                                        {{data.year}}.{{data.nomor_urut.toString().padStart(3, '0')}}
+                                    </td>
+                                    <!-- <td>
+                                        {{data.year}}.{{ (totalRecords5 - ((page5 - 1) * pageSize5 + i) ).toString().padStart(3, '0') }}
+                                    </td> -->
+                                    <!-- <td>
+                                        <ngb-highlight [result]="data.id"></ngb-highlight>
+                                    </td> -->
+                                    <td>
+                                        <ngb-highlight [result]="data.pic"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="data.dept"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="data.nama_alat"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <div style="display:flex; justify-content:center; align-items:center;">
+                                          <a *ngIf="getStatusRegis(data.status) === 'btn-open-regis'" href="https://myapps.aio.co.id/calms/TrApproveRegEdit/{{data.id}}" target="_blank">
+                                            <button [ngClass]="getStatusRegis(data.status)" class="btn">
+                                              {{ data.status }}
+                                            </button>
+                                          </a>
+                                          <a *ngIf="getStatusRegis(data.status) === 'btn-folup-regis'" href="https://myapps.aio.co.id/calms/TrApproveRegEdit/{{data.id}}" target="_blank">
+                                            <button [ngClass]="getStatusRegis(data.status)" class="btn">
+                                              {{ data.status }}
+                                            </button>
+                                          </a>
+                                          <button [ngClass]="getStatusRegis(data.status)" class="btn" *ngIf="getStatusRegis(data.status) === 'btn-closed-regis'" disabled>
+                                            {{ data.status }}
+                                          </button>
+                                          <button [ngClass]="getStatusRegis(data.status)" class="btn" *ngIf="getStatusRegis(data.status) === 'btn-reject-regis'" disabled>
+                                            {{ data.status }}
+                                          </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="paginatedItems5?.length == 0">
+                                    <td colspan="13" class="text-center">No registration calibration data.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row justify-content-md-between align-items-md-center mt-3">
+                        <div class="col col-sm-6">
+                            <div class="dataTables_info mb-2" id="tickets-table_info" role="status" aria-live="polite">
+                                {{ getShowingText5() }} of {{ totalRecords5 }} entries
+                            </div>
+                        </div>
+                        <!-- Pagination -->
+                        <div class="col col-sm-6">
+                            <div class="text-sm-right float-end listjs-pagination">
+                                <ngb-pagination 
+                                    [collectionSize]="totalRecords5" 
+                                    [(page)]="page5" 
+                                    [pageSize]="pageSize5"
+                                    [maxSize]="3"
+                                    (pageChange)="onPageChange5($event)">
+                                </ngb-pagination>
+                            </div>
+                        </div>
+                        <!-- End Pagination -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end col-->
+</div>
+<!--end row-->
+
+<!-- ====================================== ALL EQUIPMENT TABLE ====================================== -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card" id="dashboardCalibration">
+            <div class="card-header border border-start-0 border-end-0">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h3 class="card-title mb-0">ALL EQUIPMENT</h3>
+                    <div class="d-flex align-items-center">
+                        <div class="search-box me-3">
+                            <input type="search" name="searchAllEquipment" class="form-control search bg-light border-light"
+                                placeholder="Search" (keyup)="filterUpdate3($event)" (search)="filterUpdate3($event)">
+                            <i class="ri-search-line search-icon"></i>
+                        </div>
+                        <div class="me-3" style="width: 200px;">
+                            <div>
+                                <ng-select [items]="allAreaData" bindLabel="sub_area" bindValue="sub_area"
+                                    placeholder="Select Area" id="filterArea" (change)="filterArea1($event)">
+                                </ng-select>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary ml-1 float-right" rippleEffect (click)="download3()">
+                            <i class="ri-download-2-line align-bottom me-1 text-light cursor-pointer font-medium-3"></i>
+                            <span class="d-none d-sm-inline-block" style="margin-left: 5px;"> Download </span>
+                        </button>              
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div>
+                    <div class="table-responsive table-card">
+                        <table class="table table-striped table-hover align-middle table-nowrap text-center" id="all-equipment-table">
+                            <thead class="text-muted">
+                                <tr>
+                                    <th class="text-uppercase" data-sortable="true">Equipment Number</th>
+                                    <th class="text-uppercase" data-sortable="true">Equipment Name</th>
+                                    <th class="text-uppercase" data-sortable="true">Department</th>
+                                    <th class="text-uppercase" data-sortable="true">Area</th>
+                                    <th class="text-uppercase" data-sortable="true">Calibration Date</th>
+                                    <th class="text-uppercase" data-sortable="true">Next Calibration</th>
+                                    <th class="text-uppercase" data-sortable="true">Result</th>
+                                    <th class="text-uppercase" data-sortable="true">Status</th>
+                                    <th class="text-uppercase" data-sortable="true">Certificate</th>
+                                </tr>
+                            </thead>
+                            <tbody class="list form-check-all" id="dashboard-calibration-data">
+                                <tr *ngFor="let data of paginatedItems3">
+                                    <td>
+                                        <ngb-highlight [result]="data.equipment_number"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="data.equipment_name"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="data.departement"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="data.area"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="formatDate(data.tanggal_calibration)"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="formatDate(data.exp_calibration)"></ngb-highlight>
+                                    </td>
+                                    <td [ngClass]="getCalibrationResultClass(data.hasil_kalibrasi)">
+                                        <ngb-highlight [result]="data.hasil_kalibrasi === 1 ? 'Good' : data.hasil_kalibrasi === 2 ? 'Enough' : data.hasil_kalibrasi === 3 ? 'Bad' : '-'"></ngb-highlight>      
+                                    </td>
+                                    <td>
+                                        <div style="display:flex; justify-content:center; align-items:center;">
+                                          <a href="https://myapps.aio.co.id/calms/TrRecalibrasiAdd?no_eq={{data.equipment_number}}" target="_blank">
+                                            <button [ngClass]="getStatusButton(data.exp_calibration)" class="btn">
+                                                {{ getButtonContent(data.exp_calibration) }}
+                                            </button>
+                                          </a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div style="display:flex; justify-content:center; align-items:center;">
+                                            <a href="https://myapps.aio.co.id/calms/TransKalibrasiList?psearch={{data.equipment_number}}" target="_blank">
+                                                <button class="btn btn-primary">
+                                                    PREVIEW
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="paginatedItems3?.length == 0">
+                                    <td colspan="13" class="text-center">No data available.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row justify-content-md-between align-items-md-center mt-3">
+                        <div class="col col-sm-6">
+                            <div class="dataTables_info mb-2" id="tickets-table_info" role="status" aria-live="polite">
+                                {{ getShowingText3() }} of {{ totalRecords3 }} entries
+                            </div>
+                        </div>
+                        <!-- Pagination -->
+                        <div class="col col-sm-6">
+                            <div class="text-sm-right float-end listjs-pagination">
+                                <ngb-pagination 
+                                    [collectionSize]="totalRecords3" 
+                                    [(page)]="page3" 
+                                    [pageSize]="pageSize3"
+                                    [maxSize]="3"
+                                    (pageChange)="onPageChange3($event)">
+                                </ngb-pagination>
+                            </div>
+                        </div>
+                        <!-- End Pagination -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end col-->
+</div>
+<!--end row-->
+
+<!-- ======================================EXTERNAL CALIBRATION PROGRESS====================================== -->
+
+<!-- <div class="row">
+    <div class="col-lg-12">
+        <div class="card" id="dashboardCalibration">
+            <div class="card-body">
+                <div>
+                    <div class="table-responsive table-card">
+                        <table class="table align-middle table-nowrap text-center" id="invoiceTable">
+                            <thead class="text-muted">
+                                <tr>
+                                    <th class="text-uppercase">Equipment Number</th>
+                                    <th class="text-uppercase">Equipment Name</th>
+                                    <th class="text-uppercase">No. WO</th>
+                                    <th class="text-uppercase">Price</th>
+                                    <th class="text-uppercase">Vendor</th>
+                                    <th class="text-uppercase">No. PR</th>
+                                    <th class="text-uppercase">No. PO</th>
+                                    <th class="text-uppercase">Calibration Date</th>
+                                    <th class="text-uppercase">Certificate</th>
+                                    <th class="text-uppercase">COA</th>
+                                </tr>
+                            </thead>
+                            <tbody class="list form-check-all" id="dashboard-calibration-data">
+                                <tr *ngFor="let data of getNowKalibrasi">
+                                    <td>
+                                        <a routerLink="/invoices/details">
+                                            <ngb-highlight [result]="data.id"></ngb-highlight>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="data.equipment_number"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="data.equipment_name"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="data.departement"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="data.area"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="formatDate(data.exp_calibration)"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight [result]="formatDate(data.plan_kalibrasi)"></ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <div style="display:flex; justify-content:center; align-items:center;">
+                                            <a href="https://myapps.aio.co.id/calms/TrRecalibrasiList" target="_blank">
+                                                <button class="btn btn-primary">
+                                                    RECAL
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="filteredKadarMix?.length == 0">
+                                    <td colspan="13" class="text-center">No data available.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row justify-content-md-between align-items-md-center mt-3">
+                        <div class="col col-sm-6">
+                            <div class="dataTables_info mb-2" id="tickets-table_info" role="status" aria-live="polite">
+                                {{ getShowingText() }} of {{ totalRecords }} entries
+                            </div>
+                        </div>
+                        Pagination
+                        <div class="col col-sm-6">
+                            <div class="text-sm-right float-end listjs-pagination">
+                                <ngb-pagination [collectionSize]="totalRecords" [(page)]="page" [pageSize]="pageSize"
+                                    [maxSize]="3" [ellipses]="false"></ngb-pagination>
+                            </div>
+                        </div>
+                        End Pagination
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="elmLoader">
+            <div class="spinner-border text-primary avatar-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+    end col
+</div>
+end row -->

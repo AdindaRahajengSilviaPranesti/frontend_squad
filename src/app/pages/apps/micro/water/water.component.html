@@ -1,0 +1,173 @@
+<div class="space mb-4">
+    <br>
+</div>
+
+<div class="row pb-4">
+    <div class="col-6">
+        <div class="card card-animate h-100">
+            <div class="card-body">
+                <h6 class="text-center">AIR AL4</h6>
+                <form [formGroup]="formAl4">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <select class="form-select mb-3" formControlName="micro">
+                                <option disabled selected>Pilih Micro</option>
+                                <option value="tb">TB</option>
+                                <option value="total_jamur">Total Jamur</option>
+                                <option value="e_coli">Ecoli</option>
+                                <option value="tm">TM</option>
+                                <option value="tab">TAB</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select mb-3" formControlName="area">
+                                <option disabled selected>Area Sampling</option>
+                                <option value="1">After TWT</option>
+                                <option value="2">After HWT</option>
+                                <option value="3">After Soft Water Tank</option>
+                                <option value="4">Sugar Tank</option>
+                                <option value="5">Syrup Tank</option>
+                                <option value="6">Deaerator(DO)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control flatpickr-input" type="text" mwlFlatpickr [altInput]="true"
+                                aria-describedby="inputGroupPrepend" required formControlName="date"
+                                [convertModelValue]="true" mode="range" placeholder="Select Date">
+                        </div>
+                    </div>
+                </form>
+                <apx-chart [series]="lineChartWaterAl4.series" [chart]="lineChartWaterAl4.chart"
+                    [xaxis]="lineChartWaterAl4.xaxis" [stroke]="lineChartWaterAl4.stroke"
+                    [colors]="lineChartWaterAl4.colors" [dataLabels]="lineChartWaterAl4.dataLabels"
+                    [legend]="lineChartWaterAl4.legend" [markers]="lineChartWaterAl4.markers"
+                    [grid]="lineChartWaterAl4.grid" [yaxis]="lineChartWaterAl4.yaxis"
+                    [title]="lineChartWaterAl4.title" dir="ltr"></apx-chart>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card card-animate h-100">
+            <div class="card-body">
+                <h6 class="text-center">AIR NAMI</h6>
+                <form [formGroup]="formNami">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <select class="form-select mb-3" formControlName="micro">
+                                <option disabled selected>Pilih Micro</option>
+                                <option value="tb">TB</option>
+                                <option value="total_jamur">Total Jamur</option>
+                                <option value="coliform">Coliform</option>
+                                <option value="e_coli">Ecoli</option>
+                                <option value="tm">TM</option>
+                                <option value="tab">TAB</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select mb-3" formControlName="area">
+                                <option disabled selected>Area Sampling</option>
+                                <option *ngFor="let area of areaNamis" [value]="area.id">{{ area.group_pengujian }}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control flatpickr-input" type="text" mwlFlatpickr [altInput]="true"
+                                aria-describedby="inputGroupPrepend" required formControlName="date"
+                                [convertModelValue]="true" mode="range" placeholder="Select Date">
+                        </div>
+                    </div>
+                </form>
+                <apx-chart [series]="lineChartWaterNami.series" [chart]="lineChartWaterNami.chart"
+                    [xaxis]="lineChartWaterNami.xaxis" [stroke]="lineChartWaterNami.stroke"
+                    [colors]="lineChartWaterNami.colors" [dataLabels]="lineChartWaterNami.dataLabels"
+                    [legend]="lineChartWaterNami.legend" [markers]="lineChartWaterNami.markers"
+                    [grid]="lineChartWaterNami.grid" [yaxis]="lineChartWaterNami.yaxis"
+                    [title]="lineChartWaterNami.title" dir="ltr"></apx-chart>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row pb-4">
+    <div class="col-6">
+        <div class="card card-animate h-100">
+            <div class="card-body">
+                <h6 class="text-center">AIR CAN</h6>
+                <form [formGroup]="formCan">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <select class="form-select mb-3" formControlName="micro">
+                                <option disabled selected>Pilih Micro</option>
+                                <option value="tb">TB</option>
+                                <option value="e_coli">Ecoli</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select mb-3" formControlName="area">
+                                <option disabled selected>Area Sampling</option>
+                                <option value="1">UV</option>
+                                <option value="2">Demian Preparasi</option>
+                                <option value="3">Demian Deaerator</option>
+                                <option value="4">Air Rinser</option>
+                                <option value="5">Can Cooler</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control flatpickr-input" type="text" mwlFlatpickr [altInput]="true"
+                                aria-describedby="inputGroupPrepend" required formControlName="date"
+                                [convertModelValue]="true" mode="range" placeholder="Select Date">
+                        </div>
+                    </div>
+                </form>
+                <apx-chart [series]="lineChartWaterCan.series" [chart]="lineChartWaterCan.chart"
+                    [xaxis]="lineChartWaterCan.xaxis" [stroke]="lineChartWaterCan.stroke"
+                    [colors]="lineChartWaterCan.colors" [dataLabels]="lineChartWaterCan.dataLabels"
+                    [legend]="lineChartWaterCan.legend" [markers]="lineChartWaterCan.markers"
+                    [grid]="lineChartWaterCan.grid" [yaxis]="lineChartWaterCan.yaxis"
+                    [title]="lineChartWaterCan.title" dir="ltr"></apx-chart>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card card-animate h-100">
+            <div class="card-body">
+                <h6 class="text-center">AIR PET</h6>
+                <form [formGroup]="formPet">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <select class="form-select mb-3" formControlName="micro">
+                                <option disabled selected>Pilih Micro</option>
+                                <option value="tb">TB</option>
+                                <option value="total_jamur">Total Jamur</option>
+                                <option value="e_coli">Ecoli</option>
+                                <option value="tm">TM</option>
+                                <option value="tab">TAB</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select mb-3" formControlName="area">
+                                <option disabled selected>Area Sampling</option>
+                                <option value="1">After UV</option>
+                                <option value="2">After Cartridge Filter</option>
+                                <option value="3">Sugar Tank</option>
+                                <option value="4">Syrup Tank</option>
+                                <option value="5">Deaerator</option>
+                                <option value="6">Rinser</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control flatpickr-input" type="text" mwlFlatpickr [altInput]="true"
+                                aria-describedby="inputGroupPrepend" required formControlName="date"
+                                [convertModelValue]="true" mode="range" placeholder="Select Date">
+                        </div>
+                    </div>
+                </form>
+                <apx-chart [series]="lineChartWaterPet.series" [chart]="lineChartWaterPet.chart"
+                    [xaxis]="lineChartWaterPet.xaxis" [stroke]="lineChartWaterPet.stroke"
+                    [colors]="lineChartWaterPet.colors" [dataLabels]="lineChartWaterPet.dataLabels"
+                    [legend]="lineChartWaterPet.legend" [markers]="lineChartWaterPet.markers"
+                    [grid]="lineChartWaterPet.grid" [yaxis]="lineChartWaterPet.yaxis"
+                    [title]="lineChartWaterPet.title" dir="ltr"></apx-chart>
+            </div>
+        </div>
+    </div>
+</div>

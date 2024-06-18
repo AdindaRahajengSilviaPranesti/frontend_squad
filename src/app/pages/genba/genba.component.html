@@ -31,15 +31,182 @@
 
 
 
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-3">
+              <div class="card card-animate w-100">
+                <div class="card-body text-center">
+                  <h3>Cross Genba</h3>
+                  <div class="row">
+                    <div class="col-6">
+                      <h1>{{ crossOpen.length }}</h1>
+                      open
+                    </div>
+                    <div class="col-6">
+                      <h1>{{ crossClose.length }}</h1>
+                      close
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <apx-chart [series]="donutCategoryCross.series" [chart]="donutCategoryCross.chart"
+                [labels]="donutCategoryCross.labels" [responsive]="donutCategoryCross.responsive"
+                [legend]="donutCategoryCross.legend" [dataLabels]="donutCategoryCross.dataLabels"
+                [colors]="donutCategoryCross.colors" dir="ltr"></apx-chart>
+            </div>
+            <div class="col-5">
+              <apx-chart [series]="findingAreaBarChartCross.series" [chart]="findingAreaBarChartCross.chart"
+                [xaxis]="findingAreaBarChartCross.xaxis" [yaxis]="findingAreaBarChartCross.yaxis"
+                [plotOptions]="findingAreaBarChartCross.plotOptions" dir="ltr"></apx-chart>
+            </div>
+            <div class="col-4 overflow-auto">
+              <div class="search-box d-flex justify-content-end">
+                <!-- <i class="ri-search-line search-icon"></i> -->
+                <input type="search" name="searchRegistTable" class="form-control search bg-light border-light w-50"
+                    placeholder="Search" (keyup)="searchData($event)" (search)="searchData($event)">
+              </div>
+              <table class="table table-striped table-hover align-middle table-nowrap text-center">
+                <thead class="text-muted">
+                  <tr>
+                      <th class="text-uppercase">No</th>
+                      <th class="text-uppercase">Category</th>
+                      <th class="text-uppercase">Date Genba</th>
+                      <th class="text-uppercase">PIC Area</th>
+                      <th class="text-uppercase">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="list form-check-all" id="dashboard-calibration-data">
+                  <tr *ngFor="let data of allCrossGenbaPaginated; let i = index">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ data.category }}</td>
+                    <td>{{ data.tgl }}</td>
+                    <td>{{ data.pic_area }}</td>
+                    <td>{{ data.status }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="row justify-content-md-between align-items-md-center mt-3">
+                <div class="col col-sm-6">
+                    <div class="dataTables_info mb-2" id="tickets-table_info" role="status" aria-live="polite">
+                        {{ getShowingText() }} of {{ countAllCrossGenba }} entries
+                    </div>
+                </div>
+                <!-- Pagination -->
+                <div class="col col-sm-6">
+                    <div class="text-sm-right float-end listjs-pagination">
+                        <ngb-pagination 
+                            [collectionSize]="countAllCrossGenba" 
+                            [(page)]="page" 
+                            [pageSize]="pageSize"
+                            [maxSize]="3"
+                            (pageChange)="onPageChange($event, 'cross')">
+                        </ngb-pagination>
+                    </div>
+                </div>
+                <!-- End Pagination -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-3">
+              <div class="card card-animate w-100">
+                <div class="card-body text-center">
+                  <h3>Self Genba</h3>
+                  <div class="row">
+                    <div class="col-6">
+                      <h1>{{ selfOpen.length }}</h1>
+                      open
+                    </div>
+                    <div class="col-6">
+                      <h1>{{ selfClose.length }}</h1>
+                      close
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <apx-chart [series]="donutCategorySelf.series" [chart]="donutCategorySelf.chart"
+                [labels]="donutCategorySelf.labels" [responsive]="donutCategorySelf.responsive"
+                [legend]="donutCategorySelf.legend" [dataLabels]="donutCategorySelf.dataLabels"
+                [colors]="donutCategorySelf.colors" dir="ltr"></apx-chart>
+            </div>
+            <div class="col-5">
+              <apx-chart [series]="findingAreaBarChartSelf.series" [chart]="findingAreaBarChartSelf.chart"
+                [xaxis]="findingAreaBarChartSelf.xaxis" [yaxis]="findingAreaBarChartSelf.yaxis"
+                [plotOptions]="findingAreaBarChartSelf.plotOptions" dir="ltr"></apx-chart>
+            </div>
+            <div class="col-4 overflow-auto">
+              <div class="search-box d-flex justify-content-end">
+                <!-- <i class="ri-search-line search-icon"></i> -->
+                <input type="search" name="searchRegistTable" class="form-control search bg-light border-light w-50"
+                    placeholder="Search" (keyup)="searchDataSelf($event)" (search)="searchDataSelf($event)">
+              </div>
+              <table class="table table-striped table-hover align-middle table-nowrap text-center">
+                <thead class="text-muted">
+                  <tr>
+                      <th class="text-uppercase">No</th>
+                      <th class="text-uppercase">Category</th>
+                      <th class="text-uppercase">Date Genba</th>
+                      <th class="text-uppercase">PIC Area</th>
+                      <th class="text-uppercase">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="list form-check-all" id="dashboard-calibration-data">
+                  <tr *ngFor="let data of allSelfGenbaPaginated; let i = index">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ data.category }}</td>
+                    <td>{{ data.tgl }}</td>
+                    <td>{{ data.pic_area }}</td>
+                    <td>{{ data.status }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="row justify-content-md-between align-items-md-center mt-3">
+                <div class="col col-sm-6">
+                    <div class="dataTables_info mb-2" id="tickets-table_info" role="status" aria-live="polite">
+                        {{ getShowingText() }} of {{ countAllSelfGenba }} entries
+                    </div>
+                </div>
+                <!-- Pagination -->
+                <div class="col col-sm-6">
+                    <div class="text-sm-right float-end listjs-pagination">
+                        <ngb-pagination 
+                            [collectionSize]="countAllSelfGenba" 
+                            [(page)]="pageSelf" 
+                            [pageSize]="pageSize"
+                            [maxSize]="3"
+                            (pageChange)="onPageChange($event, 'self')">
+                        </ngb-pagination>
+                    </div>
+                </div>
+                <!-- End Pagination -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <!--CHART GENBA DASHBOARD-->
 
-  <div class="container-fluid">
+  <div class="container-fluid" hidden>
     <div class="row justify-content-center">
       <!--SELF GENBA COLUMNS CHART-->
       <div class="col-xl-6 order-1 order-xl-1">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title mb-0">SELF GENBA</h4>
+            <h4 class="card-title mb-0">SELF GENBAa</h4>
           </div><!-- end card header -->
 
           <div class="card-body">
