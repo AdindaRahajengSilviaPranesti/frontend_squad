@@ -16,5 +16,11 @@ export const GlobalComponent = {
 
     // Customers Api
     customer:'apps/customer',
+
+    getRedAllLine:'red-area/red-all-line/',
+    getYellowAllLine:'red-area/yellow-all-line/',
+    postTarget:'red-area/target/',
+    postArea:'red-area/get-area/',
+    postResultSwab:'red-area/result-swab/',
    
 }

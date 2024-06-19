@@ -15,13 +15,13 @@ export class PendingTaskCalibrationComponent {
 
   data: any = [];
   ngOnInit() {
-    this.restApi.getTablePending().subscribe((res: any) => {
-      console.log(res);
+    // this.restApi.getTablePending().subscribe((res: any) => {
+    //   console.log(res);
       
-      this.data = res.data;
-      console.log(this.data);
+    //   this.data = res.data;
+    //   console.log(this.data);
 
-    });
+    // });
   }
 
 }
