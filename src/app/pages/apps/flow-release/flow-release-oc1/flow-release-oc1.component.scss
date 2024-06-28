@@ -1,0 +1,153 @@
+.title {
+    color: #484c7f;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+  }
+  
+
+  //khusus THEAD
+
+  .head {
+    background-color: #484c7f; /* Warna dasar */
+    color: white; /* Warna teks */
+  }
+
+  .head th {
+    padding: 1rem 0.75rem; /* Padding untuk tiap sel header */
+    text-align: center; /* Teks terpusat */
+    font-weight: bold; /* Tebal */
+    font-size: 0.875rem; /* Ukuran font */
+    text-transform: uppercase; /* Huruf kapital */
+    border-bottom: 2px solid #ddd; /* Garis bawah tipis */
+  }
+  
+  .head th:first-child {
+    border-top-left-radius: 0.5rem; /* Sudut atas kiri */
+  }
+  
+  .head th:last-child {
+    border-top-right-radius: 0.5rem; /* Sudut atas kanan */
+  }
+  
+  .head th:nth-last-child(2),
+  .head th:nth-last-child(1) {
+    border-bottom: none; /* Menghilangkan garis bawah untuk dua kolom terakhir */
+  }
+  
+
+
+  //Khusus BODY
+  .body {
+      td {
+        text-align: center; /* Teks di tengah untuk sel dalam tabel */
+        white-space: nowrap; /* Mencegah pemecahan kata atau baris */
+        font-size: 0.800rem; /* Ukuran font */
+        color: #333; /* Warna teks */
+        vertical-align: middle; /* Teks tetap terpusat vertikal */
+        padding: 1rem 0.75rem; /* Padding untuk tiap sel */
+  
+        /* Atur lebar dan cara memecah teks jika terlalu panjang */
+        white-space: normal; /* Membuat teks mematahkan baris */
+        word-wrap: break-word; /* Memecah kata jika teks terlalu panjang */
+      }
+  }
+  
+  
+
+//   .not-relative {
+//     display: inline-block; /* Mengatur agar teks tidak memenuhi lebar penuh */
+//     text-align: center; /* Teks di tengah */
+//     white-space: nowrap; /* Mencegah pemecahan kata atau baris */
+//     font-size: 0.700rem; /* Ukuran font */
+//     font-weight: bold; /* Tebal */
+//     padding: 0.2rem 0.2rem; /* Padding untuk penampilan yang lebih baik */
+//     color: #fff; /* Warna teks putih */
+//     background-color: #e53e3e; /* Warna latar belakang merah */
+//     border-radius: 0.7rem; /* Sudut lengkung untuk elemen */
+//   }
+
+//khusus untuk yg ready dan not ready
+td {
+    padding: 16px 24px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #484C7F; /* Base color scheme */
+  }
+  
+  .bg-white {
+    background-color: #ffffff;
+  }
+  
+  .border-b {
+    border-bottom: 1px solid #dddddd;
+  }
+  
+  .dark-bg-gray-800 {
+    background-color: #333333;
+  }
+  
+  .dark-border-gray-700 {
+    border-color: #555555;
+  }
+  
+  .text-gray-900 {
+    color: #1a1a1a;
+  }
+  
+  .font-medium {
+    font-weight: 500;
+  }
+  
+  /* Styles for the "Ready" and "Not Ready" indicators */
+  span.relative {
+    position: relative;
+    display: inline-block;
+    padding: 2px 3px;
+    font-size: 10px;
+    font-weight: 300;
+    border-radius: 50px;
+    text-align: center;
+  }
+  
+  span.relative span.absolute {
+    position: absolute;
+    inset: 0;
+    border-radius: 50px;
+    opacity: 0.5;
+  }
+  
+  /* Specific styles for status indicators */
+  span.text-green-900 {
+    color: #155724;
+  }
+  
+  span.bg-green-200 {
+    background-color: #d4edda;
+  }
+  
+
+  
+  span.bg-red-200 {
+    color: #721c24;
+    background-color: #f8d7da;
+  }
+  
+  /* Prevent text from breaking into multiple lines */
+  span.relative {
+    white-space: nowrap;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    td {
+      padding: 8px 12px;
+    }
+  
+    span.relative {
+      font-size: 12px;
+      padding: 6px 10px;
+    }
+  }

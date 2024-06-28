@@ -196,7 +196,7 @@
             <div class="resultda">
               <div class="card">
                 <p>CP : </p>
-                <span class="hasil">{{countCP (stdevWithin(avgRange(dataResult)))}}</span>
+                <span class="hasil" *ngIf="CP">{{this.countCP(this.stdev)}}</span>
               </div>
             </div>
           </div>
@@ -213,8 +213,7 @@
             <div class="resultda">
               <div class="card">
                 <p>CPK : </p>
-                <span class="hasil">{{countAllCpk
-                  (countCpkUsl(stdevWithin(avgRange(dataResult)),calculateMean(dataResult)),countCpkLsl(stdevWithin(avgRange(dataResult)),calculateMean(dataResult)))}}</span>
+                <span class="hasil" *ngIf="CPK">{{this.countAllCpk(this.usl, this.lsl)}}</span>
               </div>
             </div>
           </div>
@@ -260,8 +259,7 @@
             <div class="resultda">
               <div class="card">
                 <p> UCL: </p>
-                <span class="hasil">{{ calculateUCL(calculateMean(dataResult), calculateSigma(dataResult,
-                  calculateMean(dataResult))) }}</span>
+                <span class="hasil">{{ ucl }}</span>
               </div>
             </div>
           </div>
@@ -277,8 +275,7 @@
             <div class="resultda">
               <div class="card">
                 <p> LCL: </p>
-                <span class="hasil">{{ calculateLCL(calculateMean(dataResult), calculateSigma(dataResult,
-                  calculateMean(dataResult))) }}</span>
+                <span class="hasil">{{ lcl }}</span>
               </div>
             </div>
           </div>
@@ -307,7 +304,7 @@
             <!-- Baris-baris tabel akan disesuaikan dengan data yang diperoleh dari DBeaver -->
             <tr *ngFor="let data of dataAnalysis">
                             <td>{{data.item}}</td>
-                            <td>{{data.result_d}}</td>
+                            <td>{{data.result}}</td>
                             <td>{{data.tanggal}}</td>
                           </tr>
                         </tbody>

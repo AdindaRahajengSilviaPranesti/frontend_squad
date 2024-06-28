@@ -1,0 +1,104 @@
+.title {
+    color: #484c7f;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+  }
+  
+
+  //khusus THEAD
+  .head {
+    background-color: #484c7f; /* Warna dasar */
+    color: white; /* Warna teks */
+  }
+  
+  .head th {
+    padding: 1rem 0.75rem; /* Padding untuk tiap sel header */
+    text-align: center; /* Teks terpusat */
+    font-weight: bold; /* Tebal */
+    font-size: 0.875rem; /* Ukuran font */
+    text-transform: uppercase; /* Huruf kapital */
+    border-bottom: 2px solid #ddd; /* Garis bawah tipis */
+  }
+  
+  .head th:first-child {
+    border-top-left-radius: 0.5rem; /* Sudut atas kiri */
+  }
+  
+  .head th:last-child {
+    border-top-right-radius: 0.5rem; /* Sudut atas kanan */
+  }
+  
+  .head th:nth-last-child(2),
+  .head th:nth-last-child(1) {
+    border-bottom: none; /* Menghilangkan garis bawah untuk dua kolom terakhir */
+  }
+  
+
+td {
+    text-align: center; /* Teks terpusat */
+    font-size: 0.800rem; /* Ukuran font */
+    text-transform: uppercase; /* Huruf kapital */
+  }
+
+
+
+  
+  //khusus untuk yg ready dan not ready
+  // Style untuk kolom td
+  td {
+    padding: 0.25rem 0.2rem;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: center; /* Teks terpusat */
+    text-transform: uppercase; /* Huruf kapital */
+  }
+
+  // Style untuk Ready dan Not Ready
+  .relative {
+    position: relative;
+    display: inline-block;
+    padding: 0.15rem 0.2rem;
+    font-size: 10px;
+    font-weight: 300;
+    border-radius: 9999px; /* Membulat */
+    white-space: nowrap; /* Mencegah teks terpotong */
+  }
+
+  .relative .absolute {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px; /* Membulat */
+    opacity: 0.5;
+  }
+
+  .text-green-900 {
+    color: #155724;
+  }
+
+  .bg-green-500 {
+    background-color: #28a745;
+  }
+
+  .text-red-500 {
+    color: #721c24;
+  }
+
+  .bg-red-500 {
+    background-color: #dc3545;
+  }
+
+
+// Responsive styles
+@media (max-width: 768px) {
+  .body td {
+    padding: 0.25rem;
+  }
+
+  .body .relative {
+    font-size: 12px;
+    padding: 0.25rem;
+  }
+}

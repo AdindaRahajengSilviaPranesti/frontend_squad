@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
      * Form Validatyion
      */
     this.loginForm = this.formBuilder.group({
-      nik: [null, [Validators.required, Validators.email]],
+      nik: [null, [Validators.required]],
       password: [null, [Validators.required]],
     });
     // get return url from route parameters or default to '/'

@@ -23,7 +23,7 @@ const routes: Routes = [
   {
     path: "result-calibration",
     component: ResultCalibrationComponent
-  }
+  },
 ];
 
 @NgModule({

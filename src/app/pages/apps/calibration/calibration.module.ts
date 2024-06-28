@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbTooltipModule, NgbProgressbarModule, NgbDropdownModule, NgbNavModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { QRCodeModule } from 'angularx-qrcode';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 // Feather Icon
@@ -62,7 +63,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     DropzoneModule,
     NgSelectModule,
     CalibrationRoutingModule,
-    QRCodeModule
+    QRCodeModule,
+    NgbModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

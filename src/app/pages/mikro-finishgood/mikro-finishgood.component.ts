@@ -45,6 +45,7 @@ export class MikroFinishgoodComponent implements OnInit {
   parameteroc: any;
   typeParameter: any;
   totalOc: any;
+  totalFsb: any;
   product: any;
   progressanalysisf: any;
   years: number[] = []; // Array untuk daftar tahun
@@ -63,6 +64,7 @@ export class MikroFinishgoodComponent implements OnInit {
     this.getParameter();
     this.getParameteroc();
     this.getChart();
+    this.getChartFsb();
 
     // Format the date as YYYY-MM-DD (required format for input type date)
     const formattedDate = today.toISOString().split('T')[0];
@@ -110,11 +112,18 @@ export class MikroFinishgoodComponent implements OnInit {
   private _StackedColumn100Chart(colors: any) {
     let oc1:any = new Array(12).fill(0);
     let oc2:any = new Array(12).fill(0);
+    let fsb:any = new Array(12).fill(0);
 
     this.totalOc.map((row:any) => {
       oc1[row.bulan - 1] = row.oc1;
       oc2[row.bulan - 1] = row.oc2;    
     })
+
+    this.totalFsb.map((row:any) => {
+      fsb[row.bulan - 1] = row.fsb;   
+    })
+
+
 
     console.log("oc1", oc1)
     colors = this.getChartColorsArray(colors) || ['#008DDA', '#5AB2FF', '#A0DEFF','#FF7D29', '#FFEEA9', '#41B06E'];
@@ -137,7 +146,7 @@ export class MikroFinishgoodComponent implements OnInit {
       },
       {
         name: "Total Lot FSB",
-        data: [11, 17, 15, 15, 21, 14, 15, 13],
+        data: fsb,
       },
       {
         name: "Out STD OC2",
@@ -384,5 +393,16 @@ export class MikroFinishgoodComponent implements OnInit {
       });
   }
 
+  getChartFsb() {
+    firstValueFrom(this.restApiService.getChartFsb(2023))
+      .then((res: any) => {
+        this.totalFsb = res;
+        console.log("test", res);
+        this._StackedColumn100Chart('["--vz-primary", "--vz-info", "--vz-gray-300"]');
+      })
+      .catch((error: any) => {
+        console.error(error);
+      });
+  }
 
 }

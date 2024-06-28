@@ -49,6 +49,12 @@ export class RadarVisualComponent implements OnInit {
   mean:any;
   ucl:any;
   lcl:any;
+  CP: any;
+  CPK: any;
+  stdev: any;
+  sigma: any;
+  usl: any;
+  lsl: any;
 
 
   chosenYearHandler(normalizedYear: Date) {
@@ -193,7 +199,7 @@ export class RadarVisualComponent implements OnInit {
     let startDate = this.f['startDate']?.value;
     let endDate = this.f['endDate']?.value;
     if(this.suppliers.length == 0){
-      firstValueFrom(this.restApiService.getDataAnalysisByDate(this.jenis.group_id, this.jenis.id, this.parameter.parameter, startDate, endDate))
+      firstValueFrom(this.restApiService.getDataAnalysisByDate(this.jenis.group_id, this.jenis.jenis, this.jenis.id, this.parameter.parameter, startDate, endDate))
       .then((res: any) => {
         this.dataAnalysis = res.map((row:any)=> {
           return {
@@ -201,31 +207,29 @@ export class RadarVisualComponent implements OnInit {
             result_d: row.result_d.replace(/[&lt;]/g, '')
           }
         });
-
-    
-
-        this.dataResult = this.dataAnalysis.map((row: any) => row.result_d)
+        this.dataResult = this.dataAnalysis.map((row: any) => row.result)
         this.startDate = this.dataAnalysis.map((row: any) => row.tanggal)
         console.log(this.startDate)
         console.log(this.dataAnalysis)
-        this.nameParameter = this.dataAnalysis.map((column: any) => column.item)
+        this.nameParameter = this.dataAnalysis.map((column: any) => column.result)
         this.mean = this.calculateMean(this.dataResult);
-        this.ucl = this.calculateUCL(this.calculateMean(this.dataResult), this.calculateSigma(this.dataResult,
-          this.calculateMean(this.dataResult)));
-        this.lcl = this.calculateLCL(this.calculateMean(this.dataResult), this.calculateSigma(this.dataResult,
-          this.calculateMean(this.dataResult)));
-
-        console.log(this.ucl, this.lcl)
+        this.sigma = this.calculateSigma(this.dataResult, this.mean);
+        this.stdev = this.stdevWithin(this.mean);
+        console.log("std", this.stdev)
+        this.ucl = this.calculateUCL(this.calculateMean(this.dataResult), this.calculateSigma(this.dataResult,this.calculateMean(this.dataResult)));
+        this.lcl = this.calculateLCL(this.calculateMean(this.dataResult), this.calculateSigma(this.dataResult,this.calculateMean(this.dataResult)));
+        this.usl = this.countCpkUsl(this.stdev, this.mean)
+        this.lsl = this.countCpkLsl(this.stdev, this.mean)
+        this.CP = this.countCP(this.stdev);
+        this.CPK = this.countAllCpk(this.usl, this.lsl)
         // this.ucl = 0.5;
         // this.lcl= -0.1;
         this._basicLineChart('["--vz-primary"]');
       })
       .catch((error: any) => {
-
-
       })
     }else{
-      firstValueFrom(this.restApiService.getDataAnalysisByDate(this.jenis.group_id, this.manufacture.jenis, this.parameter.parameter, startDate, endDate))
+      firstValueFrom(this.restApiService.getDataAnalysisByDate(this.jenis.group_id, this.jenis.jenis, this.jenis.id, this.parameter.parameter, startDate, endDate))
       .then((res: any) => {
         this.dataAnalysis = res.map((row:any)=> {
           return {
@@ -235,18 +239,29 @@ export class RadarVisualComponent implements OnInit {
         });
         //000,7
 
-        console.log(this.dataAnalysis)
+        console.log("result", this.dataAnalysis)
 
-        this.dataResult = this.dataAnalysis.map((row: any) => row.result_d)
+        this.dataResult = this.dataAnalysis.map((row: any) => row.result)
         this.startDate = this.dataAnalysis.map((row: any) => row.tanggal)
-        this.nameParameter = this.dataAnalysis.map((column: any) => column.item)
+        this.nameParameter = this.dataAnalysis.map((column: any) => column.result)
         this.mean = this.calculateMean(this.dataResult);
-        this.ucl = this.calculateUCL(this.calculateMean(this.dataResult), this.calculateSigma(this.dataResult,
-          this.calculateMean(this.dataResult)));
-        this.lcl = this.calculateLCL(this.calculateMean(this.dataResult), this.calculateSigma(this.dataResult,
-          this.calculateMean(this.dataResult)));
-
-        console.log(this.ucl, this.lcl)
+        console.log("meaan", this.mean)
+        this.sigma = this.calculateSigma(this.dataResult, this.mean);
+        this.stdev = this.stdevWithin(this.mean);
+        console.log("std", this.stdev)
+        this.ucl = this.calculateUCL(this.calculateMean(this.dataResult), this.calculateSigma(this.dataResult,this.calculateMean(this.dataResult)));
+        console.log("ucl", this.ucl)
+        this.lcl = this.calculateLCL(this.calculateMean(this.dataResult), this.calculateSigma(this.dataResult,this.calculateMean(this.dataResult)));
+        console.log("lcl", this.lcl)
+        this.usl = this.countCpkUsl(this.stdev, this.mean)
+        console.log("usl", this.usl)
+        this.lsl = this.countCpkLsl(this.stdev, this.mean)
+        console.log("lsl", this.lsl)
+        this.CP = this.countCP(this.stdev);
+        console.log("cp", this.CP)
+        this.CPK = this.countAllCpk(this.usl, this.lsl)
+        console.log("cpk", this.CPK)
+        
         // this.ucl = 0.5;
         // this.lcl= -0.1;
         this._basicLineChart('["--vz-primary"]');
@@ -264,10 +279,10 @@ export class RadarVisualComponent implements OnInit {
     let endDate = this.f['endDate']?.value;
 
     if(this.suppliers.length == 0){
-      firstValueFrom(this.restApiService.getDataChart(this.jenis.group_id, this.jenis.id, this.parameter.parameter, startDate, endDate))
+      firstValueFrom(this.restApiService.getDataChart(this.jenis.group_id, this.jenis.jenis, this.jenis.id, this.parameter.parameter, startDate, endDate))
       .then((res: any) => {
         this.dataChart = res;
-        this.result = this.dataChart.map((row: any) => row.result_d);
+        this.result = this.dataChart.map((row: any) => row.result);
         this.totalResult = this.dataChart.map((row: any) => row.total);
         this.dataChart.map((row:any)=> {
           if(row.max === null && row.min === null){
@@ -289,10 +304,10 @@ export class RadarVisualComponent implements OnInit {
 
       })
     }else{
-      firstValueFrom(this.restApiService.getDataChart(this.jenis.group_id, this.manufacture.jenis, this.parameter.parameter, startDate, endDate))
+      firstValueFrom(this.restApiService.getDataChart(this.jenis.group_id, this.jenis.jenis, this.jenis.id, this.parameter.parameter, startDate, endDate))
       .then((res: any) => {
         this.dataChart = res;
-        this.result = this.dataChart.map((row: any) => row.result_d);
+        this.result = this.dataChart.map((row: any) => row.result);
         this.totalResult = this.dataChart.map((row: any) => row.total);
         this.dataChart.map((row:any)=> {
           if(row.max === null && row.min === null){
@@ -427,8 +442,8 @@ export class RadarVisualComponent implements OnInit {
     this.min = parseFloat(this.lcl) - 0.1
     this.max = parseFloat(this.ucl) + 0.1
 
-    console.log('UCL',this.max)
-    console.log('LCL',this.min)
+    // console.log('UCL',this.max)
+    // console.log('LCL',this.min)
     
     this.basicLineChart = {
       series: [
@@ -576,7 +591,7 @@ avgRange(data: any[]): GLfloat {
 // let sum = frekKom.reduce((acc: GLfloat, val: GLfloat) => acc + val, 0);
 // let denominator = data.length - 1;
 // let result = sum / denominator;
-  console.log("frek", frekKom)
+  // console.log("frek", frekKom)
 
 frekKom.map((row:any) => sum += parseFloat(row) );
 let avg = sum/frekKom.length;
@@ -594,9 +609,11 @@ return parseFloat (within.toFixed(5));
 
 
 countCP(within: any): number {
-  console.log("within", within)
+  // console.log('CP',within)
+  console.log("max",this.dataMax)
+  console.log("min", this.dataMin)
   return parseFloat (((this.dataMax - this.dataMin) / (6 * within)).toFixed(2));
-    console.log(this.countCP)
+    
 }
 
 countCpkUsl(within: any, mean: any ): number {
@@ -608,8 +625,9 @@ countCpkUsl(within: any, mean: any ): number {
   }
 
   countAllCpk(cpkUsl:any, cpkLsl:any) {
+    // console.log('CPK',cpkUsl)
+    // console.log('CPK2',cpkLsl)
     return Math.min(cpkUsl, cpkLsl);
-    console.log(this.countAllCpk)
   }
 
 }

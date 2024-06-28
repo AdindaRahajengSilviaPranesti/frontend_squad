@@ -37,6 +37,85 @@ export class restApiService {
     return this.http.post(this.apiUrl + GlobalComponent.postResultSwab, form)
   }
 
+
+  // GENBA 
+  getAllCrossGenba(): Observable<any> {
+    return this.http.get(this.apiUrl + GlobalComponent.getAllCrossGenba)
+  }
+  
+  getAllSelfGenba(): Observable<any> {
+    return this.http.get(this.apiUrl + GlobalComponent.getAllSelfGenba)
+  }
+  
+  getAllAreaFinding(): Observable<any> {
+    return this.http.get(this.apiUrl + GlobalComponent.getAllAreaFinding)
+  }
+  // END GENBA
+
+  // ====================== SKB ==========================
+  // DASHBOARD CALIBRATION VCC
+  getEquipment(): Observable<any> {
+    return this.http.get(this.apiUrl+GlobalComponent.getEquipment)
+  }
+
+  getRegis(): Observable<any> {
+    return this.http.get(this.apiUrl+GlobalComponent.getRegis)
+  }
+
+  getExpired(): Observable<any> {
+    return this.http.get(this.apiUrl+GlobalComponent.getExpired)
+  }
+
+  postNowKalibrasi(date: any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.postNowKalibrasi, date);
+  }
+
+  postPlanKalibrasi(date: any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.postPlanKalibrasi, date);
+  }
+
+  getAllEquipment(): Observable<any> {
+    return this.http.get(this.apiUrl + GlobalComponent.getAllEquipment)
+  }
+
+  getExternal(): Observable<any> {
+    return this.http.get(this.apiUrl + GlobalComponent.getExternal)
+  }
+
+  dateFilter(date: any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.dateFilter, date);
+  }
+
+  editPlanKalibrasi(date: any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.editPlanKalibrasi, date);
+  }
+
+  calibrationSummary(date: any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.calibrationSummary, date);
+  }
+
+  getRegistTable(): Observable<any> {
+    return this.http.get(this.apiUrl + GlobalComponent.getRegistTable)
+  }
+
+  sertifKalibrasi(id_hit: any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.sertifKalibrasi, id_hit);
+  }
+    
+  getAllArea(): Observable<any> {
+    return this.http.get(this.apiUrl + GlobalComponent.getAllArea)
+  }
+
+  filterArea(area: any): Observable<any> {
+    return this.http.post(this.apiUrl + GlobalComponent.filterArea, area);
+  }
+
+  // END DASHBOARD CALIBRATION VCC
+
+
+
+
+
   getMaterial(): Observable<any> {
     return this.http.get(this.apiUrl+'radarvisual/')
   }
@@ -120,12 +199,12 @@ export class restApiService {
   //   return this.http.post(this.apiUrl+'radarvisual/getDataAnalysis/',)
   // }
 
-  getDataAnalysisByDate(group_id:any, id:any, parameterData:any,startDate:any, endDate:any): Observable<any> {
-    return this.http.post(this.apiUrl+'radarvisual/getDataAnalysisByDate', {group_id: group_id, id: id, parameterData: parameterData,startDate: startDate, endDate: endDate})
+  getDataAnalysisByDate(group_id:any, jenis:any, id:any, parameterData:any, startDate:any, endDate:any): Observable<any> {
+    return this.http.post(this.apiUrl+'radarvisual/getDataAnalysisByDate', {group_id:group_id, jenis: jenis, id: id, parameterData: parameterData,startDate: startDate, endDate: endDate})
   }
 
-  getDataChart(group_id:any, id:any, parameterData:any,startDate:any, endDate:any): Observable<any> {
-    return this.http.post(this.apiUrl+'radarvisual/getDataChart/', {group_id: group_id, id: id, parameterData: parameterData,startDate: startDate, endDate: endDate})
+  getDataChart(group_id:any, jenis:any, id:any, parameterData:any,startDate:any, endDate:any): Observable<any> {
+    return this.http.post(this.apiUrl+'radarvisual/getDataChart/', {group_id:group_id, jenis: jenis, id: id, parameterData: parameterData,startDate: startDate, endDate: endDate})
   }
   
 
@@ -171,11 +250,15 @@ export class restApiService {
   }
 
 
-  // CHART ATAS SENDIRI FINISH GOOD
+  // CHART ATAS SENDIRI FINISH GOOD --> OC
   getChart(tgl_prod:any): Observable<any> {
     return this.http.post(this.apiUrl+'finishGood/getChart', {tgl_prod:tgl_prod})
   }
 
+  // CHART ATAS SENDIRI FINISH GOOD --> FSB
+  getChartFsb(start_date:any): Observable<any> {
+    return this.http.post(this.apiUrl+'finishGood/getChartFsb', {start_date:start_date})
+  }
 
   /**
   * Product Rest Api

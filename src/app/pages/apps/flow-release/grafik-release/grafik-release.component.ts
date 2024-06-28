@@ -215,22 +215,10 @@ export class GrafikReleaseComponent {
       stroke: {
         curve: "straight"
       },
-      titleOci1: {
-        text: "Grafik Flow Release OCI1",
-        align: "center"
-      },
-      titleOci2: {
-        text: "Grafik Flow Release OCI2",
-        align: "center"
-      },
-      titleFsb: {
-        text: "Grafik Flow Release FSB",
-        align: "center"
-      },
       grid: {
         row: {
-          colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-          opacity: 0.5
+          colors: ["#484C7F", "transparent"], // takes an array which will be repeated on columns
+          opacity: 0.3
         }
       },
       yaxis: {

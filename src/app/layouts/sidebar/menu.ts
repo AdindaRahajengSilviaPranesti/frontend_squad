@@ -105,37 +105,6 @@ export const MENU: MenuItem[] = [
   },
 // 
 
-// SKB
-// {
-//   id: 300,
-//   label: 'MIKRO SKB',
-//   isTitle: true
-// },
-// {
-//   id: 301,
-//   label: 'MICRO',
-//   icon: 'bx bx-pie-chart',
-//   subItems: [
-//     {
-//       id: 302,
-//       label: 'SWAB',
-//       link: '/pending-task-calibration',
-//       parentId: 301
-//     },
-//     {
-//       id: 303,
-//       label: 'WATER',
-//       link: '/report-calibration',
-//       parentId: 301
-//     },
-//     {
-//       id: 304,
-//       label: 'FG',
-//       link: '/result-calibration',
-//       parentId: 301
-//     },
-//   ]
-// },
 
 // RMPM
 {
